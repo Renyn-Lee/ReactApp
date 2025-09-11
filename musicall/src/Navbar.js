@@ -1,8 +1,8 @@
-import './Navbar.css';
+import './styles.css';
 export default function Navbar(){
   const path = window.location.pathname
   return<nav className='nav'>
-<a href="/Home" className='site-title'>Musicall</a>
+<a href="/" className='site-title'>Musicall</a>
 <ul> 
   <CustomLink href="/Piano"> Piano </CustomLink>
   <CustomLink href="/Guitar"> Guitar </CustomLink>

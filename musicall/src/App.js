@@ -7,7 +7,7 @@ import Piano from "./pages/Piano"
 function App(){
     let component
     switch (window.location.pathname) {
-    case"/Home":
+    case"/":
     component = <Home/>
         break
     case"/Aboutus":
@@ -23,7 +23,7 @@ function App(){
     return (
 <>
     <Navbar/>
-    {component}
+    <div className="container">{component}</div>
 </>
     )
 }
