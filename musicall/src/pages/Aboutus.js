@@ -9,10 +9,13 @@ export default function Aboutus(){
   <div className="Contact-info-box">
   <h1>Contact Info</h1>
     <ul className="contact-info">
-      <li> Email</li>
-      <li> Facebook</li>
-      <li> Instagram</li>
+      <li> Email:</li>
+      <li> Facebook:</li>
+      <li> Instagram:</li>
     </ul>
   </div>
+  <div className="faq-box"> <h1>FAQ</h1>
+    <h2 className="contact-info"> Stuff </h2>
+   </div>
  </main> 
 }
