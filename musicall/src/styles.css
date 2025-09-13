@@ -18,6 +18,7 @@ body{
     flex-wrap: wrap;
     justify-content: space-around;
 }
+/*Navbar start*/
 .nav{
     background-color:#FFFFFF;
     color: black;
@@ -61,9 +62,68 @@ body{
 
 .nav li:hover{
     background-color: #0056b3;
-    transform: scale(1);
+    transform: scale(1.1);
 }
 
+/* Buttons Container */
+.navbuttons {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+    align-items: center;
+  }
+  
+  /* Base Button Styling (shared styles) */
+  .signup, .login {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 90px;
+    text-align: center;
+  }
+  
+  /* Sign Up Button (Blue) */
+  .signup {
+    background-color: #007bff;
+    color: white;
+    border: 2px solid #007bff;
+  }
+  
+  .signup:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  }
+  
+  /* Log In Button (White with border) */
+  .login {
+    background-color: white;
+    color: #333;
+    border: 2px solid #333;
+  }
+  
+  .login:hover {
+    background-color: #f8f9fa;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Active/Focus states */
+  .signup:active, .login:active {
+    transform: translateY(0);
+  }
+  
+  .signup:focus, .login:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  }
+/* Navbar END*/
 /* About us CSS*/
 .About-us-box{
     color: black;
@@ -160,7 +220,8 @@ font-weight: Bold;
     font-size: 1.7rem;
 }
 .HomeButton {
-font-weight: Bold;
+    font-weight: 1500;
+    transform: scale(1);
     font-family: Arial;
     font-optical-sizing: auto;
     font-style: normal;
@@ -176,7 +237,9 @@ font-weight: Bold;
     margin-bottom: 5rem;
     -webkit-text-stroke-width: .1rem;
 }
-.HomeButton:hover {background: rgb(108, 136, 212);
+.HomeButton:hover {
+    background: rgb(108, 136, 212);
+    transform: scale(1.1);
 }
 .home-desc {
     font-weight: normal;

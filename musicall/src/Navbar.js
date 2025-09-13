@@ -8,6 +8,10 @@ export default function Navbar(){
   <CustomLink href="/Guitar"> Guitar </CustomLink>
   <CustomLink href="/Aboutus"> About us </CustomLink>
 </ul>
+<div className='navbuttons'>
+<button className="signup"> Sign up </button>
+<button className="login"> Log in </button>
+</div>
   </nav>
 }
 
