@@ -3,28 +3,30 @@ import Aboutus from "./pages/Aboutus"
 import Guitar from "./pages/Guitar"
 import Home from "./pages/Home"
 import Piano from "./pages/Piano"
+import FloatingChatbot from "./FloatingChatbot"
 
 function App(){
     let component
     switch (window.location.pathname) {
     case"/":
-    component = <Home/>
+        component = <Home/>
         break
     case"/Aboutus":
-    component = <Aboutus/>
+        component = <Aboutus/>
         break
-   case"/Guitar":
-   component = <Guitar/>
+    case"/Guitar":
+        component = <Guitar/>
         break
     case"/Piano":
-    component = <Piano/>
+        component = <Piano/>
         break
     }
     return (
-<>
-    <Navbar/>
-    <div className="container">{component}</div>
-</>
+        <>
+            <Navbar/>
+            <div className="container">{component}</div>
+            <FloatingChatbot />
+        </>
     )
 }
 
