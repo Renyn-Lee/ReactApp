@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@azure/functions": "^4.8.0",
+    "@clerk/clerk-react": "^5.47.0",
     "openai": "^5.20.2"
   },
   "devDependencies": {

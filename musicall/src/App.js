@@ -30,5 +30,6 @@ function App(){
     )
 }
 
-export default App
+export default App;
 /* be sure to do 'func start' in api  and npm start in musicall*/ 
+
