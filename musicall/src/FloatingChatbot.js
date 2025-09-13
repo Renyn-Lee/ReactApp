@@ -60,7 +60,7 @@ const FloatingChatbot = () => {
         className="chat-button"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? '×' : '💬'}
+        {isOpen ? '×' : '♪'}
       </button>
 
       {/* Chat Window */}
@@ -68,20 +68,20 @@ const FloatingChatbot = () => {
         <div className="chat-window">
           {/* Chat Header */}
           <div className="chat-header">
-            Music Helper 🎵
+            Sato 🎵
           </div>
 
           {/* Messages Area */}
           <div className="chat-messages">
             {messages.length === 0 ? (
               <div className="welcome-message">
-                <p>👋 Hi! I'm here to help you with any questions about our music platform!</p>
+                <p>👋 Hi Im Sato! I'm here to help you with any music related questions!</p>
                 <p>Ask me about:</p>
                 <ul>
-                  <li>How to learn piano</li>
-                  <li>Guitar techniques</li>
-                  <li>Music theory</li>
-                  <li>Practice tips</li>
+                  <li>Help with Piano?</li>
+                  <li>Guitar techniques?</li>
+                  <li>Music theory?</li>
+                  <li>Practice tips?</li>
                 </ul>
               </div>
             ) : (

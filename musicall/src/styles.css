@@ -52,12 +52,12 @@ body{
 }
 
 .nav li.active{
-    background-color: #29478d86;
+    background-color: #007bff;
     transition: transform 0.3s ease-in-out;
 }
 
 .nav li:hover{
-    background-color: #547DDE;
+    background-color: #0056b3;
     transform: scale(1);
 }
 
