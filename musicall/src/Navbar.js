@@ -1,4 +1,5 @@
 import './styles.css';
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 export default function Navbar(){
   const path = window.location.pathname
   return<nav className='nav'>
@@ -9,10 +10,19 @@ export default function Navbar(){
   <CustomLink href="/Aboutus"> About us </CustomLink>
 </ul>
 <div className='navbuttons'>
-<button className="signup"> Sign up </button>
-<button className="login"> Log in </button>
+  <SignedOut>
+      <SignInButton>
+          <button className="login">Sign In</button>
+      </SignInButton>
+      <SignUpButton>
+          <button className="signup">Sign Up</button>
+      </SignUpButton>
+  </SignedOut>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
 </div>
-  </nav>
+</nav>
 }
 
 function CustomLink({href, children, ...props}) {
