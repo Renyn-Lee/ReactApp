@@ -1,5 +1,6 @@
 *
- {
+
+{
     box-sizing:border-box;
 }
 
@@ -26,6 +27,8 @@ body{
     gap: 2rem;
     padding: 0 5rem;
     height: 5rem;
+     position: relative; /* or absolute, fixed */
+  z-index: 2;
 }
 
 .site-title{
@@ -39,7 +42,7 @@ body{
     display: flex;
     gap: 2rem;
     font-size: 1.25rem;
-    transition: transform 0.3s ease-in-out;
+   
 
 }
 .nav a{
@@ -114,3 +117,118 @@ body{
     margin: 5rem;
 }
 /* About us CSS END*/
+
+/* Homescreen CSS START*/
+.Homescreen-Box{
+    color: black;
+    background-color: #abd0dd;
+    border-color:#758B94;
+    border-bottom-style: solid;
+    border-width: 0.2rem;
+    padding-top: 1rem;
+    margin: -3rem;
+     position: relative; /* or absolute, fixed */
+  z-index: 1;
+}
+.Home-Title{
+font-weight: Bold;
+    font-family:Placeholder crap;
+    font-optical-sizing: auto;
+    font-style: italic;
+    align-items: center;
+    padding-top: 3rem;
+    font-size: 5rem;
+    margin-bottom: -2rem;
+}
+.Homescreen-Motto{
+    font-weight: normal;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    align-items: center;
+    padding: 2rem;
+    font-size: large;
+    padding-bottom: 5rem;
+}
+.homebox3 {
+ font-weight: Bold;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    align-items: center;
+    padding-top: 2rem;
+    font-size: 1.7rem;
+}
+.HomeButton {
+font-weight: Bold;
+    font-family: Arial;
+    font-optical-sizing: auto;
+    font-style: normal;
+    align-items: center;
+    font-size: 1.7rem;
+    padding: 20px 80px;
+    border-radius: 18px;
+    background: rgb(81, 117, 216);
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 5rem;
+    -webkit-text-stroke-width: .1rem;
+}
+.HomeButton:hover {background: rgb(108, 136, 212);
+}
+.home-desc {
+    font-weight: normal;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 1.7rem;
+    color: black;
+    background-color: #9dbeca;
+    border-color:#758B94;
+    border-radius: 2rem;
+    border-style: solid;
+    border-width: 0.5rem;
+    padding: 1rem;
+    padding-left: 4.5rem;
+    margin-top: 5rem;
+    position: relative;
+    left: -5rem;
+    max-width: 140rem;
+    text-align: left;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+.twond-box{
+    color: black;
+    background-color: #82a7b4;
+    border-color:#758B94;
+    border-radius: 2rem;
+    border-style: solid;
+    border-width: 0.5rem;
+    padding-top: 1rem;
+    margin: 2rem;
+    padding-left: 3rem;
+    position: relative;
+    right: -15rem;
+    max-width: 150rem;
+    text-align: left;
+}
+.twond-box-text{
+    font-weight: normal;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    padding: 0rem;
+    padding-top: .5rem;
+    list-style: none;
+    font-size: x-large;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* adds spacing between list items */
+}
+.extraItalics{
+    font-style: italic;
+}
