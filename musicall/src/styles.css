@@ -229,7 +229,7 @@ font-weight: Bold;
     font-size: 1.7rem;
     padding: 20px 80px;
     border-radius: 18px;
-    background: rgb(81, 117, 216);
+    background-color: #007bff;
     color: rgb(0, 0, 0);
     border: none;
     cursor: pointer;
@@ -238,7 +238,7 @@ font-weight: Bold;
     -webkit-text-stroke-width: .1rem;
 }
 .HomeButton:hover {
-    background: rgb(108, 136, 212);
+    background:#0056b3;
     transform: scale(1.1);
 }
 .home-desc {
