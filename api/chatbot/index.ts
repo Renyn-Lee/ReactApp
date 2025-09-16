@@ -1,9 +1,8 @@
-import OpenAI from "openai";
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// Initialize Gemini client
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 const httpTrigger = async (context: any, req: any): Promise<void> => {
   context.log('HTTP trigger function processed a request.');
@@ -44,33 +43,40 @@ const httpTrigger = async (context: any, req: any): Promise<void> => {
       return;
     }
 
-    // Prepare messages for OpenAI
-    const messages = [
-      { role: "system", content: "You are a helpful music assistant. Help users with questions about learning piano, guitar, music theory, and practice tips." },
-      ...conversationHistory,
-      { role: "user", content: message }
-    ];
-
-    // Call OpenAI API
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: messages,
-      max_tokens: 500,
-      temperature: 0.7,
+    // Build conversation context for Gemini
+    let conversationContext = "You are a helpful music assistant. Help users with questions about learning piano, guitar, music theory, and practice tips.\n\n";
+    
+    // Add conversation history
+    conversationHistory.forEach((msg: any) => {
+      if (msg.role === 'user') {
+        conversationContext += `User: ${msg.content}\n`;
+      } else if (msg.role === 'assistant') {
+        conversationContext += `Assistant: ${msg.content}\n`;
+      }
     });
+    
+    // Add current message
+    conversationContext += `User: ${message}\nAssistant:`;
 
-    const reply = completion.choices[0]?.message?.content;
+    // Call Gemini API
+    const result = await model.generateContent(conversationContext);
+    const response = await result.response;
+    const reply = response.text();
 
     context.res = {
       status: 200,
       body: {
         reply: reply,
-        usage: completion.usage
+        usage: {
+          // Gemini doesn't provide detailed usage like OpenAI
+          // You can remove this or add custom tracking if needed
+          total_tokens: "N/A"
+        }
       }
     };
 
   } catch (error) {
-    context.log.error('Error calling OpenAI:', error);
+    context.log.error('Error calling Gemini:', error);
     context.res = {
       status: 500,
       body: { error: "Failed to get response from AI" }

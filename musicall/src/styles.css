@@ -12,7 +12,10 @@ body{
     margin: 3rem;
 
 }
-
+.cl-userButtonAvatarBox {
+    width: 48px;
+    height: 48px;
+  }
 #root{
     width: 100%;
     flex-wrap: wrap;

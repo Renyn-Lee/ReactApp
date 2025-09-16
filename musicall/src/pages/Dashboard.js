@@ -16,7 +16,7 @@ const Dashboard = () => {
     <div className="dashboard-wrapper">
       <div className="dashboard-container">
         <h1 className="dashboard-title">
-          My Lessons
+          Lessons
         </h1>
         
         <div className="button-container">

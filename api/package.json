@@ -1,7 +1,7 @@
 {
-  "name": "",
+  "name": "music-assistant-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Music assistant API using Gemini",
   "main": "src/functions/*.js",
   "scripts": {
     "start": "func start",
@@ -10,7 +10,7 @@
   "dependencies": {
     "@azure/functions": "^4.8.0",
     "@clerk/clerk-react": "^5.47.0",
-    "openai": "^5.20.2"
+    "@google/generative-ai": "^0.21.0"
   },
   "devDependencies": {
     "@types/node": "^24.3.3",

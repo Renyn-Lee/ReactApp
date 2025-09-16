@@ -1,6 +1,6 @@
 const { app } = require('@azure/functions');
 
-app.http('getOpenAIResponse', {
+app.http('getGeminiResponse', {  // Changed name
     methods: ['GET', 'POST'],
     authLevel: 'anonymous',
     handler: async (request, context) => {

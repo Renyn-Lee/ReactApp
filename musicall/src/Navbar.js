@@ -19,7 +19,8 @@ export default function Navbar(){
       </SignUpButton>
   </SignedOut>
       <SignedIn>
-        <UserButton />
+        <UserButton/>
+          
       </SignedIn>
 </div>
 </nav>
