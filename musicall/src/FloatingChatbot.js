@@ -17,7 +17,7 @@ const FloatingChatbot = () => {
     setMessages(newMessages);
 
     try {
-      const response = await fetch('http://localhost:7071/api/chatbot', {
+      const response = await fetch('http://localhost:7071/api/getGeminiResponse', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

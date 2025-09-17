@@ -22,8 +22,7 @@ export default function Home() {
         </SignedOut>
 
         {/* Show User Button when signed in */}
-        <SignedIn>
-        <a href="/dashboard">
+        <SignedIn> <a href="/dashboard">
     <button className="HomeButton">Go to Dashboard</button>
         </a>
         </SignedIn>
