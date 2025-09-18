@@ -34,6 +34,8 @@ const httpTrigger = async (context: any, req: any): Promise<void> => {
     const body = req.body as any;
     const message: string = body?.message || '';
     const conversationHistory: any[] = body?.conversationHistory || [];
+    context.log('Received message:', message);
+    context.log('Gemini API Key exists:', !!process.env.GEMINI_API_KEY);
 
     if (!message) {
       context.res = {
@@ -76,6 +78,7 @@ const httpTrigger = async (context: any, req: any): Promise<void> => {
     };
 
   } catch (error) {
+    context.log.error('Full error details:', error);
     context.log.error('Error calling Gemini:', error);
     context.res = {
       status: 500,

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './FloatingChatbot.css';
 
 const FloatingChatbot = () => {
@@ -6,6 +6,21 @@ const FloatingChatbot = () => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Scroll to bottom when messages change or chat opens
+  useEffect(() => {
+    if (isOpen && messages.length > 0) {
+      // Small delay to ensure DOM is rendered
+      setTimeout(() => {
+        scrollToBottom();
+      }, 100);
+    }
+  }, [isOpen, messages]);
 
   const askAI = async () => {
     if (!input.trim()) return;
@@ -99,6 +114,8 @@ const FloatingChatbot = () => {
                 Typing...
               </div>
             )}
+            {/* Invisible element to scroll to */}
+            <div ref={messagesEndRef} />
           </div>
 
           {/* Input Area */}
