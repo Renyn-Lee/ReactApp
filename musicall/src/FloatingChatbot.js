@@ -7,8 +7,10 @@ const FloatingChatbot = () => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
   const fileInputRef = useRef(null);
+  const typingTimeoutRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -21,6 +23,53 @@ const FloatingChatbot = () => {
       }, 100);
     }
   }, [isOpen, messages]);
+
+  // Typewriter thingy
+  const typewriterEffect = (text, messageIndex) => {
+    return new Promise((resolve) => {
+      let currentText = '';
+      let charIndex = 0;
+      
+      const typeNextChar = () => {
+        if (charIndex < text.length) {
+          currentText += text[charIndex];
+          charIndex++;
+          
+          // Update the message in real-time
+          setMessages(prevMessages => {
+            const newMessages = [...prevMessages];
+            newMessages[messageIndex] = {
+              ...newMessages[messageIndex],
+              content: currentText,
+              isTyping: true
+            };
+            return newMessages;
+          });
+          
+          // Random typing speed between 20-50ms for more natural feel
+          const typingSpeed = Math.random() * 15 + 10;
+          typingTimeoutRef.current = setTimeout(typeNextChar, typingSpeed);
+          
+          // Auto-scroll as text appears
+          scrollToBottom();
+        } else {
+          // Finished typing
+          setMessages(prevMessages => {
+            const newMessages = [...prevMessages];
+            newMessages[messageIndex] = {
+              ...newMessages[messageIndex],
+              isTyping: false
+            };
+            return newMessages;
+          });
+          setIsTyping(false);
+          resolve();
+        }
+      };
+      
+      typeNextChar();
+    });
+  };
 
   const handleImageSelect = (event) => {
     const file = event.target.files[0];
@@ -39,7 +88,7 @@ const FloatingChatbot = () => {
   const convertImageToBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = () => resolve(reader.result.split(',')[1]); // Remove data URL prefix
+      reader.onload = () => resolve(reader.result.split(',')[1]);
       reader.onerror = reject;
       reader.readAsDataURL(file);
     });
@@ -47,6 +96,7 @@ const FloatingChatbot = () => {
 
   const askAI = async () => {
     if (!input.trim() && !selectedImage) return;
+    if (isTyping) return; // Prevent new requests while typing
 
     setLoading(true);
     
@@ -61,10 +111,9 @@ const FloatingChatbot = () => {
     try {
       let requestBody = {
         message: input,
-        conversationHistory: messages.filter(msg => !msg.image) // Remove images from history for now
+        conversationHistory: messages.filter(msg => !msg.image)
       };
 
-      // Add image data if present
       if (selectedImage) {
         const base64Image = await convertImageToBase64(selectedImage);
         requestBody.image = base64Image;
@@ -80,21 +129,40 @@ const FloatingChatbot = () => {
       });
 
       const data = await response.json();
+      setLoading(false);
       
       if (response.ok) {
-        const aiMessage = { role: 'assistant', content: data.reply };
-        setMessages([...newMessages, aiMessage]);
+        // Add empty AI message first
+        const aiMessage = { 
+          role: 'assistant', 
+          content: '', 
+          isTyping: true 
+        };
+        const messagesWithAI = [...newMessages, aiMessage];
+        setMessages(messagesWithAI);
+        
+        setIsTyping(true);
+        
+        // Start typewriter effect
+        await typewriterEffect(data.reply, messagesWithAI.length - 1);
+        
       } else {
-        const errorMessage = { role: 'assistant', content: 'Sorry, I had trouble processing that. Please try again.' };
+        const errorMessage = { 
+          role: 'assistant', 
+          content: 'Sorry, I had trouble processing that. Please try again.' 
+        };
         setMessages([...newMessages, errorMessage]);
       }
     } catch (error) {
       console.error('Error:', error);
-      const errorMessage = { role: 'assistant', content: 'Sorry, I\'m having connection issues. Please try again later.' };
+      setLoading(false);
+      const errorMessage = { 
+        role: 'assistant', 
+        content: 'Sorry, I\'m having connection issues. Please try again later.' 
+      };
       setMessages([...newMessages, errorMessage]);
     }
 
-    setLoading(false);
     setInput('');
     setSelectedImage(null);
     if (fileInputRef.current) {
@@ -103,10 +171,19 @@ const FloatingChatbot = () => {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !isTyping) {
       askAI();
     }
   };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <>
@@ -144,7 +221,7 @@ const FloatingChatbot = () => {
               messages.map((msg, index) => (
                 <div 
                   key={index} 
-                  className={`message ${msg.role === 'user' ? 'user-message' : 'ai-message'}`}
+                  className={`message ${msg.role === 'user' ? 'user-message' : 'ai-message'} ${msg.isTyping ? 'typing' : ''}`}
                 >
                   {msg.image && (
                     <img 
@@ -153,13 +230,14 @@ const FloatingChatbot = () => {
                       style={{ maxWidth: '200px', borderRadius: '8px', marginBottom: '8px' }}
                     />
                   )}
-                  {msg.content}
+                  <span>{msg.content}</span>
+                  {msg.isTyping && <span className="typing-cursor">|</span>}
                 </div>
               ))
             )}
             {loading && (
               <div className="typing-indicator">
-                Typing...
+                Thinking...
               </div>
             )}
             <div ref={messagesEndRef} />
@@ -193,9 +271,9 @@ const FloatingChatbot = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Ask me anything..."
+                placeholder={isTyping ? "Sato is typing..." : "Ask me anything..."}
                 className="chat-input"
-                disabled={loading}
+                disabled={loading || isTyping}
               />
               
               {/* Image upload button */}
@@ -209,18 +287,26 @@ const FloatingChatbot = () => {
               <button
                 onClick={() => fileInputRef.current?.click()}
                 className="image-button"
-                style={{ padding: '8px', marginRight: '4px', border: '1px solid #ddd', borderRadius: '4px', background: 'white' }}
+                disabled={isTyping}
+                style={{ 
+                  padding: '8px', 
+                  marginRight: '4px', 
+                  border: '1px solid #ddd', 
+                  borderRadius: '4px', 
+                  background: isTyping ? '#f0f0f0' : 'white',
+                  cursor: isTyping ? 'not-allowed' : 'pointer'
+                }}
                 title="Upload image"
               >
-                +
+                ╋
               </button>
               
               <button
                 onClick={askAI}
-                disabled={loading || (!input.trim() && !selectedImage)}
+                disabled={loading || (!input.trim() && !selectedImage) || isTyping}
                 className="send-button"
               >
-                Send
+                {loading ? 'Sending...' : 'Send'}
               </button>
             </div>
           </div>

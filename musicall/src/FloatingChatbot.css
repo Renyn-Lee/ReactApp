@@ -213,4 +213,26 @@
     right: 10px;
     bottom: 10px;
   }
+  .typing-cursor {
+    animation: blink 0.5s infinite;
+    font-weight: bold;
+    margin-left: 2px;
+  }
+  
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+  
+  .message.typing {
+    border-left: 3px solid #007bff;
+  }
+  
+  .ai-message.typing {
+    background-color: #f8f9ff;
+  }
 }
