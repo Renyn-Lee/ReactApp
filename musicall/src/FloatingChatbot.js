@@ -252,7 +252,7 @@ const FloatingChatbot = () => {
               }}
               title={isExpanded ? 'Collapse' : 'Expand'}
             >
-              {isExpanded ? '↙️' : '↗️'}
+              {isExpanded ? '↙' : '↗'}
             </button>
           </div>
 

@@ -3,13 +3,11 @@ import '../Dashboard.css';
 
 const Dashboard = () => {
   const handlePianoClick = () => {
-    alert("Piano lessons selected!");
-    // navigate('/piano-lessons');
+    window.location.pathname = '/piano';
   };
 
   const handleGuitarClick = () => {
-    alert("Guitar lessons selected!");
-    // navigate('/guitar-lessons');
+    window.location.pathname = '/guitar';
   };
 
   return (
@@ -21,7 +19,7 @@ const Dashboard = () => {
         
         <div className="button-container">
           <button
-           href="/Piano"
+            onClick={handlePianoClick}
             className="lesson-button piano-button"
           >
             Piano
