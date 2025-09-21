@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main>
       <div className="Homescreen-Box">
-        <h1 className="Home-Title">Musicall</h1>
+        <h1 className="Home-Title">Legatto</h1>
         <h2 className="Homescreen-Motto">Learning That Lasts</h2>
         <h1 className="homebox3">Start Your Journey Now!</h1>
 
@@ -30,7 +30,7 @@ export default function Home() {
 
       <div className="home-desc">
         <h3>
-          Learning music has never been this fast and easy! Musicall is a free
+          Learning music has never been this fast and easy! Legatto is a free
           resource created by students to help you easily learn music. Our
           lessons are short and easy, helping you learn faster than your
           friends.
@@ -38,7 +38,7 @@ export default function Home() {
       </div>
 
       <div className="twond-box">
-        <h1>Learn With Musicall!</h1>
+        <h1>Learn With Legatto!</h1>
         <ul className="twond-box-text">
           <li>Faster</li>
           <li>Better</li>

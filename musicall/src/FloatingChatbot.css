@@ -59,7 +59,10 @@
   color: white;
   font-weight: bold;
   border-radius: 12px 12px 0 0;
-  text-align: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  text-align: left !important;
 }
 
 /* Messages Area */
@@ -148,6 +151,30 @@
   50% { opacity: 0.5; }
 }
 
+/* Typing Cursor Animation */
+.typing-cursor {
+  animation: blink 0.5s infinite;
+  font-weight: bold;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.message.typing {
+  border-left: 3px solid #007bff;
+}
+
+.ai-message.typing {
+  background-color: #f8f9ff;
+}
+
 /* Input Area */
 .chat-input-area {
   padding: 12px;
@@ -159,6 +186,7 @@
 .input-container {
   display: flex;
   gap: 8px;
+  align-items: center;
 }
 
 .chat-input {
@@ -180,15 +208,30 @@
   cursor: not-allowed;
 }
 
+.image-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  font-size: 16px;
+}
+
 .send-button {
-  padding: 8px 12px;
+  padding: 8px 16px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 20px;
   cursor: pointer;
   font-size: 14px;
-  min-width: 50px;
+  min-width: 60px;
+  height: 36px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  line-height: 1 !important;
   transition: background-color 0.3s ease;
 }
 
@@ -199,6 +242,25 @@
 .send-button:disabled {
   background-color: #6c757d;
   cursor: not-allowed;
+}
+
+.expand-button {
+  background: none !important;
+  border: none !important;
+  color: white !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  padding: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 24px !important;
+  height: 24px !important;
+}
+
+.expand-button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 4px !important;
 }
 
 /* Responsive Design */
@@ -212,27 +274,5 @@
   .chat-button {
     right: 10px;
     bottom: 10px;
-  }
-  .typing-cursor {
-    animation: blink 0.5s infinite;
-    font-weight: bold;
-    margin-left: 2px;
-  }
-  
-  @keyframes blink {
-    0%, 50% {
-      opacity: 1;
-    }
-    51%, 100% {
-      opacity: 0;
-    }
-  }
-  
-  .message.typing {
-    border-left: 3px solid #007bff;
-  }
-  
-  .ai-message.typing {
-    background-color: #f8f9ff;
   }
 }

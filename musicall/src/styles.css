@@ -1,5 +1,4 @@
 *
-
 {
     box-sizing:border-box;
 }
@@ -297,4 +296,23 @@ font-weight: Bold;
 }
 .extraItalics{
     font-style: italic;
+}
+
+.accessbutton{
+    background-color: #3E2E32;
+    color:#E5D8CE ;
+    border: none;
+    border-radius: 2rem;
+    align-items: center;    
+    font-size: x-large;
+    padding: 2rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+.accessbutton:hover{
+    background-color: #5E454B;
+    transform: translateY(-2px);
 }

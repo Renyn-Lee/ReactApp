@@ -21,7 +21,7 @@ const Dashboard = () => {
         
         <div className="button-container">
           <button
-            onClick={handlePianoClick}
+           href="/Piano"
             className="lesson-button piano-button"
           >
             Piano

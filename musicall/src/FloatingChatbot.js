@@ -3,6 +3,7 @@ import './FloatingChatbot.css';
 
 const FloatingChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -24,7 +25,32 @@ const FloatingChatbot = () => {
     }
   }, [isOpen, messages]);
 
-  // Typewriter thingy
+  // Extract YouTube video ID from URL
+  const getYouTubeVideoId = (url) => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  };
+
+  // Parse YouTube videos from AI response
+  const parseYouTubeVideos = (text) => {
+    const videoRegex = /Watch: (https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]+)/g;
+    const videos = [];
+    let match;
+    
+    while ((match = videoRegex.exec(text)) !== null) {
+      const videoId = getYouTubeVideoId(match[1]);
+      if (videoId) {
+        videos.push({
+          url: match[1],
+          videoId: videoId
+        });
+      }
+    }
+    return videos;
+  };
+
+  // Typewriter effect function
   const typewriterEffect = (text, messageIndex) => {
     return new Promise((resolve) => {
       let currentText = '';
@@ -35,7 +61,6 @@ const FloatingChatbot = () => {
           currentText += text[charIndex];
           charIndex++;
           
-          // Update the message in real-time
           setMessages(prevMessages => {
             const newMessages = [...prevMessages];
             newMessages[messageIndex] = {
@@ -46,19 +71,19 @@ const FloatingChatbot = () => {
             return newMessages;
           });
           
-          // Random typing speed between 20-50ms for more natural feel
-          const typingSpeed = Math.random() * 15 + 10;
+          const typingSpeed = Math.random() * 10 + 5; // Fast typing
           typingTimeoutRef.current = setTimeout(typeNextChar, typingSpeed);
           
-          // Auto-scroll as text appears
           scrollToBottom();
         } else {
-          // Finished typing
+          // Finished typing - parse for videos
+          const videos = parseYouTubeVideos(currentText);
           setMessages(prevMessages => {
             const newMessages = [...prevMessages];
             newMessages[messageIndex] = {
               ...newMessages[messageIndex],
-              isTyping: false
+              isTyping: false,
+              videos: videos
             };
             return newMessages;
           });
@@ -96,7 +121,7 @@ const FloatingChatbot = () => {
 
   const askAI = async () => {
     if (!input.trim() && !selectedImage) return;
-    if (isTyping) return; // Prevent new requests while typing
+    if (isTyping) return;
 
     setLoading(true);
     
@@ -132,7 +157,6 @@ const FloatingChatbot = () => {
       setLoading(false);
       
       if (response.ok) {
-        // Add empty AI message first
         const aiMessage = { 
           role: 'assistant', 
           content: '', 
@@ -142,8 +166,6 @@ const FloatingChatbot = () => {
         setMessages(messagesWithAI);
         
         setIsTyping(true);
-        
-        // Start typewriter effect
         await typewriterEffect(data.reply, messagesWithAI.length - 1);
         
       } else {
@@ -176,7 +198,6 @@ const FloatingChatbot = () => {
     }
   };
 
-  // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
       if (typingTimeoutRef.current) {
@@ -185,9 +206,15 @@ const FloatingChatbot = () => {
     };
   }, []);
 
+  // Dynamic styling based on expanded state
+  const chatWindowStyle = {
+    width: isExpanded ? '540px' : '340px',
+    height: isExpanded ? '600px' : '400px',
+    transition: 'all 0.3s ease-in-out'
+  };
+
   return (
     <>
-      {/* Floating Chat Button */}
       <button 
         className="chat-button"
         onClick={() => setIsOpen(!isOpen)}
@@ -195,15 +222,40 @@ const FloatingChatbot = () => {
         {isOpen ? '×' : '♪'}
       </button>
 
-      {/* Chat Window */}
       {isOpen && (
-        <div className="chat-window">
-          {/* Chat Header */}
-          <div className="chat-header">
-            Sato 🎵
+        <div className="chat-window" style={chatWindowStyle}>
+          <div className="chat-header" style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px',
+            backgroundColor: '#007bff',
+            color: 'white',
+            fontWeight: 'bold',
+            borderRadius: '12px 12px 0 0',
+            position: 'relative'
+          }}>
+            <div style={{ position: 'absolute', left: '16px' }}></div>
+            <span style={{ textAlign: 'center', flex: 1 }}>Sato 🎵</span>
+            <button 
+              className="expand-button"
+              onClick={() => setIsExpanded(!isExpanded)}
+              style={{
+                position: 'absolute',
+                right: '16px',
+                background: 'none',
+                border: 'none',
+                fontSize: '16px',
+                cursor: 'pointer',
+                padding: '4px',
+                color: 'white'
+              }}
+              title={isExpanded ? 'Collapse' : 'Expand'}
+            >
+              {isExpanded ? '↙️' : '↗️'}
+            </button>
           </div>
 
-          {/* Messages Area */}
           <div className="chat-messages">
             {messages.length === 0 ? (
               <div className="welcome-message">
@@ -215,7 +267,6 @@ const FloatingChatbot = () => {
                   <li>Music theory?</li>
                   <li>Practice tips?</li>
                 </ul>
-                <p>📸 You can also upload images of sheet music, instruments, or anything music-related!</p>
               </div>
             ) : (
               messages.map((msg, index) => (
@@ -232,6 +283,31 @@ const FloatingChatbot = () => {
                   )}
                   <span>{msg.content}</span>
                   {msg.isTyping && <span className="typing-cursor">|</span>}
+                  
+                  {/* YouTube Mini Players */}
+                  {msg.videos && msg.videos.length > 0 && (
+                    <div className="youtube-videos" style={{ marginTop: '10px' }}>
+                      {msg.videos.map((video, videoIndex) => (
+                        <div key={videoIndex} className="youtube-player" style={{ 
+                          marginBottom: '10px', 
+                          borderRadius: '8px', 
+                          overflow: 'hidden',
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                        }}>
+                          <iframe
+                            width="100%"
+                            height="200"
+                            src={`https://www.youtube.com/embed/${video.videoId}`}
+                            title={`YouTube video ${videoIndex + 1}`}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            style={{ display: 'block' }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))
             )}
@@ -243,9 +319,7 @@ const FloatingChatbot = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input Area */}
           <div className="chat-input-area">
-            {/* Image preview */}
             {selectedImage && (
               <div style={{ padding: '8px', backgroundColor: '#f5f5f5', borderRadius: '8px', margin: '8px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -276,7 +350,6 @@ const FloatingChatbot = () => {
                 disabled={loading || isTyping}
               />
               
-              {/* Image upload button */}
               <input
                 type="file"
                 ref={fileInputRef}
@@ -305,6 +378,21 @@ const FloatingChatbot = () => {
                 onClick={askAI}
                 disabled={loading || (!input.trim() && !selectedImage) || isTyping}
                 className="send-button"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '8px 16px',
+                  backgroundColor: loading || (!input.trim() && !selectedImage) || isTyping ? '#6c757d' : '#007bff',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '20px',
+                  cursor: loading || (!input.trim() && !selectedImage) || isTyping ? 'not-allowed' : 'pointer',
+                  fontSize: '14px',
+                  minWidth: '60px',
+                  height: '36px',
+                  transition: 'background-color 0.3s ease'
+                }}
               >
                 {loading ? 'Sending...' : 'Send'}
               </button>

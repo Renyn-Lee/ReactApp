@@ -3,7 +3,7 @@ import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@cl
 export default function Navbar(){
   const path = window.location.pathname
   return<nav className='nav'>
-<a href="/" className='site-title'>Musicall</a>
+<a href="/" className='site-title'>Legatto</a>
 <ul> 
   <CustomLink href="/Piano"> Piano </CustomLink>
   <CustomLink href="/Guitar"> Guitar </CustomLink>
