@@ -1,5 +1,6 @@
 import './Piano.css';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   SignInButton,
   SignUpButton,
@@ -9,6 +10,8 @@ import {
 } from "@clerk/clerk-react";
 
 function Piano() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     document.body.style.backgroundColor = '#E5D8CE';
     
@@ -18,8 +21,8 @@ function Piano() {
   }, []);
 
   const handleLessonClick = (lessonNumber) => {
-    // navigation logic here
-    console.log(`Navigate to lesson ${lessonNumber}`);
+    console.log('Navigating to lesson:', lessonNumber);
+    navigate(`/lesson/${lessonNumber}`);
   };
 
   return ( 
@@ -33,47 +36,52 @@ function Piano() {
             <button className='access-button'>Log in for full access</button>
           </SignUpButton>
         </SignedOut>
+        <SignedIn>
+          <div className="user-button-corner">
+            <UserButton />
+          </div>
+        </SignedIn>
       </div>
 
       <div className="roadmap-container">
-        {/* Lessons 1, 2, 3 */}
-        <div className="lesson-row">
+        {/* Top Row - Lessons 1, 2, 3 */}
+        <div className="lesson-row-top">
           <div className="lesson-box" onClick={() => handleLessonClick(1)}>
             <h3>Lesson 1</h3>
-            <p>Basic Hand Position</p>
+            <p>Description</p>
           </div>
           <div className="arrow-right">→</div>
           <div className="lesson-box" onClick={() => handleLessonClick(2)}>
             <h3>Lesson 2</h3>
-            <p>Reading Notes</p>
+            <p>Description</p>
           </div>
           <div className="arrow-right">→</div>
           <div className="lesson-box" onClick={() => handleLessonClick(3)}>
             <h3>Lesson 3</h3>
-            <p>Simple Melodies</p>
+            <p>Description</p>
           </div>
         </div>
 
-        {/* Arrow down from Lesson 3 */}
-        <div className="arrow-down-container">
+        {/* Arrow down from Lesson 3 to Lesson 4 */}
+        <div className="vertical-arrow">
           <div className="arrow-down">↓</div>
         </div>
 
-        {/* Lessons 4, 5, Optional Test */}
-        <div className="lesson-row reverse">
-        <div className="lesson-box" onClick={() => handleLessonClick(4)}>
-            <h3>Lesson 4</h3>
-            <p>Rhythm Patterns</p>
+        {/* Bottom Row - Lesson 5, Optional Test, Lesson 4 */}
+        <div className="lesson-row-bottom">
+          <div className="lesson-box optional" onClick={() => handleLessonClick(5)}>
+            <h3> Optional</h3>
+            <p>test</p>
           </div>
           <div className="arrow-left">←</div>
-          <div className="lesson-box optional" onClick={() => handleLessonClick('test')}>
-            <h3>Optional</h3>
-            <p>Test</p>
-          </div>
-          <div className="arrow-left">←</div>
-          <div className="lesson-box" onClick={() => handleLessonClick(5)}>
+          <div className="lesson-box" onClick={() => handleLessonClick('test')}>
             <h3>Lesson 5</h3>
-            <p>Advanced Techniques</p>
+            <p>Discription</p>
+          </div>
+          <div className="arrow-left">←</div>
+          <div className="lesson-box" onClick={() => handleLessonClick(4)}>
+            <h3>Lesson 4</h3>
+            <p>Description</p>
           </div>
         </div>
       </div>

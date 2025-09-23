@@ -1,54 +1,40 @@
 import { useUser } from '@clerk/clerk-react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
 import Navbar from "./Navbar"
 import Aboutus from "./pages/Aboutus"
 import Guitar from "./pages/Guitar"
 import Home from "./pages/Home"
 import Piano from "./pages/Piano"
+import Lesson from "./pages/Lessons"  // Fixed: changed from "./pages/Lessons" to "./pages/Lesson"
 import FloatingChatbot from "./FloatingChatbot"
 import Dashboard from "./pages/Dashboard"
 
 function App(){
     const { isSignedIn } = useUser();
     
-    let component
-    const currentPath = window.location.pathname.toLowerCase();
-    
-    switch (currentPath) {
-        case "/":
-            // Smart home page: Dashboard for signed-in users, Home for others
-            component = isSignedIn ? <Dashboard /> : <Home/>
-            break
-        case "/aboutus":
-            component = <Aboutus/>
-            break
-        case "/guitar":
-            component = <Guitar/>
-            break
-        case "/piano":
-            component = <Piano/>
-            break
-        case "/dashboard":
-            component = <Dashboard />
-            break
-        case "/home":
-            component = <Home/>
-            break
-        default:
-            component = <Home/>
-            break
-    }
-    
     return (
-        <>
+        <Router>
             <Navbar/>
-            <div className="container">{component}</div>
+            <div className="container">
+                <Routes>
+                    <Route 
+                        path="/" 
+                        element={isSignedIn ? <Dashboard /> : <Home/>} 
+                    />
+                    <Route path="/aboutus" element={<Aboutus/>} />
+                    <Route path="/guitar" element={<Guitar/>} />
+                    <Route path="/piano" element={<Piano/>} />
+                    <Route path="/lesson/:lessonId" element={<Lesson />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/home" element={<Home/>} />
+                </Routes>
+            </div>
             {isSignedIn && (
                 <FloatingChatbot />
             )}
-        </>
+        </Router>
     )
 }
 
 export default App;
-/* be sure to do 'func start' in api  and npm start in musicall*/

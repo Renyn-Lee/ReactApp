@@ -1,155 +1,218 @@
 /* Piano Roadmap Styles */
 .piano-container {
-    text-align: center;
-    padding: 40px 20px;
-    min-height: 100vh;
-  }
-  
+  text-align: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.piano-lesson-roadmap {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #291E21;
+  margin-bottom: 10px;
+  font-family: 'Georgia', serif;
+}
+
+.piano-description {
+  font-size: 1.1rem;
+  color: #5A4A4E;
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+
+.auth-section {
+  margin-bottom: 50px;
+}
+
+.user-button-corner {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.access-button {
+  background-color: #3E2E32;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.access-button:hover {
+  background-color: #2F2126;
+}
+
+.roadmap-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding-top: 30px;
+}
+
+/* Top row of lessons */
+.lesson-row-top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Bottom row of lessons */
+.lesson-row-bottom {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Vertical arrow positioning */
+.vertical-arrow {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 600px;
+  padding-right: 100px;
+  margin: -10px 0;
+}
+
+.lesson-box {
+  background-color: #3E2E32;
+  color: white;
+  padding: 20px 25px;
+  border-radius: 8px;
+  min-width: 160px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.lesson-box:hover {
+  background-color: #291E21;
+  transform: translateY(-2px);
+}
+
+.lesson-box.optional {
+  background-color: #5D464B;
+}
+
+.lesson-box.optional:hover {
+  background-color: #775A60;
+}
+
+.lesson-box h3 {
+  font-size: 1.2rem;
+  margin: 0 0 6px 0;
+  font-weight: bold;
+}
+
+.lesson-box p {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.arrow-right,
+.arrow-left,
+.arrow-down {
+  font-size: 2.2rem;
+  color: #291E21;
+  font-weight: bold;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* Lesson Container Styles */
+.lesson-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.back-button {
+  display: inline-block;
+  color: #291E21;
+  text-decoration: none;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  border: 2px solid #291E21;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #291E21;
+  color: white;
+}
+
+.lesson-description {
+  font-size: 1.2rem;
+  color: #5A4A4E;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.lesson-content {
+  line-height: 1.6;
+  color: #333;
+}
+
+.lesson-content h3 {
+  color: #291E21;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.lesson-content ul, .lesson-content ol {
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+}
+
+.lesson-content li {
+  margin-bottom: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .piano-lesson-roadmap {
-    font-size: 4rem;
-    font-weight: bold;
-    color: #291E21;
-    margin-bottom: 10px;
-    font-family: 'Georgia', serif;
+    font-size: 2.2rem;
   }
   
-  .piano-description {
-    font-size: 1.1rem;
-    color: #8B6F47;
-    margin-bottom: 30px;
-    font-weight: normal;
-  }
-  
-  .auth-section {
-    margin-bottom: 50px;
-  }
-  
-  .user-button-corner {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-  }
-  
-  .access-button {
-    background-color: #6B4E3D;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .access-button:hover {
-    background-color: #5A3E2D;
-  }
-  
-  .roadmap-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
+  .lesson-row-top,
+  .lesson-row-bottom {
     flex-direction: column;
-    gap: 30px;
-  }
-  
-  .lesson-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    flex-wrap: wrap;
-  }
-  
-  .lesson-row.reverse {
-    flex-direction: row-reverse;
-  }
-  
-  .lesson-box {
-    background-color: #3E2E32;
-    color: white;
-    padding: 30px 25px;
-    border-radius: 12px;
-    min-width: 180px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .lesson-box:hover {
-    background-color: #5A3E2D;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  .lesson-box.optional {
-    background-color: #6B4E3D;
-  }
-  
-  .lesson-box.optional:hover {
-    background-color: #7A5F40;
-  }
-  
-  .lesson-box h3 {
-    font-size: 1.4rem;
-    margin: 0 0 8px 0;
-    font-weight: bold;
-  }
-  
-  .lesson-box p {
-    font-size: 0.9rem;
-    margin: 0;
-    opacity: 0.9;
+    gap: 15px;
   }
   
   .arrow-right,
-  .arrow-left,
-  .arrow-down {
-    font-size: 2.5rem;
-    color: #6B4E3D;
-    font-weight: bold;
+  .arrow-left {
+    transform: rotate(90deg);
   }
   
-  .arrow-down-container {
-    display: flex;
+  .vertical-arrow {
+    padding-right: 0;
     justify-content: center;
-    position: relative;
-    left: 27.5%; /* Aligns with Lesson 3 box */
   }
   
-  .arrow-down {
-    font-size: 2.5rem;
-    color: #6B4E3D;
-    font-weight: bold;
+  .lesson-box {
+    min-width: 180px;
+    width: 100%;
+    max-width: 220px;
   }
   
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .piano-lesson-roadmap {
-      font-size: 2.2rem;
-    }
-    
-    .lesson-row {
-      flex-direction: column;
-      gap: 20px;
-    }
-    
-    .lesson-row.reverse {
-      flex-direction: column;
-    }
-    
-    .arrow-right,
-    .arrow-left {
-      transform: rotate(90deg);
-    }
-    
-    .arrow-down-container {
-      padding-right: 0;
-      justify-content: center;
-    }
-    
-    .lesson-box {
-      min-width: 200px;
-    }
+  .roadmap-container {
+    gap: 20px;
   }
+}
