@@ -1,3 +1,6 @@
+// Add this line at the very top, before other imports
+require('dotenv').config();
+
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const { app } = require('@azure/functions');
 
@@ -60,6 +63,7 @@ async function getGeminiResponse(request, context) {
         context.log('Has image:', !!imageData);
         context.log('Gemini API Key exists:', !!process.env.GEMINI_API_KEY);
         context.log('YouTube API Key exists:', !!process.env.YOUTUBE_API_KEY);
+        context.log('Clerk Secret Key exists:', !!process.env.CLERK_SECRET_KEY);
 
         if (!message.trim() && !imageData) {
             return {
