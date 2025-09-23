@@ -316,3 +316,17 @@ font-weight: Bold;
     background-color: #5E454B;
     transform: translateY(-2px);
 }
+.piano-lesson-roadmap{
+    color:#3E2E32;
+    font-weight: bolder;
+    font-family: "Inter", sans-serif;
+    font-size: 4rem;
+    align-self: center;
+    margin:auto;
+    justify-content: center;
+}
+.piano-description{
+    color: black;
+    font-size: x-small;
+    font-weight: lighter;
+}

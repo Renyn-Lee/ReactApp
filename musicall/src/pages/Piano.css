@@ -1,0 +1,155 @@
+/* Piano Roadmap Styles */
+.piano-container {
+    text-align: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  
+  .piano-lesson-roadmap {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #291E21;
+    margin-bottom: 10px;
+    font-family: 'Georgia', serif;
+  }
+  
+  .piano-description {
+    font-size: 1.1rem;
+    color: #8B6F47;
+    margin-bottom: 30px;
+    font-weight: normal;
+  }
+  
+  .auth-section {
+    margin-bottom: 50px;
+  }
+  
+  .user-button-corner {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .access-button {
+    background-color: #6B4E3D;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .access-button:hover {
+    background-color: #5A3E2D;
+  }
+  
+  .roadmap-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .lesson-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .lesson-row.reverse {
+    flex-direction: row-reverse;
+  }
+  
+  .lesson-box {
+    background-color: #3E2E32;
+    color: white;
+    padding: 30px 25px;
+    border-radius: 12px;
+    min-width: 180px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .lesson-box:hover {
+    background-color: #5A3E2D;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .lesson-box.optional {
+    background-color: #6B4E3D;
+  }
+  
+  .lesson-box.optional:hover {
+    background-color: #7A5F40;
+  }
+  
+  .lesson-box h3 {
+    font-size: 1.4rem;
+    margin: 0 0 8px 0;
+    font-weight: bold;
+  }
+  
+  .lesson-box p {
+    font-size: 0.9rem;
+    margin: 0;
+    opacity: 0.9;
+  }
+  
+  .arrow-right,
+  .arrow-left,
+  .arrow-down {
+    font-size: 2.5rem;
+    color: #6B4E3D;
+    font-weight: bold;
+  }
+  
+  .arrow-down-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: 27.5%; /* Aligns with Lesson 3 box */
+  }
+  
+  .arrow-down {
+    font-size: 2.5rem;
+    color: #6B4E3D;
+    font-weight: bold;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .piano-lesson-roadmap {
+      font-size: 2.2rem;
+    }
+    
+    .lesson-row {
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .lesson-row.reverse {
+      flex-direction: column;
+    }
+    
+    .arrow-right,
+    .arrow-left {
+      transform: rotate(90deg);
+    }
+    
+    .arrow-down-container {
+      padding-right: 0;
+      justify-content: center;
+    }
+    
+    .lesson-box {
+      min-width: 200px;
+    }
+  }
