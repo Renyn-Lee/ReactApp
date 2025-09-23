@@ -16,5 +16,4 @@
     "@types/node": "^24.3.3",
     "azure-functions-core-tools": "^4.x"
   }
-  
 }
