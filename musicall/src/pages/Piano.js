@@ -69,12 +69,12 @@ function Piano() {
 
         {/* Bottom Row - Lesson 5, Optional Test, Lesson 4 */}
         <div className="lesson-row-bottom">
-          <div className="lesson-box optional" onClick={() => handleLessonClick(5)}>
+          <div className="lesson-box optional" onClick={() => handleLessonClick('test')}>
             <h3> Optional</h3>
             <p>test</p>
           </div>
           <div className="arrow-left">←</div>
-          <div className="lesson-box" onClick={() => handleLessonClick('test')}>
+          <div className="lesson-box" onClick={() => handleLessonClick(5)}>
             <h3>Lesson 5</h3>
             <p>Discription</p>
           </div>
