@@ -371,7 +371,7 @@ const FloatingChatbot = () => {
                 }}
                 title="Upload image"
               >
-                ╋
+                +
               </button>
               
               <button
