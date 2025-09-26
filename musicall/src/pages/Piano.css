@@ -24,13 +24,6 @@
   margin-bottom: 50px;
 }
 
-.user-button-corner {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-}
-
 .access-button {
   background-color: #3E2E32;
   color: white;
@@ -44,6 +37,25 @@
 
 .access-button:hover {
   background-color: #2F2126;
+}
+
+.continue-learning {
+  margin-top: 20px;
+}
+
+.continue-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.continue-button:hover {
+  background-color: #45a049;
 }
 
 .roadmap-container {
@@ -77,11 +89,12 @@
 /* Vertical arrow positioning */
 .vertical-arrow {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   width: 100%;
   max-width: 600px;
-  padding-right: 100px;
   margin: -10px 0;
+  position: relative;
+  left: 35%;
 }
 
 .lesson-box {
@@ -95,6 +108,7 @@
   user-select: none;
   text-align: center;
   flex-shrink: 0;
+  position: relative;
 }
 
 .lesson-box:hover {
@@ -103,11 +117,36 @@
 }
 
 .lesson-box.optional {
-  background-color: #5D464B;
+  background-color: #4A383C;
 }
 
 .lesson-box.optional:hover {
-  background-color: #775A60;
+  background-color: #3E2E32;
+}
+
+.lesson-box.current-lesson {
+  background-color: #4CAF50 !important;
+  border: 2px solid #45a049;
+}
+
+.lesson-box.current-lesson:hover {
+  background-color: #45a049 !important;
+}
+
+.current-indicator {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff4444;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 
 .lesson-box h3 {

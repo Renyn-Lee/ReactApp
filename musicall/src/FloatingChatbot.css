@@ -167,10 +167,6 @@
   }
 }
 
-.message.typing {
-  border-left: 3px solid #007bff;
-}
-
 .ai-message.typing {
   background-color: #f8f9ff;
 }
