@@ -1,0 +1,284 @@
+/* Lesson Page Styles */
+.lesson-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.back-button {
+  display: inline-block;
+  color: #291E21;
+  text-decoration: none;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  padding: 10px 20px;
+  border: 2px solid #291E21;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+
+.back-button:hover {
+  background-color: #291E21;
+  color: white;
+  transform: translateX(-5px);
+}
+
+.lesson-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #291E21;
+  margin-bottom: 15px;
+  font-family: 'Georgia', serif;
+}
+
+.lesson-description {
+  font-size: 1.3rem;
+  color: #5A4A4E;
+  margin-bottom: 40px;
+  font-style: italic;
+  /* border-left: 4px solid #291E21; */
+  /* padding-left: 20px; */
+}
+
+.lesson-content {
+  line-height: 1.8;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.lesson-content h3 {
+  color: #291E21;
+  margin-top: 35px;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.lesson-content p {
+  margin-bottom: 20px;
+}
+
+.lesson-content ul,
+.lesson-content ol {
+  margin: 20px 0;
+  padding-left: 30px;
+}
+
+.lesson-content li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.lesson-content strong {
+  color: #291E21;
+  font-weight: bold;
+}
+
+/* 
+   CUSTOM LESSON STYLES
+    */
+
+/* Lesson 1 */
+.lesson-one .lesson-title {
+  color: #291E21;
+  border-bottom: 4px solid #3E2E32;
+  padding-bottom: 10px;
+}
+
+/* .lesson-one .lesson-description {
+  border-left-color: #3E2E32;
+  background-color: rgba(62, 46, 50, 0.05);
+  padding: 15px 20px;
+  border-radius: 8px;
+} */
+
+.lesson-one .lesson-content h3 {
+  color: #3E2E32;
+}
+
+/* Lesson 2 */
+.lesson-two .lesson-title {
+  color: #291E21;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* .lesson-two .lesson-description {
+  border-left-color: #3E2E32;
+  background: linear-gradient(to right, rgba(62, 46, 50, 0.1), transparent);
+  padding: 15px 20px;
+} */
+
+.lesson-two .lesson-content {
+  border: 2px solid #3E2E32;
+  padding: 30px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.lesson-two .lesson-content h3 {
+  color: #3E2E32;
+  border-bottom: 2px dashed #3E2E32;
+  padding-bottom: 10px;
+}
+
+/* Lesson 3 */
+.lesson-three .lesson-title {
+  color: #291E21;
+  font-style: italic;
+}
+
+/* .lesson-three .lesson-description {
+  border-left-color: #3E2E32;
+  background-color: rgba(62, 46, 50, 0.08);
+  padding: 15px 20px;
+  border-radius: 8px;
+} */
+
+.lesson-three .lesson-content h3 {
+  color: #3E2E32;
+  background-color: rgba(62, 46, 50, 0.1);
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+.lesson-three .lesson-content strong {
+  color: #3E2E32;
+}
+
+/* Lesson 4 */
+.lesson-four .lesson-title {
+  color: #291E21;
+}
+
+/* .lesson-four .lesson-description {
+  border-left-color: #3E2E32;
+  border-left-width: 6px;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(62, 46, 50, 0.05) 10px,
+    rgba(62, 46, 50, 0.05) 20px
+  );
+  padding: 15px 20px;
+} */
+
+.lesson-four .lesson-content h3 {
+  color: #3E2E32;
+}
+
+.lesson-four .lesson-content li {
+  border-left: 3px solid #3E2E32;
+  padding-left: 15px;
+  margin-bottom: 15px;
+}
+
+/* Lesson 5 */
+.lesson-five .lesson-title {
+  color: #291E21;
+  font-variant: small-caps;
+  letter-spacing: 3px;
+  border-bottom: 3px double #3E2E32;
+  padding-bottom: 15px;
+}
+
+/* .lesson-five .lesson-description {
+  border-left-color: #3E2E32;
+  background: linear-gradient(135deg, rgba(62, 46, 50, 0.1) 0%, transparent 100%);
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 1.4rem;
+} */
+
+.lesson-five .lesson-content {
+  background-color: rgba(62, 46, 50, 0.03);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid rgba(62, 46, 50, 0.2);
+}
+
+.lesson-five .lesson-content h3 {
+  color: #3E2E32;
+  font-size: 2rem;
+}
+
+.lesson-five .lesson-content strong {
+  color: #3E2E32;
+  font-size: 1.15rem;
+}
+
+/* Test Lesson */
+.lesson-test .lesson-title {
+  color: #291E21;
+  text-align: center;
+  background-color: rgba(62, 46, 50, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  border: 3px solid #3E2E32;
+}
+
+/* .lesson-test .lesson-description {
+  border-left-color: #3E2E32;
+  background-color: rgba(62, 46, 50, 0.08);
+  padding: 20px;
+  text-align: center;
+  font-size: 1.4rem;
+  border-radius: 8px;
+} */
+
+.lesson-test .lesson-content {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 40px;
+  border-radius: 15px;
+  border: 2px dashed #3E2E32;
+}
+
+.lesson-test .lesson-content h3 {
+  color: #3E2E32;
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+}
+
+.lesson-test .lesson-content ol {
+  background-color: rgba(62, 46, 50, 0.05);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.lesson-test .lesson-content li {
+  font-size: 1.2rem;
+  padding: 15px;
+  background-color: white;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #3E2E32;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .lesson-container {
+    padding: 20px 15px;
+  }
+
+  .lesson-title {
+    font-size: 2rem;
+  }
+
+  .lesson-description {
+    font-size: 1.1rem;
+  }
+
+  .lesson-content {
+    font-size: 1rem;
+  }
+
+  .lesson-two .lesson-content,
+  .lesson-five .lesson-content,
+  .lesson-test .lesson-content {
+    padding: 20px;
+  }
+}

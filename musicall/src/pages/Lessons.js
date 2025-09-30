@@ -1,46 +1,50 @@
 // pages/Lesson.js
 import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import './Lessons.css';
 
-
-//basic lesson code I found from who knows where
 const lessonData = {
   1: {
     title: "Lesson 1:",
-    description: "<h1> hello</h1>",
-    content: `
-    `,
+    description: " Getting Started",
+    customClass: "lesson-one",
+    content: ``,
     backgroundColor: "#E5D8CE"
   },
   2: {
-    title: "Lesson 2: ",
-    description: "", 
+    title: "Lesson 2:", 
+    description: "",
+    customClass: "lesson-two",
     content: ``,
-    backgroundColor: "#D4E5F7"
+    backgroundColor: "#E5D8CE"
   },
   3: {
     title: "Lesson 3:",
     description: "",
+    customClass: "lesson-three",
     content: ``,
-    backgroundColor: "#F0E5D8"
+    backgroundColor: "#E5D8CE"
   },
   4: {
     title: "Lesson 4:", 
     description: "",
+    customClass: "lesson-four",
     content: ``,
-    backgroundColor: "#E8F4E6"
+    backgroundColor: "#E5D8CE"
   },
   5: {
     title: "Lesson 5:",
-    description: "", 
+    description: "",
+    customClass: "lesson-five",
     content: ``,
-    backgroundColor: "#F4E8F8"
+    backgroundColor: "#E5D8CE"
   },
   test1: {
     title: "Optional Test",
-    description: "Test your knowledge",
+    description: "",
+    customClass: "lesson-test",
     content: ``,
-    backgroundColor: "#FFF2E5"
+    backgroundColor: "#E5D8CE"
   }
 };
 
@@ -56,13 +60,18 @@ function Lesson() {
   }, [lesson]);
 
   if (!lesson) {
-    return <div>Lesson not found</div>;
+    return (
+      <div className="lesson-container">
+        <h1>Lesson not found</h1>
+        <Link to="/piano" className="back-button">← Back to Roadmap</Link>
+      </div>
+    );
   }
 
   return (
-    <div className="lesson-container">
+    <div className={`lesson-container ${lesson.customClass || ''}`}>
       <Link to="/piano" className="back-button">← Back to Roadmap</Link>
-      <h1>{lesson.title}</h1>
+      <h1 className="lesson-title">{lesson.title}</h1>
       <p className="lesson-description">{lesson.description}</p>
       <div 
         className="lesson-content" 
