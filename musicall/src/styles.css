@@ -23,7 +23,6 @@ body{
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-around;
-    overflow-x: hidden;
 }
 
 /*Navbar start*/
@@ -41,9 +40,7 @@ body{
 }
 
 .site-title{
-    font-size: 2.2rem;
-    font-weight: 500;
-    margin-left: -3rem;
+    font-size: 2rem;
 }
 
 .nav ul{
@@ -79,7 +76,6 @@ body{
     display: flex;
     gap: 10px;
     margin-left: auto;
-    margin-right: -3rem;
     align-items: center;
 }
 
