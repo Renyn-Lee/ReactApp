@@ -1,0 +1,190 @@
+/* Guitar Roadmap Styles */
+.guitar-container {
+    text-align: center;
+    padding:20px;
+    min-height: 100vh;
+  }
+  
+  .guitar-lesson-roadmap {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #291E21;
+    margin-bottom: 10px;
+    font-family: 'Georgia', serif;
+  }
+  
+  .guitar-description {
+    font-size: 1.1rem;
+    color: #5A4A4E;
+    margin-bottom: 30px;
+    font-weight: normal;
+  }
+  
+  .auth-section {
+    margin-bottom: 50px;
+  }
+  
+  .user-button-corner {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .access-button {
+    background-color: #3E2E32;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .access-button:hover {
+    background-color: #2F2126;
+  }
+  
+  .roadmap-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding-top: 30px;
+  }
+  
+  /* Top row of lessons */
+  .lesson-row-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Bottom row of lessons */
+  .lesson-row-bottom {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Vertical arrow positioning */
+  .vertical-arrow {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    margin: -10px 0;
+    position: relative;
+    left: 35%;
+  }
+  
+  .lesson-box {
+    background-color: #3E2E32;
+    color: white;
+    padding: 20px 25px;
+    border-radius: 8px;
+    min-width: 160px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    text-align: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+  
+  .lesson-box:hover {
+    background-color: #291E21;
+    transform: translateY(-2px);
+  }
+  
+  .lesson-box.optional {
+    background-color: #4A383C;
+  }
+  
+  .lesson-box.optional:hover {
+    background-color: #3E2E32;
+  }
+  
+  /* Locked lesson styles */
+  .lesson-box.locked,
+  .lesson-box.optional.locked {
+    background-color: #666 !important;
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+  }
+  
+  .lesson-box.locked:hover,
+  .lesson-box.optional.locked:hover {
+    background-color: #666 !important;
+    transform: none !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .lock-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.2rem;
+  }
+  
+  .lesson-box h3 {
+    font-size: 1.2rem;
+    margin: 0 0 6px 0;
+    font-weight: bold;
+  }
+  
+  .lesson-box p {
+    font-size: 0.9rem;
+    margin: 0;
+    opacity: 0.9;
+  }
+  
+  .arrow-right,
+  .arrow-left,
+  .arrow-down {
+    font-size: 2.2rem;
+    color: #291E21;
+    font-weight: bold;
+    user-select: none;
+    flex-shrink: 0;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .guitar-lesson-roadmap {
+      font-size: 2.2rem;
+    }
+    
+    .lesson-row-top,
+    .lesson-row-bottom {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .arrow-right,
+    .arrow-left {
+      transform: rotate(90deg);
+    }
+    
+    .vertical-arrow {
+      left: 0;
+      justify-content: center;
+    }
+    
+    .lesson-box {
+      min-width: 180px;
+      width: 100%;
+      max-width: 220px;
+    }
+    
+    .roadmap-container {
+      gap: 20px;
+    }
+  }
