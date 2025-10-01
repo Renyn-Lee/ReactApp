@@ -273,6 +273,7 @@ body{
     padding: 3rem 2rem;
     margin: 5rem 40% 5rem 0;
     text-align: left;
+    margin-left: -3rem;
 }
 
 /* Updated twond-box for right alignment */
@@ -290,6 +291,7 @@ body{
     display: flex;
     align-items: center;
     gap: 2rem;
+    margin-right: -3rem;
 }
 
 .twond-box-text{
