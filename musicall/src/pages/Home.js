@@ -47,11 +47,20 @@ export default function Home() {
             <li>Funner</li>
             <li className="extraItalics">Learning That Lasts</li>
           </ul>
+          </div>
+         <img src='/imgs/learn.jpg' alt="Piano Player" />
+      </div>
+      <div>
+      <div className="home-desc2">
+        <div>
+        <h1> Learn Piano </h1>
+        <h3> Piano has never been this easy!
+           Learn from expirenced piano players today.</h3>
+        <img src='/imgs/pianoplayer.jpg' alt="Piano Player" />
         </div>
-         <img 
-          src="/path-to-your-image.jpg" 
-          alt="Student learning piano" 
-        />
+
+      </div>
+
       </div>
     </main>
   );

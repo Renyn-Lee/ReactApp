@@ -206,7 +206,7 @@ body{
     font-optical-sizing: auto;
     font-style: italic;
     align-items: center;
-    padding-top: 3rem;
+    padding-top: 2rem;
     font-size: 5rem;
     margin-bottom: -2rem;
 }
@@ -228,7 +228,7 @@ body{
     font-optical-sizing: auto;
     font-style: normal;
     align-items: center;
-    padding-top: 2rem;
+    padding-top: 0.5rem;
     font-size: 1.7rem;
 }
 
@@ -285,7 +285,7 @@ body{
     border-style: solid;
     border-width: 0.5rem;
     border-right: none;
-    padding: 2rem 3rem;
+    padding: 3rem 7rem;
     margin: 5rem 0 5rem 40%;
     text-align: left;
     display: flex;
@@ -307,13 +307,51 @@ body{
     gap: 1rem;
     flex: 1;
 }
+.home-desc2 {
+    font-weight: lighter;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 1.7rem;
+    color: black;
+    background-color: #9dbeca;
+    border-color:#758B94;
+    border-radius: 0 2rem 2rem 0;
+    border-style: solid;
+    border-width: 0.5rem;
+    border-left: none;
+    padding: 3rem 2rem;
+    margin: 5rem 40% 5rem 0;
+    text-align: right;
+    margin-left: -3rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.home-desc2 img {
+    width: 25rem;
+    height: auto;
+    border-style: solid;
+    border-radius: 7rem;
+    border-color: #5A7681;
+    border-width: 0.5rem;
+    float: left;
+    margin-right: 2rem;
+}
+.home-desc2 h3{
+    text-align: right;
+}
 /* Image in twond-box */
 .twond-box img {
-    width: 300px;
+    width: 25rem;
     height: auto;
-    border-radius: 50%;
-    object-fit: cover;
+    border-style: solid;
+    border-radius: 7rem 7rem 7rem 7rem;
+    border-color: #5A7681;
+    border-width: 0.5rem;
+    margin-left: 5rem;
 }
 
 .extraItalics{
@@ -381,10 +419,6 @@ body{
         width: 90%;
         margin: 2rem auto;
         padding: 1.5rem;
-    }
-    
-    .twond-box img {
-        width: 200px;
     }
     
     .twond-box-text {
