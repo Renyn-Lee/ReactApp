@@ -8,12 +8,7 @@ const lessonData = {
     title: "Lesson 1:",
     description: " Getting Started",
     customClass: "lesson-one",
-    content: `<h1>hello</h1>
-  <ul className='Lessoncontentone'>
-    <li>nig</li>
-    <li>chasen</li>
-    <li>renyn</li>
-  </ul>`,
+    content: ``,
     backgroundColor: "#E5D8CE"
   },
   2: {
