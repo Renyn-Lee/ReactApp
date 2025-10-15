@@ -112,12 +112,9 @@
 } */
 
 .lesson-two .lesson-content {
-  border: 2px solid #3E2E32;
   padding: 30px;
   border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.5);
 }
-
 .lesson-two .lesson-content h3 {
   color: #3E2E32;
   border-bottom: 2px dashed #3E2E32;
@@ -181,7 +178,6 @@
   color: #291E21;
   font-variant: small-caps;
   letter-spacing: 3px;
-  border-bottom: 3px double #3E2E32;
   padding-bottom: 15px;
 }
 
@@ -194,20 +190,11 @@
 } */
 
 .lesson-five .lesson-content {
-  background-color: rgba(62, 46, 50, 0.03);
-  padding: 30px;
-  border-radius: 12px;
-  border: 1px solid rgba(62, 46, 50, 0.2);
 }
 
 .lesson-five .lesson-content h3 {
   color: #3E2E32;
   font-size: 2rem;
-}
-
-.lesson-five .lesson-content strong {
-  color: #3E2E32;
-  font-size: 1.15rem;
 }
 
 /* Test Lesson */
