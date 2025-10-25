@@ -50,6 +50,16 @@ const FloatingChatbot = () => {
     return videos;
   };
 
+  // NEW: Convert messages to Gemini history format
+  const convertToGeminiHistory = (msgs) => {
+    return msgs
+      .filter(msg => !msg.image) // Exclude messages with images for now
+      .map(msg => ({
+        role: msg.role === 'user' ? 'user' : 'model',
+        parts: [{ text: msg.content }]
+      }));
+  };
+
   // Typewriter effect function
   const typewriterEffect = (text, messageIndex) => {
     return new Promise((resolve) => {
@@ -134,9 +144,12 @@ const FloatingChatbot = () => {
     setMessages(newMessages);
 
     try {
+      // UPDATED: Convert conversation history to Gemini format
+      const geminiHistory = convertToGeminiHistory(messages);
+
       let requestBody = {
         message: input,
-        conversationHistory: messages.filter(msg => !msg.image)
+        history: geminiHistory  // Changed from conversationHistory to history
       };
 
       if (selectedImage) {
@@ -144,6 +157,11 @@ const FloatingChatbot = () => {
         requestBody.image = base64Image;
         requestBody.mimeType = selectedImage.type;
       }
+
+      // DEBUG LOGS - Add these
+      console.log('🔵 Sending to URL:', 'http://localhost:7071/api/getGeminiResponse');
+      console.log('🔵 Request body:', requestBody);
+      console.log('🔵 History length:', geminiHistory.length);
 
       const response = await fetch('http://localhost:7071/api/getGeminiResponse', {
         method: 'POST',
@@ -198,6 +216,11 @@ const FloatingChatbot = () => {
     }
   };
 
+  // NEW: Clear conversation function
+  const clearConversation = () => {
+    setMessages([]);
+  };
+
   useEffect(() => {
     return () => {
       if (typingTimeoutRef.current) {
@@ -235,7 +258,23 @@ const FloatingChatbot = () => {
             borderRadius: '12px 12px 0 0',
             position: 'relative'
           }}>
-            <div style={{ position: 'absolute', left: '16px' }}></div>
+            <button 
+              onClick={clearConversation}
+              style={{
+                position: 'absolute',
+                left: '16px',
+                background: 'rgba(255, 255, 255, 0.2)',
+                border: 'none',
+                borderRadius: '4px',
+                padding: '4px 8px',
+                fontSize: '12px',
+                cursor: 'pointer',
+                color: 'white'
+              }}
+              title="Clear chat"
+            >
+              Clear
+            </button>
             <span style={{ textAlign: 'center', flex: 1 }}>Sato 🎵</span>
             <button 
               className="expand-button"
