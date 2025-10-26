@@ -9,6 +9,7 @@ import Piano from "./pages/Piano"
 import Lesson from "./pages/Lessons"  // Fixed: changed from "./pages/Lessons" to "./pages/Lesson"
 import FloatingChatbot from "./FloatingChatbot"
 import Dashboard from "./pages/Dashboard"
+import Metronome from './metronome';
 
 function App(){
     const { isSignedIn } = useUser();
@@ -31,7 +32,10 @@ function App(){
                 </Routes>
             </div>
             {isSignedIn && (
+                <>
                 <FloatingChatbot />
+                <Metronome/>
+                </>
             )}
         </Router>
     )
