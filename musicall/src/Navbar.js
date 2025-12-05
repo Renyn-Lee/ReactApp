@@ -9,7 +9,7 @@ export default function Navbar(){
       <ul> 
         <CustomLink to="/piano">Piano</CustomLink>
         <CustomLink to="/guitar">Guitar</CustomLink>
-        <CustomLink to="/aboutus">About us</CustomLink>
+        <CustomLink to="/aboutus">About us and Q/A </CustomLink>
       </ul>
       <div className='navbuttons'>
         <SignedOut>
