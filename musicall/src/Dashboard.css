@@ -48,7 +48,7 @@
   }
   
   .piano-button {
-    background: linear-gradient(90deg, hsla(344, 15%, 14%, 1) 0%, hsla(345, 15%, 41%, 1) 100%);
+    background:#785961;
   }
   
   .piano-button:hover {
@@ -57,7 +57,7 @@
   }
   
   .guitar-button {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background:#6F0614;
   }
   
   .guitar-button:hover {
