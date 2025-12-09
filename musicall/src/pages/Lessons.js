@@ -8,7 +8,14 @@ const lessonData = {
     title: "Lesson 1:",
     description: " Getting Started",
     customClass: "lesson-one",
-    content: ``,
+    content: `
+    <h3>Welcome to the Piano! Here is a cool fact to start: the piano is actually a percussion instrument, just like a drum. 
+    Inside the case, there are tiny hammers that hit the strings when you press a key. 
+    This mechanism gives you total control—you can play a powerful beat or a soft melody just by changing how you touch the keys.</h3>
+    <h2>Geography of the Piano</h2>
+    <h3>The piano keyboard is a map. Instead of North and South, we have High and Low.</h3>
+    <img src='/imgs/pianoimg.png' alt="Piano Player" />
+    `,
     backgroundColor: "#E5D8CE"
   },
   2: {
