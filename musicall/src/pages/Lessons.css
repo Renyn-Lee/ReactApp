@@ -1,6 +1,8 @@
+/* Lessons.css */
+
 /* Lesson Page Styles */
 .lesson-container {
-  max-width: 900px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 40px 20px;
   min-height: 100vh;
@@ -38,8 +40,6 @@
   color: #5A4A4E;
   margin-bottom: 40px;
   font-style: italic;
-  /* border-left: 4px solid #291E21; */
-  /* padding-left: 20px; */
 }
 
 .lesson-content {
@@ -76,9 +76,7 @@
   font-weight: bold;
 }
 
-/* 
-   CUSTOM LESSON STYLES
-    */
+/* CUSTOM LESSON STYLES */
 
 /* Lesson 1 */
 .lesson-one .lesson-title {
@@ -86,34 +84,38 @@
   padding-bottom: 10px;
 }
 
-/* .lesson-one .lesson-description {
-  border-left-color: #3E2E32;
-  background-color: rgba(62, 46, 50, 0.05);
-  padding: 15px 20px;
-  border-radius: 8px;
-} */
-
 .lesson-one .lesson-content h3 {
   color: #3E2E32;
+  margin-top: 40px;      
+  margin-bottom: 25px;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: normal;
+  font-size:1.7rem ;
 }
-
+.lesson-one .lesson-content h2 {
+  color: #3E2E32;
+  margin-top: 40px;      
+  margin-bottom: 25px;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+  font-size: 2rem;
+}
+.lesson-one .lesson-content img {
+  max-width: 80rem;
+}
 /* Lesson 2 */
 .lesson-two .lesson-title {
   color: #291E21;
-  text-transform: uppercase;
   letter-spacing: 2px;
 }
-
-/* .lesson-two .lesson-description {
-  border-left-color: #3E2E32;
-  background: linear-gradient(to right, rgba(62, 46, 50, 0.1), transparent);
-  padding: 15px 20px;
-} */
 
 .lesson-two .lesson-content {
   padding: 30px;
   border-radius: 12px;
 }
+
 .lesson-two .lesson-content h3 {
   color: #3E2E32;
   border-bottom: 2px dashed #3E2E32;
@@ -125,13 +127,6 @@
   color: #291E21;
   font-style: italic;
 }
-
-/* .lesson-three .lesson-description {
-  border-left-color: #3E2E32;
-  background-color: rgba(62, 46, 50, 0.08);
-  padding: 15px 20px;
-  border-radius: 8px;
-} */
 
 .lesson-three .lesson-content h3 {
   color: #3E2E32;
@@ -148,19 +143,6 @@
 .lesson-four .lesson-title {
   color: #291E21;
 }
-
-/* .lesson-four .lesson-description {
-  border-left-color: #3E2E32;
-  border-left-width: 6px;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 10px,
-    rgba(62, 46, 50, 0.05) 10px,
-    rgba(62, 46, 50, 0.05) 20px
-  );
-  padding: 15px 20px;
-} */
 
 .lesson-four .lesson-content h3 {
   color: #3E2E32;
@@ -180,17 +162,6 @@
   padding-bottom: 15px;
 }
 
-/* .lesson-five .lesson-description {
-  border-left-color: #3E2E32;
-  background: linear-gradient(135deg, rgba(62, 46, 50, 0.1) 0%, transparent 100%);
-  padding: 20px;
-  border-radius: 10px;
-  font-size: 1.4rem;
-} */
-
-.lesson-five .lesson-content {
-}
-
 .lesson-five .lesson-content h3 {
   color: #3E2E32;
   font-size: 2rem;
@@ -205,15 +176,6 @@
   border-radius: 12px;
   border: 3px solid #3E2E32;
 }
-
-/* .lesson-test .lesson-description {
-  border-left-color: #3E2E32;
-  background-color: rgba(62, 46, 50, 0.08);
-  padding: 20px;
-  text-align: center;
-  font-size: 1.4rem;
-  border-radius: 8px;
-} */
 
 .lesson-test .lesson-content {
   background-color: rgba(255, 255, 255, 0.7);
