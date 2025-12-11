@@ -52,12 +52,12 @@ function Piano() {
         <div className="lesson-row-top">
           <div className="lesson-box" onClick={() => handleLessonClick(1)}>
             <h3>Lesson 1</h3>
-            <p>Description</p>
+            <p>Getting Started</p>
           </div>
           <div className="arrow-right">→</div>
           <div className="lesson-box" onClick={() => handleLessonClick(2)}>
             <h3>Lesson 2</h3>
-            <p>Description</p>
+            <p>Posture & Positioning</p>
           </div>
           <div className="arrow-right">→</div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(3)}>

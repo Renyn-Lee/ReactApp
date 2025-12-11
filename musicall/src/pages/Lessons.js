@@ -9,7 +9,7 @@ const lessonData = {
     description: " Getting Started",
     customClass: "lesson-one",
     content: `
-    <h2>Welcome to the Piano! Here is a cool facts to start. </h2>
+    <h2>Welcome to the Piano! Here are cool facts to start. </h2>
     <h2>Did you know?</h2>
     <p>(you can skip this if you want)</p>
     <ul>
@@ -61,7 +61,7 @@ const lessonData = {
   },
   2: {
     title: "Lesson 2:", 
-    description: "",
+    description: "Posture & Positioning",
     customClass: "lesson-two",
     content: `
     <h2>Recap from last lesson:</h2>
@@ -144,7 +144,7 @@ function Lesson() {
     };
   }, [lesson]);
 
-  const scrollToNextSection = () => {
+ /*const scrollToNextSection = () => {
     const hrElements = document.querySelectorAll('.lesson-content hr');
     
     if (hrElements.length === 0) return;
@@ -168,7 +168,7 @@ function Lesson() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
-
+*/
   if (!lesson) {
     return (
       <div className="lesson-container">
@@ -185,15 +185,12 @@ function Lesson() {
       
       <h1 className="lesson-title">{lesson.title}</h1>
       <p className="lesson-description">{lesson.description}</p>
-      <div 
-        className="lesson-content" 
-        dangerouslySetInnerHTML={{ __html: lesson.content }}
-      />
+      <div className="lesson-content" dangerouslySetInnerHTML={{ __html: lesson.content }}/>
       
-      <button className="next-section-button" onClick={scrollToNextSection} title="Next Section">
+      {/*<button className="next-section-button" onClick={scrollToNextSection} title="Next Section">
         Skip to next section ⬇️
       </button>
-
+      */}
       {/* NEW BUTTON AT THE BOTTOM (Added Here) */}
       <Link to="/piano" className="back-button bottom-button">← Back to Roadmap</Link>
 

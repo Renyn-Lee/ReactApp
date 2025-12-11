@@ -1,7 +1,9 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './metronome.css';
 
 const Metronome = () => {
+  const [isVisible, setIsVisible] = useState(true); 
+  
   const [isPlaying, setIsPlaying] = useState(false);
   const [bpm, setBpm] = useState(120);
   const [currentBeat, setCurrentBeat] = useState(0);
@@ -9,20 +11,17 @@ const Metronome = () => {
   const [inputValue, setInputValue] = useState('120');
 
   const audioContextRef = useRef(null);
-  const nextNoteTimeRef = useRef(0); // when the next note should play (AudioContext time)
+  const nextNoteTimeRef = useRef(0);
   const timerIDRef = useRef(null);
   const inputRef = useRef(null);
-
-  // Refs for mutable values used by scheduler to avoid stale closures
   const bpmRef = useRef(bpm);
   const currentBeatRef = useRef(0);
+  const schedulerRef = useRef(null);
 
-  // keep bpmRef in sync
   useEffect(() => {
     bpmRef.current = bpm;
   }, [bpm]);
 
-  // initialize audio context
   useEffect(() => {
     audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
     return () => {
@@ -30,7 +29,6 @@ const Metronome = () => {
     };
   }, []);
 
-  // play a click at a scheduled time (precise)
   const playClickAt = (time, isAccent = false) => {
     const audioContext = audioContextRef.current;
     if (!audioContext) return;
@@ -39,7 +37,6 @@ const Metronome = () => {
     oscillator.connect(gainNode);
     gainNode.connect(audioContext.destination);
     oscillator.frequency.value = isAccent ? 1000 : 800;
-    // use a short attack/decay to avoid pops and allow scheduling
     gainNode.gain.setValueAtTime(0.0, time);
     gainNode.gain.linearRampToValueAtTime(0.3, time + 0.001);
     gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.06);
@@ -47,72 +44,61 @@ const Metronome = () => {
     oscillator.stop(time + 0.06);
   };
 
-  // scheduler - schedules clicks slightly ahead of time
-  const scheduler = useCallback(() => {
+  const scheduler = () => {
     const audioContext = audioContextRef.current;
     if (!audioContext) return;
-
-    // schedule notes while nextNoteTime < lookahead window
-    const lookaheadSec = 0.1; // schedule 100ms ahead
+    const lookaheadSec = 0.1;
     while (nextNoteTimeRef.current < audioContext.currentTime + lookaheadSec) {
-      const isAccent = currentBeatRef.current === 0;
-      // schedule a click at nextNoteTimeRef.current
       playClickAt(nextNoteTimeRef.current, false);
 
-      // update refs for beat
       currentBeatRef.current = (currentBeatRef.current + 1) % 4;
-      // also update visible state less often to avoid re-render spam:
-      // update the visible currentBeat if the scheduled note is about to play now/very soon
-      // (this keeps UI in sync without causing closure problems)
       setCurrentBeat(currentBeatRef.current);
 
-      // advance to next note time based on current bpm
       const secondsPerBeat = 60.0 / bpmRef.current;
       nextNoteTimeRef.current += secondsPerBeat;
     }
+    schedulerRef.current = setTimeout(scheduler, 25);
+  };
 
-    // loop the scheduler
-    timerIDRef.current = setTimeout(scheduler, 25);
-  }, []); // no deps because we use refs for dynamic values
-
-  // manage start/stop
   useEffect(() => {
     const audioContext = audioContextRef.current;
     if (isPlaying && audioContext) {
-      // if the audio context is suspended (autoplay policy), resume it
       if (audioContext.state === 'suspended') {
         audioContext.resume();
       }
-      // set start time and kick off scheduler
-      nextNoteTimeRef.current = audioContext.currentTime + 0.05; // small offset to begin
-      currentBeatRef.current = currentBeat % 4; // keep continuity if toggled
-      setCurrentBeat(currentBeatRef.current);
+      nextNoteTimeRef.current = audioContext.currentTime + 0.05;
+      currentBeatRef.current = 0;
+      setCurrentBeat(0);
       scheduler();
     } else {
-      // stopped: clear timer and reset beat
-      if (timerIDRef.current) {
-        clearTimeout(timerIDRef.current);
-        timerIDRef.current = null;
+      if (schedulerRef.current) {
+        clearTimeout(schedulerRef.current);
+        schedulerRef.current = null;
       }
       currentBeatRef.current = 0;
       setCurrentBeat(0);
     }
-
     return () => {
-      if (timerIDRef.current) {
-        clearTimeout(timerIDRef.current);
-        timerIDRef.current = null;
+      if (schedulerRef.current) {
+        clearTimeout(schedulerRef.current);
+        schedulerRef.current = null;
       }
     };
-    
-  }, [isPlaying]);
+  }, [isPlaying]); 
 
   const togglePlay = () => setIsPlaying((p) => !p);
+
+  const toggleVisibility = () => {
+    if (isPlaying) {
+      setIsPlaying(false); 
+    }
+    setIsVisible((v) => !v);
+  };
 
   const handleSliderChange = (e) => {
     const newBpm = parseInt(e.target.value, 10);
     setBpm(newBpm);
-    bpmRef.current = newBpm; // keep ref in sync immediately
+    bpmRef.current = newBpm;
   };
 
   const handleBpmClick = () => {
@@ -128,7 +114,7 @@ const Metronome = () => {
     if (isNaN(newBpm) || newBpm < 40) newBpm = 40;
     if (newBpm > 240) newBpm = 240;
     setBpm(newBpm);
-    bpmRef.current = newBpm; // sync ref
+    bpmRef.current = newBpm;
     setInputValue(newBpm.toString());
     setIsEditing(false);
   };
@@ -136,9 +122,44 @@ const Metronome = () => {
   const handleInputKeyPress = (e) => {
     if (e.key === 'Enter') handleInputBlur();
   };
+  
+  // When hidden and not playing - show centered tab
+  if (!isVisible && !isPlaying) {
+    return (
+      <div className="metronome-show-tab">
+        <button 
+          className="show-tab-btn" 
+          onClick={toggleVisibility}
+          title="Show Metronome"
+        >
+          <span>▲ Metronome</span>
+        </button>
+      </div>
+    );
+  } else if (!isVisible && isPlaying) {
+    // When hidden but playing - show mini bar
+    return (
+      <div className="metronome-mini-indicator">
+        <button className="mini-toggle-btn" onClick={toggleVisibility} title="Show Metronome">
+          ▲
+        </button>
+        <span className="running-indicator">🎧 Running @ {bpm} BPM</span>
+        <button className="mini-stop-btn" onClick={togglePlay} title="Stop Metronome">⏹</button>
+      </div>
+    );
+  }
 
+  // Main metronome bar
   return (
     <div className="simple-metronome-bar">
+      <button 
+        className="toggle-btn" 
+        onClick={toggleVisibility}
+        title="Hide Metronome"
+      >
+        ▼
+      </button>
+
       <button className={`play-btn ${isPlaying ? 'playing' : ''}`} onClick={togglePlay}>
         {isPlaying ? '⏸' : '▶'}
       </button>

@@ -1,4 +1,3 @@
-// pages/Guitar.js
 import './Guitar.css';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -14,9 +13,9 @@ import {
 function Guitar() {
   const navigate = useNavigate();
   const { user } = useUser();
-
+  
   useEffect(() => {
-    document.body.style.backgroundColor = '#E5D8CE';
+    document.body.style.backgroundColor = '#D09691';
     
     return () => {
       document.body.style.backgroundColor = '';
@@ -24,7 +23,7 @@ function Guitar() {
   }, []);
 
   const handleLessonClick = (lessonNumber) => {
-    console.log('Navigating to guitar lesson:', lessonNumber);
+    console.log('Navigating to lesson:', lessonNumber);
     
     // Check if user is signed in for lessons 3, 4, 5, and test
     if (!user && (lessonNumber === 3 || lessonNumber === 4 || lessonNumber === 5 || lessonNumber === 'test1')) {
@@ -73,23 +72,23 @@ function Guitar() {
           <div className="arrow-down">↓</div>
         </div>
 
-        {/* Bottom Row - Lesson 4, Lesson 5, Optional Test */}
+        {/* Bottom Row - Lesson 5, Optional Test, Lesson 4 */}
         <div className="lesson-row-bottom">
-          <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(4)}>
-            <h3>Lesson 4</h3>
-            <p>Description</p>
+          <div className={`lesson-box optional ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick('test1')}>
+            <h3>Optional</h3>
+            <p>test</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
-          <div className="arrow-right">→</div>
+          <div className="arrow-left">←</div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(5)}>
             <h3>Lesson 5</h3>
             <p>Description</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
-          <div className="arrow-right">→</div>
-          <div className={`lesson-box optional ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick('test1')}>
-            <h3>Optional</h3>
-            <p>Test</p>
+          <div className="arrow-left">←</div>
+          <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(4)}>
+            <h3>Lesson 4</h3>
+            <p>Description</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
         </div>

@@ -210,19 +210,17 @@ body{
 /* Homescreen CSS START*/
 .Homescreen-Box{
     color: black;
-    background-color: #abd0dd;
-    border-color:#758B94;
-    border-bottom-style: solid;
-    border-width: 0.2rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(46, 147, 255, 0.5));
+    box-shadow: 1px 1px 10px 0px black ;
     padding-top: 1rem;
     margin: -3rem;
     position: relative;
-    z-index: 1;
+    border-radius: 0 0 2rem 2rem;
 }
 
 .Home-Title{
     font-weight: Bold;
-    font-family: Placeholder crap;
+    font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-style: italic;
     align-items: center;
@@ -284,10 +282,9 @@ body{
     font-style: normal;
     font-size: 1.7rem;
     color: black;
-    background-color: #9dbeca;
-    border-color:#758B94;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(46, 147, 255, 0.5));
     border-radius: 0 2rem 2rem 0;
-    border-style: solid;
+    box-shadow: 1px 1px 10px 0px black ;
     border-width: 0.5rem;
     border-left: none;
     padding: 3rem 2rem;
@@ -298,12 +295,10 @@ body{
 
 /* Updated twond-box for right alignment */
 .twond-box{
-    color: black;
-    background-color: #82a7b4;
-    border-color:#758B94;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(46, 147, 255, 0.5));
+    box-shadow: 1px 1px 10px 0px black ;
     border-radius: 2rem 0 0 2rem;
-    border-style: solid;
-    border-width: 0.5rem;
+    border-width: 0.5rem; 
     border-right: none;
     padding: 3rem 7rem;
     margin: 5rem 0 5rem 40%;
@@ -334,10 +329,9 @@ body{
     font-style: normal;
     font-size: 1.7rem;
     color: black;
-    background-color: #9dbeca;
-    border-color:#758B94;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(46, 147, 255, 0.5));
+    box-shadow: 1px 1px 10px 0px black ;
     border-radius: 0 2rem 2rem 0;
-    border-style: solid;
     border-width: 0.5rem;
     border-left: none;
     padding: 3rem 2rem;
@@ -353,9 +347,8 @@ body{
 .home-desc2 img {
     width: 25rem;
     height: auto;
-    border-style: solid;
     border-radius: 7rem;
-    border-color: #5A7681;
+    box-shadow: 1px 1px 10px 0px black ;
     border-width: 0.5rem;
     float: left;
    
@@ -367,9 +360,8 @@ body{
 .twond-box img {
     width: 25rem;
     height: auto;
-    border-style: solid;
     border-radius: 7rem 7rem 7rem 7rem;
-    border-color: #5A7681;
+    box-shadow: 1px 1px 10px 0px black ;
     border-width: 0.5rem;
     margin-left: 5rem;
 }

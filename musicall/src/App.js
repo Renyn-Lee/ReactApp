@@ -10,6 +10,7 @@ import Lesson from "./pages/Lessons"  // Fixed: changed from "./pages/Lessons" t
 import FloatingChatbot from "./FloatingChatbot"
 import Dashboard from "./pages/Dashboard"
 import Metronome from './metronome';
+import GuitarLesson from "./pages/GuitarLesson"
 
 function App(){
     const { isSignedIn } = useUser();
@@ -27,6 +28,7 @@ function App(){
                     <Route path="/guitar" element={<Guitar/>} />
                     <Route path="/piano" element={<Piano/>} />
                     <Route path="/lesson/:lessonId" element={<Lesson />} />
+                    <Route path="/guitar-lesson/:lessonId" element={<GuitarLesson />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/home" element={<Home/>} />
                 </Routes>
