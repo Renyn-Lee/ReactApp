@@ -45,7 +45,7 @@ export default function Home() {
           <ul className="twond-box-text">
             <li>Faster</li>
             <li>Better</li>
-            <li>Funner</li>
+            <li>Easier</li>
             <li className="extraItalics">Learning That Lasts</li>
           </ul>
           </div>

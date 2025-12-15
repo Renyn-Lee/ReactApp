@@ -3,6 +3,7 @@
   text-align: center;
   padding: 40px 20px;
   min-height: 100vh;
+  background-color: #E5D8CE; /* Fallback background */
 }
 
 .piano-lesson-roadmap {
@@ -39,219 +40,149 @@
   background-color: #2F2126;
 }
 
-.continue-learning {
-  margin-top: 20px;
-}
-
-.continue-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.continue-button:hover {
-  background-color: #45a049;
-}
-
+/* Roadmap Layout */
 .roadmap-container {
-  max-width: 800px;
+  max-width: 900px; /* Slightly wider to let lessons breathe */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
   padding-top: 30px;
 }
 
-/* Top row of lessons */
-.lesson-row-top {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-  justify-content: center;
-}
-
-/* Bottom row of lessons */
+/* Rows */
+.lesson-row-top,
 .lesson-row-bottom {
   display: flex;
   align-items: center;
-  gap: 20px;
-  width: 100%;
   justify-content: center;
+  width: 100%;
 }
 
-/* Vertical arrow positioning */
-.vertical-arrow {
+/* Connector Lines (Horizontal) */
+.arrow-right,
+.arrow-left {
+  width: 80px; /* Increased length to spread lessons out */
+  height: 3px;
+  background-color: #291E21;
+  flex-shrink: 0;
+}
+
+/* Connector Lines (Vertical) */
+.vertical-arrow-container {
+  width: 100%;
   display: flex;
-  justify-content: center;
-  width: 100%;
-  max-width: 600px;
-  margin: -10px 0;
-  position: relative;
-  left: 35%;
+  height: 50px; /* Height of the drop-down line */
 }
 
+.vertical-arrow-container.right {
+  justify-content: flex-end;
+  /* This padding aligns the line with the center of the last box */
+  /* Box min-width is 160px + padding = approx 210px width. Center is ~105px from edge */
+  padding-right: 105px; 
+}
+
+.vertical-arrow-container.left {
+  justify-content: flex-start;
+  /* This padding aligns the line with the center of the first box */
+  padding-left: 105px;
+}
+
+.arrow-down {
+  width: 3px;
+  height: 100%;
+  background-color: #291E21;
+}
+
+/* Lesson Boxes */
 .lesson-box {
   background-color: #3E2E32;
   color: white;
-  padding: 20px 25px;
+  padding: 20px 15px;
   border-radius: 8px;
-  min-width: 160px;
+  width: 210px; /* Fixed width for better alignment */
+  min-height: 100px; /* Fixed height for uniformity */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   transition: all 0.3s ease;
   user-select: none;
   text-align: center;
-  flex-shrink: 0;
   position: relative;
+  z-index: 2; /* Keeps box above lines if they overlap */
 }
 
 .lesson-box:hover {
   background-color: #291E21;
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .lesson-box.optional {
-  background-color: #4A383C;
+  background-color: #5A4A4E; /* Slightly lighter for tests */
 }
 
 .lesson-box.optional:hover {
   background-color: #3E2E32;
+  border-style: solid;
 }
 
-.lesson-box.current-lesson {
-  background-color: #4CAF50 !important;
-  border: 2px solid #45a049;
+.lesson-box.locked {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background-color: #6d6164;
 }
 
-.lesson-box.current-lesson:hover {
-  background-color: #45a049 !important;
-}
-
-.current-indicator {
+.lock-icon {
   position: absolute;
-  top: -8px;
-  right: -8px;
-  background-color: #ff4444;
-  color: white;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 0.7rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
+  top: 8px;
+  right: 8px;
+  font-size: 1rem;
 }
 
 .lesson-box h3 {
-  font-size: 1.2rem;
-  margin: 0 0 6px 0;
+  font-size: 1.1rem;
+  margin: 0 0 8px 0;
   font-weight: bold;
+  letter-spacing: 0.5px;
 }
 
 .lesson-box p {
   font-size: 0.9rem;
   margin: 0;
   opacity: 0.9;
-}
-
-.arrow-right,
-.arrow-left,
-.arrow-down {
-  font-size: 2.2rem;
-  color: #291E21;
-  font-weight: bold;
-  user-select: none;
-  flex-shrink: 0;
-}
-
-/* Lesson Container Styles */
-.lesson-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.back-button {
-  display: inline-block;
-  color: #291E21;
-  text-decoration: none;
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-  padding: 8px 16px;
-  border: 2px solid #291E21;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-
-.back-button:hover {
-  background-color: #291E21;
-  color: white;
-}
-
-.lesson-description {
-  font-size: 1.2rem;
-  color: #5A4A4E;
-  margin-bottom: 30px;
-  font-style: italic;
-}
-
-.lesson-content {
-  line-height: 1.6;
-  color: #333;
-}
-
-.lesson-content h3 {
-  color: #291E21;
-  margin-top: 30px;
-  margin-bottom: 15px;
-}
-
-.lesson-content ul, .lesson-content ol {
-  text-align: left;
-  max-width: 600px;
-  margin: 0 auto 20px auto;
-}
-
-.lesson-content li {
-  margin-bottom: 8px;
+  line-height: 1.3;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .piano-lesson-roadmap {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
   
   .lesson-row-top,
   .lesson-row-bottom {
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
   }
   
+  /* Turn horizontal lines into vertical ones for mobile */
   .arrow-right,
   .arrow-left {
-    transform: rotate(90deg);
+    width: 3px;
+    height: 30px;
   }
   
-  .vertical-arrow {
-    padding-right: 0;
-    justify-content: center;
+  .vertical-arrow-container {
+    height: 30px;
+    justify-content: center !important; /* Center everything on mobile */
+    padding: 0 !important;
   }
   
   .lesson-box {
-    min-width: 180px;
     width: 100%;
-    max-width: 220px;
-  }
-  
-  .roadmap-container {
-    gap: 20px;
+    max-width: 280px;
   }
 }

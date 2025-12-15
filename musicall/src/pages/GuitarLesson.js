@@ -53,6 +53,7 @@ function GuitarLesson() {
   const lesson = guitarLessonData[lessonId];
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     document.body.style.backgroundColor = lesson?.backgroundColor || '#F5F1ED';
     return () => {
       document.body.style.backgroundColor = '';
