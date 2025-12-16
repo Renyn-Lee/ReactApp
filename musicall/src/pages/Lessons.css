@@ -216,10 +216,12 @@
   padding: 10px 15px;
   border-radius: 8px;
 }
-
-.lesson-three .lesson-content strong {
-  color: #3E2E32;
+.lesson-three .lesson-content img{
+  max-width: 30rem;
+  border-radius: 0%;
+  box-shadow: none;
 }
+
 
 /* Lesson 4 */
 .lesson-four .lesson-title {

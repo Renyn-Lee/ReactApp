@@ -1,7 +1,7 @@
 /* Floating Chat Button */
 .chat-button {
   position: fixed;
-  bottom: 80px;
+  bottom: 20px;
   right: 20px;
   width: 60px;
   height: 60px;
@@ -12,8 +12,8 @@
   font-size: 24px;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
   transition: all 0.3s ease;
+   z-index: 9999;
 }
 
 .chat-button:hover {
@@ -24,7 +24,7 @@
 /* Chat Window */
 .chat-window {
   position: fixed;
-  bottom: 150px;
+  bottom: 90px;
   right: 20px;
   width: 340px;
   height: 400px;
@@ -33,8 +33,8 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  z-index: 1000;
   overflow: hidden;
+  z-index: 9999;
 }
 
 @keyframes slideUp {
@@ -261,6 +261,7 @@
     width: 300px;
     height: 450px;
     right: 10px;
+    bottom: 80px;
   }
   
   .chat-button {

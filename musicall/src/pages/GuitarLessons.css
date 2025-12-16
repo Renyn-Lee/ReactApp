@@ -1,109 +1,109 @@
-/* Root colors */
-:root {
-  --maroon: #800000;
-  --maroon-light: #A04040;
-  --guitar-bg: #D09691;      /* Lesson pages */
-  --roadmap-bg: #D09691;     /* Roadmap page */
-}
-
-/* ----- Roadmap page ----- */
-.guitar-container {
-  background-color: var(--roadmap-bg);
-  min-height: 100vh;
-  padding: 40px 20px;
-}
-
-/* ----- Lesson page ----- */
-.guitar-lesson-container {
-  background-color: var(--guitar-bg);
-  min-height: 100vh;
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-/* Lesson content */
-.guitar-lesson-content {
-  background-color: transparent; /* ensures no green background */
-  line-height: 1.8;
-  color: #333;
-  font-size: 1.1rem;
-}
-
-/* Lesson boxes (buttons) */
-.guitar-lesson-box {
-  background: white;
-  border: 2px solid var(--maroon);
-  border-radius: 10px;
-  padding: 20px;
-  margin: 10px;
-  min-width: 150px;
-  max-width: 220px;
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.guitar-lesson-box:hover {
-  background-color: var(--maroon-light);
-  color: white;
-}
-
-.guitar-lesson-box h3 {
-  font-size: 1.2rem;
-  margin-bottom: 8px;
-}
-
-.guitar-lesson-box p {
-  font-size: 1rem;
-  margin: 0;
-}
-
-/* Optional lesson box */
-.guitar-lesson-box.optional {
-  padding: 18px;
-  max-width: 200px;
-}
-
-/* Access button */
-.access-button {
-  padding: 10px 20px;
-  font-size: 0.95rem;
-}
-
-/* Next section button */
-.next-section-button {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(128, 0, 0, 0.3);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-  padding: 8px 24px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.next-section-button:hover {
-  background-color: rgba(128, 0, 0, 0.5);
-  transform: translateX(-50%) scale(1.05);
-}
-
-.next-section-button:active {
-  transform: translateX(-50%) scale(0.98);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .guitar-lesson-box {
-    width: 90%;
-    max-width: 200px;
-    margin: 10px auto;
+  /* Root colors */
+  :root {
+    --maroon: #800000;
+    --maroon-light: #A04040;
+    --guitar-bg: #D09691;      /* Lesson pages */
+    --roadmap-bg: #D09691;     /* Roadmap page */
   }
-}
+
+  /* ----- Roadmap page ----- */
+  .guitar-container {
+    background-color: var(--roadmap-bg);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  /* ----- Lesson page ----- */
+  .guitar-lesson-container {
+    background-color: var(--guitar-bg);
+    min-height: 100vh;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  /* Lesson content */
+  .guitar-lesson-content {
+    background-color: transparent; /* ensures no green background */
+    line-height: 1.8;
+    color: #333;
+    font-size: 1.1rem;
+  }
+
+  /* Lesson boxes (buttons) */
+  .guitar-lesson-box {
+    background: white;
+    border: 2px solid var(--maroon);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    min-width: 150px;
+    max-width: 220px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .guitar-lesson-box:hover {
+    background-color: var(--maroon-light);
+    color: white;
+  }
+
+  .guitar-lesson-box h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .guitar-lesson-box p {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  /* Optional lesson box */
+  .guitar-lesson-box.optional {
+    padding: 18px;
+    max-width: 200px;
+  }
+
+  /* Access button */
+  .access-button {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+
+  /* Next section button */
+  .next-section-button {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(128, 0, 0, 0.3);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 8px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .next-section-button:hover {
+    background-color: rgba(128, 0, 0, 0.5);
+    transform: translateX(-50%) scale(1.05);
+  }
+
+  .next-section-button:active {
+    transform: translateX(-50%) scale(0.98);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .guitar-lesson-box {
+      width: 90%;
+      max-width: 200px;
+      margin: 10px auto;
+    }
+  }

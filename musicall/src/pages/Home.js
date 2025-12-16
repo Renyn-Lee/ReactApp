@@ -21,7 +21,6 @@ export default function Home() {
           </SignUpButton>
         </SignedOut>
 
-        {/* Show User Button when signed in */}
         <SignedIn>
           <a href="/dashboard">
             <button className="HomeButton">Go to Dashboard</button>
@@ -39,28 +38,24 @@ export default function Home() {
       </div>
 
       <div className="twond-box">
+        <img src='/imgs/learn.jpg' alt="Learn with Legatto" />
         <div>
           <h1 className="twond-box-title">Learn With Legatto!</h1>
-          <img src='/imgs/learn.jpg' alt="Piano Player" />
           <ul className="twond-box-text">
             <li>Faster</li>
             <li>Better</li>
             <li>Easier</li>
             <li className="extraItalics">Learning That Lasts</li>
           </ul>
-          </div>
-      </div>
-      <div>
-      <div className="home-desc2">
-        <div>
-          <h1 className='home-desc2-title'> Learn Piano </h1>
-          <img src='/imgs/pianoplayer.jpg' alt="Piano Player" />
-          <h3> Piano has never been this easy!
-             Learn from expirenced piano players today.</h3>
         </div>
-
       </div>
 
+      <div className="home-desc2">
+        <img src='/imgs/pianoplayer.jpg' alt="Piano Player" />
+        <div>
+          <h1 className='home-desc2-title'>Learn Piano</h1>
+          <h3>Piano has never been this easy! Learn from experienced piano players today.</h3>
+        </div>
       </div>
     </main>
   );

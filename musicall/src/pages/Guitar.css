@@ -1,41 +1,195 @@
+/* Guitar.css */
 
-:root {
---maroon: #800000;
---maroon-light: #A04040;
---bg-light: #D09691;
---box-bg: #3A2C2C;
-}
-
-
-/* Page Container */  
+/* Page Container */
 .guitar-container {
-max-width: 1500px;
-margin: 0 auto;
-padding: 40px 20px;
-background-color:#D09691;
-min-height: 100vh;
-text-align: center;
-font-family: 'Georgia', serif;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: #D09691;
+  min-height: 100vh;
+  text-align: center;
+  font-family: 'Georgia', serif;
 }
-
 
 /* Title */
-.guitar-title {
-font-size: 3rem;
-font-weight: bold;
-color: #2B1B1B;
+.guitar-lesson-roadmap {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #800000;
+  margin-bottom: 10px;
 }
 
-
-.guitar-subtitle {
-font-size: 1.2rem;
-margin-top: 10px;
-color: #5E4A4A;
-margin-bottom: 40px;
+.guitar-description {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #5E4A4A;
+  margin-bottom: 40px;
+  font-weight: normal;
 }
 
+/* Auth Section */
+.auth-section {
+  margin-bottom: 50px;
+}
+
+.access-button {
+  background-color: #3A2C2C;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.access-button:hover {
+  background-color: #2B1B1B;
+}
 
 /* Roadmap Layout */
-.guitar-roadmap {
-margin-top: 20px;
+.roadmap-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
 }
+
+/* Rows */
+.lesson-row-top,
+.lesson-row-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Connector Lines (Horizontal) */
+.arrow-right,
+.arrow-left {
+  width: 80px;
+  height: 3px;
+  background-color: #800000;
+  flex-shrink: 0;
+}
+
+/* Connector Lines (Vertical) */
+.vertical-arrow-container {
+  width: 100%;
+  display: flex;
+  height: 50px;
+}
+
+.vertical-arrow-container.right {
+  justify-content: flex-end;
+  padding-right: 105px;
+}
+
+.vertical-arrow-container.left {
+  justify-content: flex-start;
+  padding-left: 105px;
+}
+
+.arrow-down {
+  width: 3px;
+  height: 100%;
+  background-color: #800000;
+}
+
+/* Lesson Boxes */
+.lesson-box {
+  background-color: #3A2C2C;
+  color: white;
+  padding: 20px 15px;
+  border-radius: 8px;
+  width: 210px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.lesson-box:hover {
+  background-color: #2B1B1B;
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.lesson-box.optional {
+  background-color: #5E4A4A;
+}
+
+.lesson-box.optional:hover {
+  background-color: #3A2C2C;
+  border-style: solid;
+}
+
+.lesson-box.locked {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background-color: #7a6464;
+}
+
+.lock-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 1rem;
+}
+
+.lesson-box h3 {
+  font-size: 1.1rem;
+  margin: 0 0 8px 0;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.lesson-box p {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.9;
+  line-height: 1.3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .guitar-lesson-roadmap {
+    font-size: 2rem;
+  }
+
+  .guitar-description {
+    font-size: 1rem;
+  }
+
+  .lesson-row-top,
+  .lesson-row-bottom {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .arrow-right,
+  .arrow-left {
+    width: 3px;
+    height: 30px;
+  }
+
+  .vertical-arrow-container {
+    height: 30px;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+
+  .lesson-box {
+    width: 100%;
+    max-width: 280px;
+  }
+}   
