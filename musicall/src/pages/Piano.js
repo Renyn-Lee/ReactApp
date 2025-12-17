@@ -78,7 +78,7 @@ function Piano() {
           <div className="arrow-left"></div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(4)}>
             <h3>Lesson 4</h3>
-            <p>The Black Keys</p>
+            <p>Recap and Practice</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
         </div>

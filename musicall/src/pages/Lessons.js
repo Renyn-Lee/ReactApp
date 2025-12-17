@@ -116,18 +116,20 @@ const lessonData = {
     <hr></hr>
     <h2>Finger Numbers, Notes, and Keys</h2>
     <h3>Each finger is assigned a number to help you read sheet music and develop correct technique.</h3>
-    <ul>
-    <li>Thumb = 1</li>
-    <li>Index Finger = 2</li>
-    <li>Middle Finger = 3</li>
-    <li>Ring Finger = 4</li>
-    <li>Pinky Finger = 5</li>
-    </ul>
-    <img src='/imgs/finger.png' alt="notes.png" />
+    <div class="finger-info-container">
+        <ul>
+        <li>Thumb = 1</li>
+        <li>Index Finger = 2</li>
+        <li>Middle Finger = 3</li>
+        <li>Ring Finger = 4</li>
+        <li>Pinky Finger = 5</li>
+        </ul>
+        <img src='/imgs/finger.png' alt="finger number diagram" />
+    </div>
     <h3>Using these numbers is crucial for following fingerings in sheet music and developing smooth technique.</h3>
     <h3>The piano keyboard consists of both white and black keys.</h3>
-    <h3>The white keys represent the natural notes (A, B, C, D, E, F, G), while the black keys represent the sharp (#) and flat (b) notes.</h3>
-    <img src='/imgs/notes.png' alt="notes.png" />
+    <h3>The white keys represent the natural notes (A, B, C, D, E, F, G).</h3>
+    <img src='/imgs/notes.png' alt="notes on keyboard diagram" />
     <h3>Notice the repeating pattern of the white notes on the keyboard. The full sequence of notes (A-G) repeats every 7 keys, defining an octave.</h3>
     <hr></hr>
     <h2>Try It Now: Playing Around Middle C</h2>
@@ -149,9 +151,24 @@ const lessonData = {
   },
   4: {
     title: "Lesson 4:", 
-    description: "",
+    description: "recap and practice",
     customClass: "lesson-four",
-    content: ``,
+    content: `
+    <h3> Wow ! You made it to Lesson 4! </h3>
+    <h3> That previous lesson was tough and you made it, so this lesson is all about review and practice. </h3>
+    <h3> Take your time and make sure you really understand the concepts from the last lesson. </h3>
+    <h3> Feel free to come back to this lesson for more practice whenever you need it! </h3>
+    <hr></hr>
+    <h2>Recap from last lesson:</h2>
+    <h3>Each finger is assigned a number to help you read sheet music and develop correct technique.</h3>
+    <div class="finger-info-container">
+    <img src='/imgs/finger.png' alt="finger number diagram" />
+    </div>
+    <h3>The piano keyboard consists of both white and black keys.</h3>
+    <h3>The white keys represent the natural notes (A, B, C, D, E, F, G).</h3>
+    <hr></hr>
+    <h2> First Practice Exercise: Playing Around Middle C</h2>
+    `,
     backgroundColor: "#E5D8CE"
   },
   5: {

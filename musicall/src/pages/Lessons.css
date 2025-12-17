@@ -205,7 +205,7 @@
   padding-bottom: 10px;
 }
 
-/* Lesson 3 */
+/* Lesson 3 - UPDATED STYLES FOR SIDE-BY-SIDE LIST AND IMAGE */
 .lesson-three .lesson-title {
   color: #291E21;
   font-style: italic;
@@ -216,10 +216,42 @@
   padding: 10px 15px;
   border-radius: 8px;
 }
-.lesson-three .lesson-content img{
-  max-width: 30rem;
-  border-radius: 0%;
-  box-shadow: none;
+
+/* New Flex Container for the list and the image */
+.lesson-three .lesson-content .finger-info-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping on small screens */
+  justify-content: center; /* Center the entire block */
+  align-items: center;    /* Vertically align the list and image */
+  gap: 50px;              /* Space between the list and the image */
+  max-width: 800px;       /* Control the overall width of the section */
+  margin: 30px auto;      /* Center the container horizontally */
+}
+
+/* Style for the list of fingers */
+.lesson-three .lesson-content .finger-info-container ul {
+  /* Reset general list styles that might conflict */
+  margin: 0;
+  padding: 0;
+  text-align: left; /* Align list items to the left */
+  flex-basis: auto; /* Let content determine size */
+  min-width: 250px; /* Ensure it doesn't get too small */
+}
+
+/* Style for the finger image */
+.lesson-three .lesson-content .finger-info-container img {
+  max-width: 250px; /* Set a specific size for the image */
+  height: auto;
+  margin: 0; /* Remove auto margins from general img style */
+  box-shadow: none; /* Keep the desired style */
+}
+
+/* Ensure list items are still displayed nicely (overriding general ul li styles if needed) */
+.lesson-three .lesson-content .finger-info-container ul li {
+  /* Re-apply desired list item styles */
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  text-align: left;
 }
 
 
@@ -236,6 +268,13 @@
   border-left: 3px solid #3E2E32;
   padding-left: 15px;
   margin-bottom: 15px;
+}
+
+.lesson-four .lesson-content img{
+  max-width: 40%;
+  margin: 0, auto;
+  box-shadow: none;
+
 }
 
 /* Lesson 5 */
@@ -306,6 +345,16 @@
 
   .lesson-content {
     font-size: 1rem;
+  }
+  
+  /* Lesson 3 responsive adjustment: stack list and image */
+  .lesson-three .lesson-content .finger-info-container {
+    flex-direction: column; /* Stack vertically on small screens */
+    gap: 20px;
+  }
+  
+  .lesson-three .lesson-content .finger-info-container ul {
+    min-width: auto;
   }
 
   .lesson-two .lesson-content,
