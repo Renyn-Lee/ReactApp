@@ -9,85 +9,84 @@ const lessonData = {
     description: "Getting Started",
     customClass: "lesson-one",
     content: `
-  <h2>Welcome to the Piano! Here are cool facts to start.</h2>
+  <h2>Welcome to the Guitar! Here are cool facts to start.</h2>
     <h2>Did you know?</h2>
     <p>(you can skip this if you want)</p>
     <ul>
-    <li>The piano was invented in Italy by Bartolomeo Cristofori around the year 1700.</li>
-    <li>It is called "piano" because it can play both soft (piano) and loud (forte) sounds.</li>
-    <li>The modern piano has 88 keys, consisting of 52 white keys and 36 black keys.</li>
-    <li>The piano is often referred to as the "king of instruments" due to its wide range and versatility.</li>
-    <li>The piano is a member of the percussion family, just like drums, because the sound is produced by hammers striking strings.</li>
-    <li>Pianos have three pedals that can change the sound, such as sustaining notes or softening the volume.</li>
-    <li>The most expensive piano ever sold was a Steinway & Sons piano that went for $3.22 million in 2013.</li>
-    <li>Playing the piano can improve cognitive skills, memory, and coordination.</li>
-    <li>A standard piano has 230 strings inside it.</li>
+    <li>The six strings on a standard guitar exert a massive amount of tension on the neck sometimes over 150 to 200 pounds of pressure! This is why guitar necks have internal metal rods to keep them from bending.</li>
+    <li>Before modern nylon and steel, guitar-like instruments were strung with "catgut," which was made from the dried, twisted intestines of animals like sheep.</li>
+    <li>Playing the guitar can improve cognitive skills, memory, and coordination.</li>
     </ul>
     <hr></hr>
-    <h2>Geography of the Piano</h2>
-    <h3>The piano keyboard is a map. Instead of North and South, we have High and Low.</h3>
-    <h3>The left side of the keyboard produces lower-pitched sounds, while the right side produces higher-pitched sounds.</h3>
+    <h2>Before Starting</h2>
+    <h3> The basic idea of this lesson is to get comfortable holding the guitar, learn the names of the strings, and practice simple picking with a pick.</h3>
+    <h3> This is the beginning of your guitar journey, so try not to stress too much as this stuff will become familiar with time.</h3>
+    <hr></hr>
+    <h2>The Setup of a Guitar</h2>
     
-    <h2>Try:</h2>
-    <h3>Play the lowest note you can find on the left side of the keyboard.</h3>
-    <h3>Now, play the highest note you can find on the right side of the keyboard.</h3>
-    <h3>Notice how the sound changes as you move from left to right?</h3>
+    <h3>Tuning Pegs</h3>
+    <h3>Tuning pegs (machine heads) increase or decrease tension in the strings so the pitch changes. Turning a peg tightens a string to raise pitch or loosens it to lower pitch. Precise tuning keeps the instrument in tune across the fretboard.</h3>
+
+    <h3>Frets</h3>
+    <h3>Frets are the metal strips on the neck that divide the fingerboard into semitone intervals. Pressing a string down behind a fret shortens its vibrating length and raises the note allowing you to play different notes and form chords.</h3>
+
+    <h3>Body</h3>
+    <h3>The body supports the neck and bridge and shapes the instrument's tone on an Acoustic guitar.</h3>
+
+    <h3>Acoustic vs. Electric</h3>
+    <h3><strong>Acoustic:</strong> Hollow body with a soundhole that amplifies vibrations. Tone depends heavily on wood, body size, and soundboard.</h3>
+    <h3><strong>Electric:</strong> Usually a solid or semi-hollow body that produces little acoustic volume. Magnetic or piezo pickups convert string vibrations into electrical signals, which are shaped by amps and effects. Pickups and electronics play a bigger role in tone.</h3>
+
+     
+
+    
     <hr></hr>
-    <h1>Middle C</h1>
-    <h3>The key indicated in the diagram is "Middle C."</h3>
-    <h3>It is called "Middle C" because it is located near the middle of the keyboard and serves as a central reference point for musicians.</h3>
-    <h3>Middle C is also described as the home note for pianists, as it is often the first note beginners learn to play and is used as a starting point for reading sheet music.</h3>
-    <h3>Remember this, as this is your starting point for learning!</h3>
-    <h2>Try:</h2>
-    <h3>Find Middle C on your keyboard and play it.</h3>
-    <h3>Now, try playing the note just to the left of Middle C (B) and the note just to the right of Middle C (D).</h3>
-    <h3>Notice how these notes sound in relation to Middle C?</h3>
+     <h2>Posture & Stability</h2>
+      <h3>Focus on comfort and stability. Use a strap when standing or rest the guitar on your leg with the neck angled up slightly. Keep your back straight, shoulders relaxed, and the instrument positioned so you can move freely.</h3>
+
+      <h2>String Names</h2>
+      <h3>The open string names from thickest to thinnest are: E A D G B e. A simple mnemonic is "Eddy Ate Dynamite, Good Bye Eddy." Don't stress about memorizing this — familiarity comes with repetition.</h3>
+
+      <h2>Holding a Pick & Basic Picking</h2>
+      <p>(there are many different ways to pluck strings but for now we will focus on using a pick as it is the most common way to play guitar.)</p>
+      <h3>Hold a pick with a firm but relaxed grip between the thumb and index finger. Practice simple, strumming(up and down motion) on the open 6th (low E) string. Keep the wrist loose and focus on steady timing rather than speed; consistency builds control.</h3>
     <hr></hr>
-    <h2>Black and White Keys</h2>
-    <h3>The piano keyboard consists of both white and black keys.</h3>
-    <h3>The white keys represent the natural notes (A, B, C, D, E, F, G), while the black keys represent the sharp (#) and flat (b) notes.</h3>
-    <p>(we will learn more about this later)</p>
-    <h3>Lastly, look at the keyboard and notice the pattern of black keys.</h3>
-    <h3>The black keys are arranged in groups of two and three, which helps pianists identify different notes and navigate the keyboard more easily.</h3>
-    <hr></hr>
+    
     <h2>Optional Homework:</h2>
-    <h3>Practice finding Middle C and playing it multiple times throughout the day.</h3>
-    <h3>Play the white keys and black keys to get familiar with their locations on the keyboard.</h3>
+    <h3>recite the mnemonic "Eddy Ate Dynamite, Good Bye Eddy" to remember the string names.</h3>
+    <h3>get used to holding a pick and practicing simple strumming with the guitar to get used to a pick. (if using one)</h3>
     <h3>Have fun and enjoy your musical journey!</h3>
     <hr></hr>
     `,
-    backgroundColor: "#E5D8CE"
+    backgroundColor: "#dc9089"
   },
   2: {
     title: "Lesson 2:", 
-    description: "Posture & Positioning",
+    description: "Posture & Hand Positioning",
     customClass: "lesson-two",
     content: `
     <h2>Recap from last lesson:</h2>
-    <h3>Remember how Middle C is your starting point for learning the piano? Try play Middle C again</h3>
-    <h3>The piano keyboard consists of both white and black keys.</h3>
-    <h3>The black keys are arranged in groups of two and three, which helps pianists identify different notes and navigate the keyboard more easily.</h3>
     <hr></hr>
     <h2>"The only time you are actually growing is when you are uncomfortable," by T. Harv Eker</h2>
     <p>Learning a new instrument can be challenging, but remember that growth happens outside of your comfort zone. Embrace the discomfort and keep pushing forward!</p>
     <hr></hr>
-    <h2>Posture and Positioning</h2>
-    <h3>Proper posture and positioning are essential for playing the piano comfortably and effectively.</h3>
-    <h3>Beginners need to learn this from the start to avoid developing bad habits that can lead to discomfort or injury later on.</h3>
-    <h2>How far should you be from the piano?</h2>
-    <h3>Make a fist and stick it straight out in front of you. Your knuckles should just touch the edge of the keyboards music stand.</h3>
-    <h3>This distance allows for optimal reach and control over the keys.</h3>
-    <h2>Seating Position</h2>
-    <h3>Sit on the front half of the bench (don't slouch against the back!). You need to be able to lean forward.</h3>
-    <h3>Keep your feet flat on the floor for stability and balance.</h3>
-    <img src='/imgs/posture.png' alt="Piano Player" />
+
+    <h2>Rhythm Basics</h2>
+    <h3>Introduce the metronome: an essential tool for developing steady time. Count along out loud: "1-2-3-4" and set the metronome to a slow tempo. Practice playing a single note (open 6th string) exactly on each beat — quarter notes — until your timing feels consistent.</h3>
     <hr></hr>
-    <h2>Hand Position</h2>
-    <h3>Curve your fingers slightly, as if you were holding a small ball.</h3>
-    <h3>Your fingertips should make contact with the keys, not the pads of your fingers.</h3>
-    <h3>Keep your wrists level with the keyboard, avoiding excessive bending or tension.</h3>
-    <h3>Its going to be uncomfortable at first but with practice it will feel natural!</h3>
+
+    <h2>Reading Tablature (TAB)</h2>
+    <h3>TAB uses six horizontal lines that represent the six strings. Numbers on the lines show which fret to play. Practice simple melodies from TAB, for example play 0-2-4 on the D string (open, 2nd fret, 4th fret) slowly and evenly following the beat.</h3>
     <hr></hr>
+
+    <h2>Fretting Hand Technique</h2>
+    <h3>Use the finger numbering system (1=index, 2=middle, 3=ring, 4=pinky). Press with the fingertips just behind the metal fret wire (not directly on top) to avoid fret buzz. Keep the thumb roughly behind the neck and fingers curved for clean fretting.</h3>
+    <hr></hr>
+
+    <h2>Chromatic Exercise</h2>
+    <h3>Practice the 1-2-3-4 chromatic exercise on a single string using index, middle, ring, pinky in order. Start very slowly, focus on producing a clean tone from each note, and only increase speed when every note rings clearly.</h3>
+    <hr></hr>
+
     <h2>Try:</h2>
     <h3>Sit at your piano or keyboard and practice getting into the correct posture and positioning.</h3>
     <h3>Focus on maintaining a relaxed and comfortable position while playing.</h3>
