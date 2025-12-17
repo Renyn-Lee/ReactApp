@@ -2,7 +2,8 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 
 // Initialize Gemini client
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+// Use gemini-1.5-flash instead - it has better free tier support
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 const httpTrigger = async (context: any, req: any): Promise<void> => {
   context.log('HTTP trigger function processed a request.');
@@ -35,7 +36,6 @@ const httpTrigger = async (context: any, req: any): Promise<void> => {
     const message: string = body?.message || '';
     const conversationHistory: any[] = body?.conversationHistory || [];
     context.log('Received message:', message);
-    context.log('Gemini API Key exists:', !!process.env.GEMINI_API_KEY);
 
     if (!message) {
       context.res = {
@@ -70,19 +70,49 @@ const httpTrigger = async (context: any, req: any): Promise<void> => {
       body: {
         reply: reply,
         usage: {
-          // Gemini doesn't provide detailed usage like OpenAI
-          // You can remove this or add custom tracking if needed
           total_tokens: "N/A"
         }
       }
     };
 
-  } catch (error) {
+  } catch (error: any) {
     context.log.error('Full error details:', error);
-    context.log.error('Error calling Gemini:', error);
+    
+    // Check if it's a rate limit error (429)
+    if (error.status === 429) {
+      const retryDelay = error.errorDetails?.find((detail: any) => 
+        detail['@type'] === 'type.googleapis.com/google.rpc.RetryInfo'
+      )?.retryDelay || '60s';
+      
+      context.log.error('Rate limit exceeded. Retry after:', retryDelay);
+      
+      context.res = {
+        status: 429,
+        body: { 
+          error: "Too many requests. The AI service is temporarily unavailable. Please try again in a minute.",
+          retryAfter: parseInt(retryDelay) || 60
+        }
+      };
+      return;
+    }
+
+    // Check if it's an API key error
+    if (error.status === 401 || error.status === 403) {
+      context.log.error('API authentication error');
+      context.res = {
+        status: 503,
+        body: { error: "AI service is temporarily unavailable. Please try again later." }
+      };
+      return;
+    }
+
+    // Generic error
+    context.log.error('Error calling Gemini:', error.message || error);
     context.res = {
       status: 500,
-      body: { error: "Failed to get response from AI" }
+      body: { 
+        error: "Unable to connect to AI service. Please try again later."
+      }
     };
   }
 };

@@ -70,7 +70,7 @@ async function getGeminiResponse(request, context) {
         }
 
         // Use gemini-pro (stable model)
-        const model = genAI.getGenerativeModel({ model: "models/gemini-2.0-flash" });
+     const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
         let result;
         let reply;
