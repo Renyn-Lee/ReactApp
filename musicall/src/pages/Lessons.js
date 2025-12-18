@@ -1,7 +1,6 @@
 // pages/Lesson.js
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { useUser } from '@clerk/clerk-react';
+import { useParams, Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import './Lessons.css';
 
 const lessonData = {
@@ -155,122 +154,147 @@ const lessonData = {
     description: "recap and practice",
     customClass: "lesson-four",
     content: `
-   <h3> Wow ! You made it to Lesson 4! </h3>
+    <h3> Wow ! You made it to Lesson 4! </h3>
     <h3> That previous lesson was tough and you made it, so this lesson is all about review and practice. </h3>
     <h3> Take your time and make sure you really understand the concepts from the last lesson. </h3>
     <h3> Feel free to come back to this lesson for more practice whenever you need it! </h3>
     <hr></hr>
     <h2>Recap from last lesson:</h2>
     <h3>Each finger is assigned a number to help you read sheet music and develop correct technique.</h3>
-    <div>
+    <div class="finger-info-container">
+    <img src='/imgs/finger.png' alt="finger number diagram" />
     </div>
     <h3>The piano keyboard consists of both white and black keys.</h3>
     <h3>The white keys represent the natural notes (A, B, C, D, E, F, G).</h3>
     <hr></hr>
     <h2> First Practice Exercise: Playing Around Middle C</h2>
-    
-    <h3>This exercise will help you master two key concepts: Finger Numbers and the C Position.</h3>
-    <br>
-    
-    <h3> Step 1: Finding C Position</h3>
-    <ul>
-        <li><h3>Find Middle C. Remember, it's the white key immediately to the left of the central group of two black keys.</h3></li>
-        <li><h3>Place your Right Hand (R.H.) on the keyboard.</h3></li>
-        <li><h3>Your R.H. Thumb (Finger 1) should rest lightly on Middle C.</h3></li>
-        <li><h3>Each of your remaining fingers (2, 3, 4, 5) should rest on the next consecutive white key (D, E, F, G).</h3></li>
-    </ul>
-    
-    <h3> Tip: Focus on your hand shape!</h3>
-    <h3>Keep your wrists relaxed and your fingers gently curved, as if you are holding a small ball. Avoid flat fingers!</h3>
-    <hr>
-
-    <h3> Step 2: The Five-Finger Walk (Right Hand)</h3>
-    <h3>We will play the notes in order, focusing on using the correct finger number for each note.</h3>
-    
-    <div>
-    </div>
-    
-    <ul>
-        <li><h3>Play C with Finger 1 (Thumb).</h3></li>
-        <li><h3>Play D with Finger 2 (Index).</h3></li>
-        <li><h3>Play E with Finger 3 (Middle).</h3></li>
-        <li><h3>Play F with Finger 4 (Ring).</h3></li>
-        <li><h3>Play G with Finger 5 (Pinky).</h3></li>
-    </ul>
-    
-    <h3> Practice Routine:</h3>
-    <ul>
-        <li><h3>Play the sequence C-D-E-F-G 5 times slowly and evenly.</h3></li>
-        <li><h3>Next, play the sequence backwards: G-F-E-D-C 5 times slowly.</h3></li>
-        <li><h3>Focus on making the sound of each note equally loud and clear.</h3></li>
-    </ul>
-    
-    <hr>
-    
-    <h2> Next Practice Exercise: Left Hand C Position</h2>
-    <h3>Once you are comfortable with the right hand, the left hand will be a breeze, but its finger numbers are mirrored!</h3>
-    
-    <h3> Step 3: Finding Left Hand C Position</h3>
-    <ul>
-        <li><h3>Find Middle C again (the same note).</h3></li>
-        <li><h3>Place your Left Hand (L.H.) on the keyboard, next to your Right Hand.</h3></li>
-        <li><h3>Your L.H. Pinky (Finger 5) should rest lightly on the C below Middle C.</h3></li>
-        <li><h3>Each of your remaining fingers (4, 3, 2, 1) should rest on the next consecutive white key going toward Middle C (B, A, G, F).</h3></li>
-    </ul>
-    
-    <h3> Tip: The Left Hand is the mirror image!</h3>
-    <h3>In this position, L.H. Finger 1 (Thumb) plays the G key, and L.H. Finger 5 (Pinky) plays the C key.</h3>
-    <hr></hr>
-    <h2>Optional Homework:</h2>
-    <h3>Practice the Right Hand Five-Finger Walk (C-G-C) 10 times until you can do it without looking at your hand.</h3>
-    <h3>Practice finding the Left Hand C Position and playing the notes C-B-A-G-F and back up to C.</h3>
-    <h3>Focus on relaxing your wrists and maintaining that gently curved hand shape for both hands.</h3>
-    <hr></hr>
-    <h2>You're building a strong foundation! Keep practicing!</h2>
     `,
     backgroundColor: "#E5D8CE"
   },
-  5: { title: "Lesson 5:", description: "", customClass: "lesson-five", content: ``, backgroundColor: "#E5D8CE" },
-  6: { title: "Lesson 6:", description: "", customClass: "lesson-six", content: ``, backgroundColor: "#E5D8CE" },
-  7: { title: "Lesson 7:", description: "", customClass: "lesson-seven", content: ``, backgroundColor: "#E5D8CE" },
-  8: { title: "Lesson 8:", description: "", customClass: "lesson-eight", content: ``, backgroundColor: "#E5D8CE" },
-  9: { title: "Lesson 9:", description: "", customClass: "lesson-nine", content: ``, backgroundColor: "#E5D8CE" },
-  10: { title: "Lesson 10:", description: "", customClass: "lesson-ten", content: ``, backgroundColor: "#E5D8CE" },
-  11: { title: "Lesson 11:", description: "", customClass: "lesson-eleven", content: ``, backgroundColor: "#E5D8CE" },
-  12: { title: "Lesson 12:", description: "", customClass: "lesson-twelve", content: ``, backgroundColor: "#E5D8CE" },
-  13: { title: "Lesson 13:", description: "", customClass: "lesson-thirteen", content: ``, backgroundColor: "#E5D8CE" },
-  14: { title: "Lesson 14:", description: "", customClass: "lesson-fourteen", content: ``, backgroundColor: "#E5D8CE" },
-  15: { title: "Lesson 15:", description: "", customClass: "lesson-fifteen", content: ``, backgroundColor: "#E5D8CE" },
-  16: { title: "Lesson 16:", description: "", customClass: "lesson-sixteen", content: ``, backgroundColor: "#E5D8CE" },
-  17: { title: "Lesson 17:", description: "", customClass: "lesson-seventeen", content: ``, backgroundColor: "#E5D8CE" },
-  18: { title: "Lesson 18:", description: "", customClass: "lesson-eighteen", content: ``, backgroundColor: "#E5D8CE" },
-  19: { title: "Lesson 19:", description: "", customClass: "lesson-nineteen", content: ``, backgroundColor: "#E5D8CE" },
-  20: { title: "Lesson 20:", description: "", customClass: "lesson-twenty", content: ``, backgroundColor: "#E5D8CE" },
-  test1: { title: "Optional Test", description: "", customClass: "lesson-test", content: ``, backgroundColor: "#E5D8CE" }
+  5: {
+    title: "Lesson 5:",
+    description: "",
+    customClass: "lesson-five",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  6: {
+    title: "Lesson 6:",
+    description: "",
+    customClass: "lesson-six",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  7: {
+    title: "Lesson 7:",
+    description: "",
+    customClass: "lesson-seven",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  8: {
+    title: "Lesson 8:",
+    description: "",
+    customClass: "lesson-eight",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  9: {
+    title: "Lesson 9:",
+    description: "",
+    customClass: "lesson-nine",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  10: {
+    title: "Lesson 10:",
+    description: "",
+    customClass: "lesson-ten",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  11: {
+    title: "Lesson 11:",
+    description: "",
+    customClass: "lesson-eleven",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  12: {
+    title: "Lesson 12:",
+    description: "",
+    customClass: "lesson-twelve",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  13: {
+    title: "Lesson 13:",
+    description: "",
+    customClass: "lesson-thirteen",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  14: {
+    title: "Lesson 14:",
+    description: "",
+    customClass: "lesson-fourteen",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  15: {
+    title: "Lesson 15:",
+    description: "",
+    customClass: "lesson-fifteen",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  16: {
+    title: "Lesson 16:",
+    description: "",
+    customClass: "lesson-sixteen",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  17: {
+    title: "Lesson 17:",
+    description: "",
+    customClass: "lesson-seventeen",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  18: {
+    title: "Lesson 18:",
+    description: "",
+    customClass: "lesson-eighteen",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  19: {
+    title: "Lesson 19:",
+    description: "",
+    customClass: "lesson-nineteen",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  20: {
+    title: "Lesson 20:",
+    description: "",
+    customClass: "lesson-twenty",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  },
+  test1: {
+    title: "Optional Test",
+    description: "",
+    customClass: "lesson-test",
+    content: ``,
+    backgroundColor: "#E5D8CE"
+  }
 };
 
 function Lesson() {
   const { lessonId } = useParams();
   const lesson = lessonData[lessonId];
-  const { user } = useUser();
-  const navigate = useNavigate(); // <--- Get the navigate hook
-  const [hasReachedBottom, setHasReachedBottom] = useState(false);
-  
-  // NEW STATE: To control the slide-out animation
-  const [isSlidingOut, setIsSlidingOut] = useState(false); 
-
-  // NEW FUNCTION: Handles the navigation away with animation
-  const navigateBackToRoadmap = () => {
-    // 1. Trigger the slide-out animation
-    setIsSlidingOut(true);
-    
-    // 2. Wait for the animation (500ms must match the CSS transition duration)
-    setTimeout(() => {
-      // 3. Use navigate hook for smooth routing (NO full page reload)
-      navigate("/piano");
-    }, 500); 
-  };
-
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -279,51 +303,6 @@ function Lesson() {
       document.body.style.backgroundColor = '';
     };
   }, [lesson]);
-
-  // Track scroll position
-  useEffect(() => {
-    if (!user) return;
-
-    const handleScroll = () => {
-      if (hasReachedBottom) return;
-
-      const windowHeight = window.innerHeight;
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight;
-
-      if (windowHeight + scrollTop >= docHeight - 120) {
-        setHasReachedBottom(true);
-        markLessonComplete(lessonId);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lessonId, user, hasReachedBottom]);
-
-  // Mark lesson as complete in Clerk metadata
-  const markLessonComplete = async (lessonId) => {
-    if (!user) return;
-
-    try {
-      const currentProgress = user.unsafeMetadata?.pianoProgress || [];
-
-      if (currentProgress.includes(String(lessonId))) return;
-
-      const updatedProgress = [...currentProgress, String(lessonId)];
-
-      await user.update({
-        unsafeMetadata: {
-          pianoProgress: updatedProgress
-        }
-      });
-
-      console.log(`Lesson ${lessonId} saved`);
-    } catch (err) {
-      console.error("Clerk progress save failed:", err);
-    }
-  };
-
 
   if (!lesson) {
     return (
@@ -335,31 +314,14 @@ function Lesson() {
   }
 
   return (
-    // CHANGE 1: Apply the slide-out class conditionally to the main container
-    <div className={`lesson-container ${lesson.customClass || ''} ${isSlidingOut ? 'slide-out-left' : ''}`}>
+    <div className={`lesson-container ${lesson.customClass || ''}`}>
+      <Link to="/piano" className="back-button">← Back to Roadmap</Link>
       
-      {/* CHANGE 2: Replace window.location.href with the new function */}
-      <button
-        className="back-button"
-        onClick={navigateBackToRoadmap}
-      >
-        ← Back to Roadmap
-      </button>
-
-      {/* RENDER THE LESSON CONTENT */}
       <h1 className="lesson-title">{lesson.title}</h1>
       <p className="lesson-description">{lesson.description}</p>
+      <div className="lesson-content" dangerouslySetInnerHTML={{ __html: lesson.content }}/>
       
-      {/* Lesson Content with Diagrams */}
-      <div className="lesson-content" dangerouslySetInnerHTML={{ __html: lesson.content }}/>      
-      
-      {/* CHANGE 3: Replace window.location.href with the new function */}
-      <button
-        className="back-button bottom-button"
-        onClick={navigateBackToRoadmap}
-      >
-        ← Back to Roadmap
-      </button>
+      <Link to="/piano" className="back-button bottom-button">← Back to Roadmap</Link>
     </div>
   );
 }

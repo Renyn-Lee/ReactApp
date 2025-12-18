@@ -1,21 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 // Initialize Gemini client
-const apiKey = process.env.GEMINI_API_KEY;
-
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization",
-};
-
-
-if (!apiKey) {
-  throw new Error("GEMINI_API_KEY is not set");
-}
-
-const genAI = new GoogleGenerativeAI(apiKey);
-
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 // Use gemini-1.5-flash instead - it has better free tier support
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 

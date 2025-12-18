@@ -1,37 +1,4 @@
-.loading-message {
-    text-align: center;
-    color: #888;
-    margin-top: 20px;
-}
-
-/* Check mark icon */
-.checkmark {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  font-size: 1.5rem;
-  color: #007bff;
-  font-weight: bold;
-}
-/* Progress indicator */
-.progress-indicator {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-  font-weight: bold;
-}
-
-.progress-indicator p {
-  color: #291E21;
-}
-
-/* Completed lesson styling */
-.lesson-box.completed {
-  border: 3px solid #007bff;
-  box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
-}
-
-
+/* Piano Roadmap Styles */
 .piano-container {
   text-align: center;
   padding: 40px 20px;
