@@ -1,5 +1,25 @@
 /* Lessons.css */
 
+/* --- SLIDE ANIMATION STYLES for the Lesson Page --- */
+
+/* Ensure the container is ready for smooth transformation */
+.lesson-container {
+  /* You may already have a padding/width definition, ensure this is added: */
+  position: relative; 
+  width: 100%;
+  box-sizing: border-box; 
+  overflow-x: hidden; 
+}
+
+/* This class initiates the slide when applied by the React component */
+.slide-out-left {
+    /* Set the duration of the slide animation (must match the setTimeout value!) */
+    transition: transform 0.5s ease-out; 
+    
+    /* Move the entire container off the left side of the screen */
+    transform: translateX(-100vw);
+}
+
 .lesson-content ul {
   list-style-type: none;
   padding: 0;
@@ -265,9 +285,9 @@
 }
 
 .lesson-four .lesson-content li {
-  border-left: 3px solid #3E2E32;
   padding-left: 15px;
   margin-bottom: 15px;
+  list-style: none;
 }
 
 .lesson-four .lesson-content img{
