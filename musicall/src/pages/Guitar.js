@@ -47,12 +47,12 @@ function Guitar() {
           <div className="arrow-right"></div>
           <div className="lesson-box" onClick={() => handleLessonClick(2)}>
             <h3>Lesson 2</h3>
-            <p>Posture & Hand Position</p>
+            <p>Rhythm & Tablature</p>
           </div>
           <div className="arrow-right"></div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(3)}>
             <h3>Lesson 3</h3>
-            <p>Finger Numbers & Strings</p>
+            <p>The First Chords</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
         </div>
