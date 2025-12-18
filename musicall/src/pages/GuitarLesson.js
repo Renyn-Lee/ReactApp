@@ -55,10 +55,8 @@ const guitarLessonData = {
     description: "Rhythm & Tablature",
     customClass: "lesson-two",
     content: `
-      <h2>Recap: Let's get moving!</h2>
-      <hr/>
       <h2>Rhythm Basics</h2>
-      <h3>Use a metronome. Count "1 - 2 - 3 - 4" and play a down-stroke on the Low E string for every beat. This is called a quarter note.</h3>
+      <h3>Use a metronome (there's one at the bottom of the screen). Count "1 - 2 - 3 - 4" and play a down-stroke (this is a downward motion strum) on the Low E string for every beat. This is called a quarter note.</h3>
       
       <hr/>
       <h2>Reading Tablature (TAB)</h2>
@@ -74,6 +72,7 @@ const guitarLessonData = {
       <hr/>
       <h2>The 1-2-3-4 Exercise</h2>
       <h3>Play fret 1, then 2, then 3, then 4 on the same string using four different fingers. This builds strength!</h3>
+      <p>The beginning of your journey may cause pain in your finger, if that is the case, take a break. You'll develop calluses in around a week or two.</p>
       
       <hr/>
       <h2>Optional Homework:</h2>
@@ -84,8 +83,42 @@ const guitarLessonData = {
     `,
     backgroundColor: "#E5D8CE"
   },
+  3: {
+    title: "Lesson 3:",
+    description: "The First Chords (Em, Cmaj7 & Am)",
+    customClass: "guitar-lesson-three",
+    content: `
+      <h2>The Easy Duo</h2>
+      <h3>Three of the easiest chords: <strong>E minor (Em)</strong>, <strong>C Major 7 (Cmaj7)</strong>, and <strong>A minor (Am)</strong></h3>
+      <h3>Try to focus on arching the fingers so your fingertips press the strings cleanly and not muting adjacent strings. Don't worry about going fast; take time to place each finger and let the chord ring before moving on.</h3>
+      <h3><strong>Em fingering:</strong> 0-2-2-0-0-0 (low to high). Place the middle and ring fingers on the 2nd fret of the A and D strings.</h3>
+      <h3><strong>Cmaj7 fingering:</strong> X-3-2-0-0-0 — place the ring finger on the 3rd fret of the A string and the middle finger on the 2nd fret of the D string; the low E is muted (X).</h3>
+      <h3><strong>Am fingering:</strong> X-0-2-2-0-0 — place the middle finger on the 2nd fret of the D string and the ring finger on the 2nd fret of the B string; the low E is muted (X).</h3>
+      <p> With muted strings marked as "X", you shouldn't hear them. it's up to you how you want to mute the string.</p>
+      <hr></hr>
+
+      <h2>Chord Transitions</h2>
+      <h3>The hardest part is switching smoothly between chords. Practice moving from Em to Cmaj, spending four beats on each chord (count "1-2-3-4" on each). </h3>
+      <p>Use the concept of <em>anchor fingers</em> — notice which fingers stay in place or move minimally when switching.</p>
+      <h3>For Em → Cmaj7: keep your middle finger close to the D string when you move your ring finger to the A string; this will make transitioning smoother.</h3>
+
+      <hr></hr>
+      <h2>Core Chords (The G, C, D Group)</h2>
+      <h3>Next are the three common chords used in many songs: G Major, C Major, and D Major. Practice each slowly and watch for muted strings.</h3>
+      <h3><strong>G Major:</strong> 3-2-0-0-0-3 — fingers: middle on A2, index on E2 (or alternative fingerings). Avoid muting higher strings.</h3>
+      <h3><strong>C Major:</strong> X-3-2-0-1-0 — ring finger on A3, middle finger on D2, index finger on B1; low E muted (X).</h3>
+      <h3><strong>D Major:</strong> X-X-0-2-3-2 — fingers: index on G2, middle on E2, ring on B3; avoid hitting the low E and A strings (mark them X).</h3>
+
+      <hr></hr>
+      <h2>Basic Strumming Patterns</h2>
+      <h3>Pattern 1: <strong>D D D D</strong> — downstroke on every beat (counts: 1 2 3 4). Keep the strumming hand moving with a steady down motion on each count.</h3>
+      <h3>Pattern 2: <strong>D D U U D U</strong> (written as D DU UDU) — count with the rhythm and keep the wrist moving constantly even on the up-beats where you may not hit the strings.</h3>
+      <h3>Practice: play Em for four beats using Pattern 1, then switch to Cmaj7 for four beats using the same pattern. Repeat slowly until changes feel natural.</h3>
+      <p>As you get into the rhythm, try to relax your wrists as a common issue with beginners is keeping an overly tense wrist and  only using their arms to strum.</p>
+    `,
+    backgroundColor: "#D09691"
+  },
   // Placeholders for remaining lessons
-  3: { title: "Lesson 3:", description: "The First Chords (Em & Cmaj7)", customClass: "guitar-lesson-three", content: `<h2>Content Coming Soon</h2>`, backgroundColor: "#D09691" },
   4: { title: "Lesson 4:", description: "The G and D Chords", customClass: "guitar-lesson-four", content: `<h2>Content Coming Soon</h2>`, backgroundColor: "#D09691" },
   5: { title: "Lesson 5:", description: "Strumming Patterns", customClass: "guitar-lesson-five", content: `<h2>Content Coming Soon</h2>`, backgroundColor: "#D09691" },
   6: { title: "Lesson 6:", description: "Chord Progressions", customClass: "guitar-lesson-six", content: `<h2>Content Coming Soon</h2>`, backgroundColor: "#D09691" },
