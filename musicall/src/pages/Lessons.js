@@ -1,7 +1,7 @@
-// pages/Lesson.js
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import './Lessons.css';
+import { useUser } from '@clerk/clerk-react';
 
 const lessonData = {
   1: {
@@ -9,7 +9,7 @@ const lessonData = {
     description: "Getting Started",
     customClass: "lesson-one",
     content: `
-  <h2>Welcome to the Piano! Here are cool facts to start.</h2>
+    <h2>Welcome to the Piano! Here are cool facts to start.</h2>
     <h2>Did you know?</h2>
     <p>(you can skip this if you want)</p>
     <ul>
@@ -151,7 +151,7 @@ const lessonData = {
   },
   4: {
     title: "Lesson 4:", 
-    description: "recap and practice",
+    description: "Recap and Practice",
     customClass: "lesson-four",
     content: `
     <h3> Wow ! You made it to Lesson 4! </h3>
@@ -171,130 +171,35 @@ const lessonData = {
     `,
     backgroundColor: "#E5D8CE"
   },
-  5: {
-    title: "Lesson 5:",
-    description: "",
-    customClass: "lesson-five",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  6: {
-    title: "Lesson 6:",
-    description: "",
-    customClass: "lesson-six",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  7: {
-    title: "Lesson 7:",
-    description: "",
-    customClass: "lesson-seven",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  8: {
-    title: "Lesson 8:",
-    description: "",
-    customClass: "lesson-eight",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  9: {
-    title: "Lesson 9:",
-    description: "",
-    customClass: "lesson-nine",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  10: {
-    title: "Lesson 10:",
-    description: "",
-    customClass: "lesson-ten",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  11: {
-    title: "Lesson 11:",
-    description: "",
-    customClass: "lesson-eleven",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  12: {
-    title: "Lesson 12:",
-    description: "",
-    customClass: "lesson-twelve",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  13: {
-    title: "Lesson 13:",
-    description: "",
-    customClass: "lesson-thirteen",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  14: {
-    title: "Lesson 14:",
-    description: "",
-    customClass: "lesson-fourteen",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  15: {
-    title: "Lesson 15:",
-    description: "",
-    customClass: "lesson-fifteen",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  16: {
-    title: "Lesson 16:",
-    description: "",
-    customClass: "lesson-sixteen",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  17: {
-    title: "Lesson 17:",
-    description: "",
-    customClass: "lesson-seventeen",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  18: {
-    title: "Lesson 18:",
-    description: "",
-    customClass: "lesson-eighteen",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  19: {
-    title: "Lesson 19:",
-    description: "",
-    customClass: "lesson-nineteen",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  20: {
-    title: "Lesson 20:",
-    description: "",
-    customClass: "lesson-twenty",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  },
-  test1: {
-    title: "Optional Test",
-    description: "",
-    customClass: "lesson-test",
-    content: ``,
-    backgroundColor: "#E5D8CE"
-  }
+  // Placeholders for lessons 5-40...
+  5: { title: "Lesson 5:", description: "", customClass: "lesson-five", content: ``, backgroundColor: "#E5D8CE" },
+  6: { title: "Lesson 6:", description: "", customClass: "lesson-six", content: ``, backgroundColor: "#E5D8CE" },
+  7: { title: "Lesson 7:", description: "", customClass: "lesson-seven", content: ``, backgroundColor: "#E5D8CE" },
+  8: { title: "Lesson 8:", description: "", customClass: "lesson-eight", content: ``, backgroundColor: "#E5D8CE" },
+  9: { title: "Lesson 9:", description: "", customClass: "lesson-nine", content: ``, backgroundColor: "#E5D8CE" },
+  10: { title: "Lesson 10:", description: "", customClass: "lesson-ten", content: ``, backgroundColor: "#E5D8CE" },
+  11: { title: "Lesson 11:", description: "", customClass: "lesson-eleven", content: ``, backgroundColor: "#E5D8CE" },
+  12: { title: "Lesson 12:", description: "", customClass: "lesson-twelve", content: ``, backgroundColor: "#E5D8CE" },
+  13: { title: "Lesson 13:", description: "", customClass: "lesson-thirteen", content: ``, backgroundColor: "#E5D8CE" },
+  14: { title: "Lesson 14:", description: "", customClass: "lesson-fourteen", content: ``, backgroundColor: "#E5D8CE" },
+  15: { title: "Lesson 15:", description: "", customClass: "lesson-fifteen", content: ``, backgroundColor: "#E5D8CE" },
+  16: { title: "Lesson 16:", description: "", customClass: "lesson-sixteen", content: ``, backgroundColor: "#E5D8CE" },
+  17: { title: "Lesson 17:", description: "", customClass: "lesson-seventeen", content: ``, backgroundColor: "#E5D8CE" },
+  18: { title: "Lesson 18:", description: "", customClass: "lesson-eighteen", content: ``, backgroundColor: "#E5D8CE" },
+  19: { title: "Lesson 19:", description: "", customClass: "lesson-nineteen", content: ``, backgroundColor: "#E5D8CE" },
+  20: { title: "Lesson 20:", description: "", customClass: "lesson-twenty", content: ``, backgroundColor: "#E5D8CE" },
+  section1test: { title: "Sight Reading Test", description: "Test your skills", customClass: "lesson-test", content: ``, backgroundColor: "#E5D8CE" },
+  section2test: { title: "Final Exam", description: "The Big One", customClass: "lesson-test", content: ``, backgroundColor: "#E5D8CE" }
 };
 
 function Lesson() {
   const { lessonId } = useParams();
-  const lesson = lessonData[lessonId];
+  const navigate = useNavigate();
+  const { isLoaded, isSignedIn, user } = useUser();
+  
+  // Convert ID safely to find it in the lessonData object
+  const lessonKey = isNaN(lessonId) ? lessonId : Number(lessonId);
+  const lesson = lessonData[lessonKey];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -303,6 +208,30 @@ function Lesson() {
       document.body.style.backgroundColor = '';
     };
   }, [lesson]);
+
+  const handleCompleteLesson = async () => {
+    if (isLoaded && isSignedIn && user) {
+      try {
+        const currentLessons = user.unsafeMetadata.completedPianoLessons || [];
+        const lessonVal = isNaN(lessonId) ? lessonId : Number(lessonId);
+
+        // Update Clerk Metadata if not already completed
+        if (!currentLessons.includes(lessonVal)) {
+          await user.update({
+            unsafeMetadata: {
+              ...user.unsafeMetadata,
+              completedPianoLessons: [...currentLessons, lessonVal]
+            }
+          });
+        }
+      } catch (err) {
+        console.error("Error saving lesson progress:", err);
+      }
+    }
+    
+    // Pass state to the Piano Roadmap so it knows to scroll to the progress
+    navigate('/piano', { state: { fromLesson: true } });
+  };
 
   if (!lesson) {
     return (
@@ -319,9 +248,13 @@ function Lesson() {
       
       <h1 className="lesson-title">{lesson.title}</h1>
       <p className="lesson-description">{lesson.description}</p>
+      
+      {/* This renders the HTML content defined in lessonData */}
       <div className="lesson-content" dangerouslySetInnerHTML={{ __html: lesson.content }}/>
       
-      <Link to="/piano" className="back-button bottom-button">← Back to Roadmap</Link>
+      <button onClick={handleCompleteLesson} className="back-button bottom-button">
+        Finish Lesson & Return to Roadmap
+      </button>
     </div>
   );
 }

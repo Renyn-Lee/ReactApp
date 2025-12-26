@@ -8,6 +8,7 @@ function Guitar() {
   const { user } = useUser();
 
   useEffect(() => {
+    // Setting the background color back to the original Guitar theme
     document.body.style.backgroundColor = '#D09691';
     return () => {
       document.body.style.backgroundColor = '';
@@ -15,7 +16,7 @@ function Guitar() {
   }, []);
 
   const handleLessonClick = (lessonNumber) => {
-    // Check lock status - only lessons 1 and 2 are free
+    // Lessons 1 and 2 are free; everything else requires login
     if (!user && lessonNumber !== 1 && lessonNumber !== 2) {
       alert('Please sign in to access this lesson!');
       return;
@@ -38,18 +39,18 @@ function Guitar() {
 
       <div className="roadmap-container">
         
-        {/* === ROW 1 (Left to Right): Lessons 1-3 === */}
+        {/* === ROW 1: LEFT TO RIGHT === */}
         <div className="lesson-row-top">
           <div className="lesson-box" onClick={() => handleLessonClick(1)}>
             <h3>Lesson 1</h3>
             <p>Getting Started</p>
           </div>
-          <div className="arrow-right"></div>
+          <div className="guitar-arrow-right"></div>
           <div className="lesson-box" onClick={() => handleLessonClick(2)}>
             <h3>Lesson 2</h3>
             <p>Rhythm & Tablature</p>
           </div>
-          <div className="arrow-right"></div>
+          <div className="guitar-arrow-right"></div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(3)}>
             <h3>Lesson 3</h3>
             <p>The First Chords</p>
@@ -57,25 +58,24 @@ function Guitar() {
           </div>
         </div>
 
-        {/* TURN 1: Down from Right side */}
         <div className="vertical-arrow-container right">
-          <div className="arrow-down"></div>
+          <div className="guitar-arrow-down"></div>
         </div>
 
-        {/* === ROW 2 (Right to Left): Test 1, Lessons 5-4 === */}
+        {/* === ROW 2: RIGHT TO LEFT === */}
         <div className="lesson-row-bottom">
           <div className={`lesson-box optional ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick('test1')}>
             <h3>Checkpoint</h3>
             <p>Basic Skills Test</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
-          <div className="arrow-left"></div>
+          <div className="guitar-arrow-left"></div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(5)}>
             <h3>Lesson 5</h3>
             <p>Reading Chord Diagrams</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
-          <div className="arrow-left"></div>
+          <div className="guitar-arrow-left"></div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(4)}>
             <h3>Lesson 4</h3>
             <p>Your First Chord</p>
@@ -83,25 +83,24 @@ function Guitar() {
           </div>
         </div>
 
-        {/* TURN 2: Down from Left side */}
         <div className="vertical-arrow-container left">
-          <div className="arrow-down"></div>
+          <div className="guitar-arrow-down"></div>
         </div>
 
-        {/* === ROW 3 (Left to Right): Lessons 6-8 === */}
+        {/* === ROW 3: LEFT TO RIGHT === */}
         <div className="lesson-row-top">
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(6)}>
             <h3>Lesson 6</h3>
             <p>More Basic Chords</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
-          <div className="arrow-right"></div>
+          <div className="guitar-arrow-right"></div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(7)}>
             <h3>Lesson 7</h3>
             <p>Strumming Patterns</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
-          <div className="arrow-right"></div>
+          <div className="guitar-arrow-right"></div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(8)}>
             <h3>Lesson 8</h3>
             <p>Alternate Strumming</p>
@@ -109,25 +108,24 @@ function Guitar() {
           </div>
         </div>
 
-        {/* TURN 3: Down from Right side */}
         <div className="vertical-arrow-container right">
-          <div className="arrow-down"></div>
+          <div className="guitar-arrow-down"></div>
         </div>
 
-        {/* === ROW 4 (Right to Left): Lessons 11-9 === */}
+        {/* === ROW 4: RIGHT TO LEFT === */}
         <div className="lesson-row-bottom">
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(11)}>
             <h3>Lesson 11</h3>
             <p>Barre Chords Basics</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
-          <div className="arrow-left"></div>
+          <div className="guitar-arrow-left"></div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(10)}>
             <h3>Lesson 10</h3>
             <p>Playing Simple Melodies</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
-          <div className="arrow-left"></div>
+          <div className="guitar-arrow-left"></div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(9)}>
             <h3>Lesson 9</h3>
             <p>Introduction to Tabs</p>
@@ -135,25 +133,24 @@ function Guitar() {
           </div>
         </div>
 
-        {/* TURN 4: Down from Left side */}
         <div className="vertical-arrow-container left">
-          <div className="arrow-down"></div>
+          <div className="guitar-arrow-down"></div>
         </div>
 
-        {/* === ROW 5 (Left to Right): Lessons 12-14 === */}
+        {/* === ROW 5: LEFT TO RIGHT === */}
         <div className="lesson-row-top">
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(12)}>
             <h3>Lesson 12</h3>
             <p>F Major Chord</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
-          <div className="arrow-right"></div>
+          <div className="guitar-arrow-right"></div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(13)}>
             <h3>Lesson 13</h3>
             <p>Power Chords</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
-          <div className="arrow-right"></div>
+          <div className="guitar-arrow-right"></div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(14)}>
             <h3>Lesson 14</h3>
             <p>Fingerpicking Basics</p>
@@ -161,25 +158,24 @@ function Guitar() {
           </div>
         </div>
 
-        {/* TURN 5: Down from Right side */}
         <div className="vertical-arrow-container right">
-          <div className="arrow-down"></div>
+          <div className="guitar-arrow-down"></div>
         </div>
 
-        {/* === ROW 6 (Right to Left): Lessons 17-15 === */}
+        {/* === ROW 6: RIGHT TO LEFT === */}
         <div className="lesson-row-bottom">
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(17)}>
             <h3>Lesson 17</h3>
             <p>Minor Scales</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
-          <div className="arrow-left"></div>
+          <div className="guitar-arrow-left"></div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(16)}>
             <h3>Lesson 16</h3>
             <p>Playing Along with Songs</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
-          <div className="arrow-left"></div>
+          <div className="guitar-arrow-left"></div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(15)}>
             <h3>Lesson 15</h3>
             <p>Tuning Your Guitar</p>
@@ -187,25 +183,24 @@ function Guitar() {
           </div>
         </div>
 
-        {/* TURN 6: Down from Left side */}
         <div className="vertical-arrow-container left">
-          <div className="arrow-down"></div>
+          <div className="guitar-arrow-down"></div>
         </div>
 
-        {/* === ROW 7 (Left to Right): Lessons 18-20 === */}
+        {/* === ROW 7: LEFT TO RIGHT === */}
         <div className="lesson-row-top">
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(18)}>
             <h3>Lesson 18</h3>
             <p>Chord Progressions</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
-          <div className="arrow-right"></div>
+          <div className="guitar-arrow-right"></div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(19)}>
             <h3>Lesson 19</h3>
             <p>Playing Lead Guitar</p>
             {!user && <span className="lock-icon">🔒</span>}
           </div>
-          <div className="arrow-right"></div>
+          <div className="guitar-arrow-right"></div>
           <div className={`lesson-box ${!user ? 'locked' : ''}`} onClick={() => handleLessonClick(20)}>
             <h3>Lesson 20</h3>
             <p>Practice Strategies</p>

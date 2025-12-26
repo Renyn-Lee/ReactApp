@@ -67,8 +67,8 @@
 }
 
 /* Connector Lines (Horizontal) */
-.arrow-right,
-.arrow-left {
+.guitar-arrow-right,
+.guitar-arrow-left {
   width: 80px;
   height: 3px;
   background-color: #800000;
@@ -92,7 +92,7 @@
   padding-left: 105px;
 }
 
-.arrow-down {
+.guitar-arrow-down {
   width: 3px;
   height: 100%;
   background-color: #800000;
@@ -176,8 +176,9 @@
     gap: 20px;
   }
 
-  .arrow-right,
-  .arrow-left {
+  /* Updated for responsive heights/widths */
+  .guitar-arrow-right,
+  .guitar-arrow-left {
     width: 3px;
     height: 30px;
   }
@@ -192,4 +193,4 @@
     width: 100%;
     max-width: 280px;
   }
-}   
+}

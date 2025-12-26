@@ -1,17 +1,20 @@
-/* Piano Roadmap Styles */
+/* Piano Roadmap Page Container */
 .piano-container {
-  text-align: center;
+  max-width: 1500px;
+  margin: 0 auto;
   padding: 40px 20px;
+  background-color: #E5D8CE; /* Soft light background from your JS */
   min-height: 100vh;
-  background-color: #E5D8CE; /* Fallback background */
+  text-align: center;
+  font-family: 'Georgia', serif;
 }
 
+/* Titles */
 .piano-lesson-roadmap {
   font-size: 3rem;
   font-weight: bold;
-  color: #291E21;
+  color: #3E2E32; /* Using your specific brown */
   margin-bottom: 10px;
-  font-family: 'Georgia', serif;
 }
 
 .piano-description {
@@ -21,12 +24,13 @@
   font-weight: normal;
 }
 
+/* Auth Section */
 .auth-section {
   margin-bottom: 50px;
 }
 
 .access-button {
-  background-color: #3E2E32;
+  background-color: #3E2E32; /* Primary Brown */
   color: white;
   padding: 12px 24px;
   border: none;
@@ -37,12 +41,61 @@
 }
 
 .access-button:hover {
-  background-color: #2F2126;
+  background-color: #291E21;
+}
+
+/* Section Headers (The big dark boxes for Section 1 & 2) */
+.section-header-box {
+  background-color: #3E2E32;
+  color: white;
+  padding: 25px 30px;
+  border-radius: 12px;
+  margin: 40px auto 30px auto;
+  max-width: 700px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+  color: white;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  margin: 0;
+  opacity: 0.9;
+  color: #E5D8CE;
+}
+
+/* Section Divider Line with Icon */
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 60px auto;
+  max-width: 600px;
+}
+
+.divider-line {
+  flex: 1;
+  height: 2px;
+  background-color: #3E2E32;
+  border: none;
+  opacity: 0.5;
+}
+
+.divider-icon {
+  font-size: 2rem;
+  margin: 0 20px;
+  opacity: 0.6;
 }
 
 /* Roadmap Layout */
 .roadmap-container {
-  max-width: 900px; /* Slightly wider to let lessons breathe */
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -62,9 +115,9 @@
 /* Connector Lines (Horizontal) */
 .arrow-right,
 .arrow-left {
-  width: 80px; /* Increased length to spread lessons out */
+  width: 80px;
   height: 3px;
-  background-color: #291E21;
+  background-color: #3E2E32; /* Connector line color */
   flex-shrink: 0;
 }
 
@@ -72,26 +125,23 @@
 .vertical-arrow-container {
   width: 100%;
   display: flex;
-  height: 50px; /* Height of the drop-down line */
+  height: 50px;
 }
 
 .vertical-arrow-container.right {
   justify-content: flex-end;
-  /* This padding aligns the line with the center of the last box */
-  /* Box min-width is 160px + padding = approx 210px width. Center is ~105px from edge */
   padding-right: 105px; 
 }
 
 .vertical-arrow-container.left {
   justify-content: flex-start;
-  /* This padding aligns the line with the center of the first box */
   padding-left: 105px;
 }
 
 .arrow-down {
   width: 3px;
   height: 100%;
-  background-color: #291E21;
+  background-color: #3E2E32;
 }
 
 /* Lesson Boxes */
@@ -100,8 +150,8 @@
   color: white;
   padding: 20px 15px;
   border-radius: 8px;
-  width: 210px; /* Fixed width for better alignment */
-  min-height: 100px; /* Fixed height for uniformity */
+  width: 210px;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -111,7 +161,7 @@
   user-select: none;
   text-align: center;
   position: relative;
-  z-index: 2; /* Keeps box above lines if they overlap */
+  z-index: 2;
 }
 
 .lesson-box:hover {
@@ -120,19 +170,40 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.lesson-box.optional {
-  background-color: #5A4A4E; /* Slightly lighter for tests */
-}
-
-.lesson-box.optional:hover {
-  background-color: #3E2E32;
-  border-style: solid;
+.lesson-box.completed {
+  background-color: #4a90e2; /* Blue to show progress */
+  color: white;
 }
 
 .lesson-box.locked {
   opacity: 0.7;
   cursor: not-allowed;
   background-color: #6d6164;
+}
+
+/* Final Test Special Style */
+.lesson-box.final-test {
+  background-color: #5A4A4E;
+  border: 2px solid #FFD700; /* Gold border for tests */
+}
+
+.test-badge {
+  display: inline-block;
+  background-color: rgba(255, 215, 0, 0.2);
+  color: #FFD700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+/* Icons */
+.checkmark {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 18px;
 }
 
 .lock-icon {
@@ -146,7 +217,6 @@
   font-size: 1.1rem;
   margin: 0 0 8px 0;
   font-weight: bold;
-  letter-spacing: 0.5px;
 }
 
 .lesson-box p {
@@ -168,7 +238,6 @@
     gap: 20px;
   }
   
-  /* Turn horizontal lines into vertical ones for mobile */
   .arrow-right,
   .arrow-left {
     width: 3px;
@@ -177,7 +246,7 @@
   
   .vertical-arrow-container {
     height: 30px;
-    justify-content: center !important; /* Center everything on mobile */
+    justify-content: center !important;
     padding: 0 !important;
   }
   

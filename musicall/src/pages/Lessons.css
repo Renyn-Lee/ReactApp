@@ -1,6 +1,4 @@
-
-/* Lessons.css */
-
+/* ========== UL AND OL STYLES ========== */
 .lesson-content ul {
   list-style-type: none;
   padding: 0;
@@ -9,57 +7,31 @@
   text-align: center;
 }
 
-.guitar-lesson-content ol {
+.lesson-content ol {
   margin: 20px 0;
   padding-left: 30px;
 }
 
-.guitar-lesson-content ul li {
+.lesson-content ul li {
   margin-bottom: 1rem;
   padding-left: 0;
   position: relative;
-  font-size: 1.25rem;
 }
 
-.guitar-lesson-content li {
+.lesson-content li {
   margin-bottom: 12px;
   line-height: 1.6;
 }
 
-.guitar-lesson-content hr {
-  border: none;
-  border-top: 2px solid #3E2E32;
-  margin: 40px 0;
-  opacity: 0.5;
-}
-
-.guitar-lesson-content p {
-  margin-bottom: 20px;
-}
-
-.guitar-lesson-content strong {
-  color: #291E21;
-  font-weight: bold;
-}
-
-.guitar-lesson-content img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 30px auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* --- Header & Container Styles --- */
-.guitar-lesson-container {
+/* ========== GLOBAL LESSON STYLES (Based on Lesson 1) ========== */
+.lesson-container {
   max-width: 1500px;
   margin: 0 auto;
   padding: 40px 20px;
   min-height: 100vh;
 }
 
-.guitar-lesson-title {
+.lesson-title {
   font-size: 2.5rem;
   font-weight: bold;
   color: #291E21;
@@ -67,7 +39,7 @@
   font-family: 'Georgia', serif;
 }
 
-.guitar-lesson-description {
+.lesson-description {
   font-size: 1.3rem;
   color: #5A4A4E;
   margin-bottom: 40px;
@@ -76,13 +48,14 @@
   border-bottom: 2px solid #3E2E32;
 }
 
-.guitar-lesson-content {
+.lesson-content {
   line-height: 1.8;
   color: #333;
   font-size: 1.1rem;
 }
 
-.guitar-lesson-content h2 {
+/* All H2s now match Lesson 1 */
+.lesson-content h2 {
   color: #3E2E32;
   margin-top: 40px;      
   margin-bottom: 25px;
@@ -90,15 +63,42 @@
   font-size: 2rem;
 }
 
-.guitar-lesson-content h3 {
-  color: #291E21;
-  margin-top: 35px;
-  margin-bottom: 1.20rem;
-  font-size: 1.8rem;
+/* All H3s now match Lesson 1 */
+.lesson-content h3 {
+  color: #3E2E32;
+  margin-top: 40px;      
+  margin-bottom: 25px;
   font-weight: normal;
+  font-size: 1.7rem;
 }
 
-/* --- Buttons --- */
+.lesson-content p {
+  margin-bottom: 20px;
+}
+
+.lesson-content hr {
+  border: none;
+  border-top: 2px solid #3E2E32;
+  margin: 40px 0;
+  opacity: 0.5;
+}
+
+/* ========== IMAGE CONTROLS ========== */
+/* Default Image Style */
+.lesson-content img {
+  height: auto;
+  display: block;
+  margin: 30px auto;
+  max-width: 100%; /* Default to container width */
+}
+
+/* Custom Size Utility Classes for your HTML */
+.img-small  { max-width: 300px !important; }
+.img-medium { max-width: 600px !important; }
+.img-large  { max-width: 1000px !important; }
+.img-full   { max-width: 100rem !important; }
+
+/* ========== BUTTONS ========== */
 .back-button {
   display: inline-block;
   color: #291E21;
@@ -110,6 +110,7 @@
   border-radius: 8px;
   transition: all 0.3s ease;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .back-button:hover {
@@ -119,128 +120,16 @@
 }
 
 .bottom-button {
-  display: inline-block; 
-  margin-top: 50px; 
-  margin-left: 0;
-  margin-right: 0;
-  margin-bottom: 30px; 
-  transform: none; 
+  display: block;
+  margin: 60px auto 0;
+  width: fit-content;
 }
 
-.next-section-button {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(62, 46, 50, 0.3);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-  padding: 8px 24px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  z-index: 1000;
-  backdrop-filter: blur(10px);
-}
-
-/* --- CUSTOM LESSON STYLES (Matching CustomClass in JS) --- */
-
-/* Lesson 1 */
-.guitar-lesson-one .guitar-lesson-title {
-  color: #291E21;
-}
-
-.guitar-lesson-one .guitar-lesson-content img {
-  max-width: 80rem;
-}
-
-/* Lesson 2 */
-.guitar-lesson-two .guitar-lesson-title {
-  letter-spacing: 2px;
-}
-
-.guitar-lesson-two .guitar-lesson-content {
-  padding: 30px;
-}
-
-/* Lesson 3 - Flexbox Container */
-.guitar-lesson-three .finger-info-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
-  max-width: 800px;
-  margin: 30px auto;
-}
-
-.guitar-lesson-three .finger-info-container ul {
-  margin: 0;
-  padding: 0;
-  text-align: left;
-  min-width: 250px;
-}
-
-.guitar-lesson-three .finger-info-container img {
-  max-width: 250px;
-  box-shadow: none;
-  margin: 0;
-}
-
-/* Lesson 4 */
-.lesson-four .lesson-title {
-  color: #291E21;
-}
-
-.lesson-four .lesson-content h3 {
-  color: #3E2E32;
-}
-
-.lesson-four .lesson-content li {
-  border-left: 3px solid #3E2E32;
-  padding-left: 15px;
-  margin-bottom: 15px;
-}
-
-.guitar-lesson-four .guitar-lesson-content img {
-  max-width: 40%;
-  box-shadow: none;
-}
-
-/* Test Lesson */
-.guitar-lesson-test .guitar-lesson-title {
-  text-align: center;
-  background-color: rgba(62, 46, 50, 0.1);
-  padding: 20px;
-  border-radius: 12px;
-}
-
-.guitar-lesson-test .guitar-lesson-content {
-  background-color: rgba(255, 255, 255, 0.7);
-  padding: 40px;
-  border-radius: 15px;
-  border: 2px dashed #3E2E32;
-}
-
-/* --- Responsive Design --- */
+/* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
-  .guitar-lesson-title { font-size: 2rem; }
-  
-  .guitar-lesson-three .finger-info-container {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .next-section-button {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-    bottom: 20px;
-    right: 20px;
-    left: auto; 
-    transform: none;
-  }
+  .lesson-container { padding: 20px 15px; }
+  .lesson-title { font-size: 2rem; }
+  .lesson-description { font-size: 1.1rem; }
+  .lesson-content h2 { font-size: 1.6rem; }
+  .lesson-content h3 { font-size: 1.4rem; }
 }
