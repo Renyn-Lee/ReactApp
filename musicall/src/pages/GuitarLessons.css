@@ -2,9 +2,9 @@
 .guitar-container,
 .guitar-lesson-container {
   --maroon: #800000;
-  --maroon-light: #a04040;
-  --guitar-bg: #d17c74;
-  --roadmap-bg: #dc9089;
+  --maroon-light: #D09691;
+  --guitar-bg: #D09691;
+  --roadmap-bg: #D09691;
 }
 
 /* ----- Roadmap page ----- */

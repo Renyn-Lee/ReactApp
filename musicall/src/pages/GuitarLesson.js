@@ -48,7 +48,7 @@ const guitarLessonData = {
         <li>Practice 5 minutes of steady down-strokes on the open strings.</li>
       </ul>
     `,
-    backgroundColor: "#dc9089"
+    backgroundColor: "#D09691"
   },
   2: {
     title: "Lesson 2:", 
@@ -81,7 +81,7 @@ const guitarLessonData = {
         <li>Try to play a simple "0 - 2 - 4" pattern on the D string perfectly in time with a beat.</li>
       </ul>
     `,
-    backgroundColor: "#E5D8CE"
+    backgroundColor: "#D09691"
   },
   3: {
     title: "Lesson 3:",

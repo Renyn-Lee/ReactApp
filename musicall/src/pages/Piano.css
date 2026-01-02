@@ -70,29 +70,6 @@
   color: #E5D8CE;
 }
 
-/* Section Divider Line with Icon */
-.section-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 60px auto;
-  max-width: 600px;
-}
-
-.divider-line {
-  flex: 1;
-  height: 2px;
-  background-color: #3E2E32;
-  border: none;
-  opacity: 0.5;
-}
-
-.divider-icon {
-  font-size: 2rem;
-  margin: 0 20px;
-  opacity: 0.6;
-}
-
 /* Roadmap Layout */
 .roadmap-container {
   max-width: 900px;
@@ -254,4 +231,8 @@
     width: 100%;
     max-width: 280px;
   }
+}
+
+.section-divider {
+  margin: 2rem;
 }
