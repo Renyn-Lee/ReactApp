@@ -11,10 +11,35 @@ function Piano() {
   const [completedLessons, setCompletedLessons] = useState([]);
   const [testScores, setTestScores] = useState({});
 
+ // 1. Force scroll to top immediately when entering the page
   useEffect(() => {
+    window.scrollTo(0, 0);
     document.body.style.backgroundColor = '#E5D8CE';
     return () => { document.body.style.backgroundColor = ''; };
   }, []);
+
+  // 2. Updated Auto-scroll logic
+  useEffect(() => {
+    // Only attempt to scroll once data is loaded and there are completed lessons
+    if (isLoaded && completedLessons.length > 0) {
+      const numericLessons = completedLessons.filter(l => typeof l === 'number');
+      if (numericLessons.length > 0) {
+        const maxLesson = Math.max(...numericLessons);
+        const element = document.getElementById(`lesson-box-${maxLesson}`);
+        
+        if (element) {
+          // We use a slightly longer timeout (500ms) to ensure the 
+          // browser has finished the "scroll to top" from the previous hook
+          setTimeout(() => {
+            element.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'center' 
+            });
+          }, 500);
+        }
+      }
+    }
+  }, [completedLessons, isLoaded]);
 
   // FIX: Force a reload of user data when the component mounts
   // This ensures we get the latest 'completedLessons' immediately after finishing a lesson
@@ -82,8 +107,12 @@ function Piano() {
       return;
     }
 
-    // 3. Navigate
-    navigate(`/lesson/${lessonNumber}`);
+    // 3. Navigate - UPDATED: Special handling for section1test
+    if (lessonNumber === 'section1test') {
+      navigate('/section1test');
+    } else {
+      navigate(`/lesson/${lessonNumber}`);
+    }
   };
 
   if (!isLoaded) return <div className="piano-container">Loading Roadmap...</div>;

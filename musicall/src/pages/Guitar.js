@@ -9,9 +9,22 @@ function Guitar() {
   
   const [completedLessons, setCompletedLessons] = useState([]);
   const [testScores, setTestScores] = useState({});
-  const [isSaving, setIsSaving] = useState(false);
 
-  // 1. Initial Load: Fetch data from Clerk
+  // FIX: Force a reload of user data when the component mounts
+  useEffect(() => {
+    const refreshUserData = async () => {
+      if (isLoaded && isSignedIn && user) {
+        try {
+          await user.reload();
+        } catch (error) {
+          console.error("Error reloading user data:", error);
+        }
+      }
+    };
+    refreshUserData();
+  }, [isLoaded, isSignedIn]);
+
+  // Update local state whenever the user object changes
   useEffect(() => {
     if (isLoaded && isSignedIn && user) {
       setCompletedLessons(user.unsafeMetadata?.completedGuitarLessons || []);
@@ -34,9 +47,9 @@ function Guitar() {
     return false;
   };
 
-  // 3. The Fixed Save & Navigate Function
+  // 3. UPDATED: Handle lesson clicks with special routing for section1test
   const handleLessonClick = async (lessonNumber) => {
-    if (!isLoaded || isSaving) return;
+    if (!isLoaded) return;
     
     // Auth Check
     if (!isSignedIn && lessonNumber !== 1 && lessonNumber !== 2) {
@@ -51,36 +64,20 @@ function Guitar() {
       return;
     }
 
-    // SAVE PROGRESS TO CLERK
-    if (isSignedIn && !completedLessons.includes(lessonNumber)) {
-      setIsSaving(true);
-      try {
-        const updatedList = [...completedLessons, lessonNumber];
-        
-        // Critical: Update metadata while preserving other keys (like Piano)
-        await user.update({
-          unsafeMetadata: {
-            ...user.unsafeMetadata,
-            completedGuitarLessons: updatedList
-          }
-        });
-
-        setCompletedLessons(updatedList);
-      } catch (err) {
-        console.error("Failed to save guitar progress:", err);
-      } finally {
-        setIsSaving(false);
-      }
+    // Navigate - UPDATED: Special handling for section1test
+    if (lessonNumber === 'section1test') {
+      navigate('/guitar-section1test');
+    } else {
+      navigate(`/guitar-lesson/${lessonNumber}`);
     }
-
-    navigate(`/guitar-lesson/${lessonNumber}`);
   };
 
-    useEffect(() => {
-      //background color
-  document.body.style.backgroundColor = '#D09691'; 
-  return () => { document.body.style.backgroundColor = ''; };
-}, []);
+  useEffect(() => {
+    //background color
+    document.body.style.backgroundColor = '#D09691'; 
+    return () => { document.body.style.backgroundColor = ''; };
+  }, []);
+  
   if (!isLoaded) return <div className="guitar-container">Loading Roadmap...</div>;
 
   return (

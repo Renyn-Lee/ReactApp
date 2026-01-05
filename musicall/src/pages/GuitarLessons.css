@@ -100,6 +100,52 @@
   transform: translateX(-50%) scale(0.98);
 }
 
+/* Back button for guitar lessons */
+.guitar-back-button {
+  background-color: var(--maroon);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.guitar-back-button:hover {
+  background-color: #a00000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.guitar-back-button:active {
+  transform: translateY(0);
+}
+
+.guitar-back-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Lesson title and description */
+.guitar-lesson-title {
+  color: var(--maroon);
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.guitar-lesson-description {
+  color: #666;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .guitar-lesson-box {

@@ -11,6 +11,8 @@ import FloatingChatbot from "./FloatingChatbot"
 import Dashboard from "./pages/Dashboard"
 import Metronome from './metronome';
 import GuitarLesson from "./pages/GuitarLesson"
+import Section1Test from "./pages/Section1test"
+import Section1GuitarTest from "./pages/Section1GuitarTest"
 
 function App(){
     const { isSignedIn } = useUser();
@@ -31,6 +33,8 @@ function App(){
                     <Route path="/guitar-lesson/:lessonId" element={<GuitarLesson />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/home" element={<Home/>} />
+                    <Route path="/section1test" element={<Section1Test />} />
+                    <Route path="/guitar-section1test" element={<Section1GuitarTest />} />
                 </Routes>
             </div>
             {isSignedIn && (
