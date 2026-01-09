@@ -181,18 +181,17 @@ function Section1Test() {
             <hr />
             
             {questions.map((q, idx) => (
-              <div key={q.id} style={{ marginBottom: '30px' }}>
+              <div key={q.id} className="quiz-question">
                 <h3>Question {idx + 1}: {q.question}</h3>
-                <div style={{ marginLeft: '20px' }}>
+                <div className="quiz-options">
                   {q.options.map((option, optIdx) => (
-                    <div key={optIdx} style={{ marginBottom: '10px' }}>
-                      <label style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                    <div key={optIdx} className="quiz-option">
+                      <label>
                         <input
                           type="radio"
                           name={`question-${q.id}`}
                           checked={answers[q.id] === optIdx}
                           onChange={() => handleAnswerSelect(q.id, optIdx)}
-                          style={{ marginRight: '10px', cursor: 'pointer' }}
                         />
                         <span>{option}</span>
                       </label>
@@ -203,19 +202,17 @@ function Section1Test() {
             ))}
             
             <hr />
-            <button 
-              onClick={handleSubmit}
-              className="back-button"
-              disabled={Object.keys(answers).length < questions.length}
-              style={{ 
-                opacity: Object.keys(answers).length < questions.length ? 0.5 : 1,
-                cursor: Object.keys(answers).length < questions.length ? 'not-allowed' : 'pointer'
-              }}
-            >
-              Submit Test
-            </button>
+            <div className="quiz-submit-container">
+              <button 
+                onClick={handleSubmit}
+                className="back-button"
+                disabled={Object.keys(answers).length < questions.length}
+              >
+                Submit Test
+              </button>
+            </div>
             {Object.keys(answers).length < questions.length && (
-              <p style={{ color: '#666', marginTop: '10px' }}>
+              <p className="quiz-submit-message">
                 Please answer all questions before submitting
               </p>
             )}
@@ -229,14 +226,9 @@ function Section1Test() {
               const isCorrect = userAnswer === q.correct;
               
               return (
-                <div key={q.id} style={{ 
-                  marginBottom: '25px',
-                  padding: '15px',
-                  backgroundColor: isCorrect ? '#d4edda' : '#f8d7da',
-                  borderRadius: '8px'
-                }}>
+                <div key={q.id} className={`quiz-answer ${isCorrect ? 'correct' : 'incorrect'}`}>
                   <h3>Question {idx + 1}: {q.question}</h3>
-                  <p style={{ fontWeight: 'bold', color: isCorrect ? '#155724' : '#721c24' }}>
+                  <p className={`quiz-answer-status ${isCorrect ? 'correct' : 'incorrect'}`}>
                     {isCorrect ? '✓ Correct' : '✗ Incorrect'}
                   </p>
                   <p>Your answer: {q.options[userAnswer]}</p>
@@ -249,34 +241,22 @@ function Section1Test() {
             
             <hr />
             
-            {/* SCORE AT THE BOTTOM */}
             <h2>Test Results</h2>
-            <div style={{ 
-              padding: '20px', 
-              backgroundColor: score >= 80 ? '#d4edda' : '#f8d7da',
-              borderRadius: '8px',
-              marginBottom: '20px',
-              textAlign: 'center'
-            }}>
-              <h1 style={{ 
-                fontSize: '48px', 
-                margin: '10px 0',
-                color: score >= 80 ? '#155724' : '#721c24'
-              }}>
+            <div className={`quiz-result-box ${score >= 80 ? 'passed' : 'failed'}`}>
+              <h1 className={`quiz-score ${score >= 80 ? 'passed' : 'failed'}`}>
                 {score}%
               </h1>
-              <h3 style={{ color: score >= 80 ? '#155724' : '#721c24' }}>
+              <h3 className={`quiz-result-title ${score >= 80 ? 'passed' : 'failed'}`}>
                 {score >= 80 ? '🎉 Congratulations! You Passed!' : '❌ Keep Practicing!'}
               </h3>
-              <p style={{ color: score >= 80 ? '#155724' : '#721c24' }}>
+              <p className={`quiz-result-message ${score >= 80 ? 'passed' : 'failed'}`}>
                 {score >= 80 
                   ? 'Section 2 is now unlocked! Great job!'
                   : 'You need 80% or higher to unlock Section 2. Review the lessons and try again!'}
               </p>
             </div>
             
-            {/* CENTERED BUTTONS */}
-            <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <div className="quiz-button-group">
               <button onClick={handleRetry} className="back-button">
                 Retake Test
               </button>

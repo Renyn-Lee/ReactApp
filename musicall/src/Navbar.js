@@ -10,6 +10,7 @@ export default function Navbar(){
         <CustomLink to="/piano">Piano</CustomLink>
         <CustomLink to="/guitar">Guitar</CustomLink>
         <CustomLink to="/aboutus">About us and Q/A </CustomLink>
+        <CustomLink to="/musictools">Music Tools</CustomLink>
       </ul>
       <div className='navbuttons'>
         <SignedOut>

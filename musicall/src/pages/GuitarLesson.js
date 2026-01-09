@@ -1,7 +1,8 @@
 // pages/GuitarLesson.js
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import './GuitarLessons.css';
+import { useUser } from '@clerk/clerk-react';
 
 const guitarLessonData = {
   1: {
@@ -131,7 +132,11 @@ const guitarLessonData = {
 
 function GuitarLesson() {
   const { lessonId } = useParams();
-  const lesson = guitarLessonData[lessonId];
+  const navigate = useNavigate();
+  const { isLoaded, isSignedIn, user } = useUser();
+  
+  const lessonKey = isNaN(lessonId) ? lessonId : Number(lessonId);
+  const lesson = guitarLessonData[lessonKey];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -143,24 +148,67 @@ function GuitarLesson() {
     };
   }, [lesson]);
 
+  const handleCompleteLesson = async () => {
+    console.log('=== GUITAR LESSON SAVE DEBUG ===');
+    console.log('lessonId from URL:', lessonId);
+    console.log('lessonVal (converted):', isNaN(lessonId) ? lessonId : Number(lessonId));
+    console.log('isLoaded:', isLoaded);
+    console.log('isSignedIn:', isSignedIn);
+    
+    if (isLoaded && isSignedIn && user) {
+      try {
+        const currentLessons = user.unsafeMetadata.completedGuitarLessons || [];
+        const lessonVal = isNaN(lessonId) ? lessonId : Number(lessonId);
+
+        console.log('Current completed lessons:', currentLessons);
+        console.log('Already includes this lesson?', currentLessons.includes(lessonVal));
+
+        // Update Clerk Metadata if not already completed
+        if (!currentLessons.includes(lessonVal)) {
+          const updatedLessons = [...currentLessons, lessonVal];
+          console.log('Saving to Clerk:', updatedLessons);
+          
+          await user.update({
+            unsafeMetadata: {
+              ...user.unsafeMetadata,
+              completedGuitarLessons: updatedLessons
+            }
+          });
+          
+          console.log('✅ Save successful!');
+        } else {
+          console.log('⚠️ Lesson already completed, skipping save');
+        }
+      } catch (err) {
+        console.error("❌ Error saving lesson progress:", err);
+      }
+    } else {
+      console.log('❌ Cannot save - not loaded or not signed in');
+    }
+    
+    navigate('/guitar', { state: { fromLesson: true } });
+  };
+
   if (!lesson) {
     return (
       <div className="guitar-lesson-container">
         <h1>Lesson not found</h1>
-        <Link to="/guitar" className="back-button">← Back to Roadmap</Link>
+        <Link to="/guitar" className="guitar-back-button">← Back to Roadmap</Link>
       </div>
     );
   }
 
   return (
     <div className={`guitar-lesson-container ${lesson.customClass || ''}`}>
-      <Link to="/guitar" className="back-button">← Back to Roadmap</Link>
+      <Link to="/guitar" className="guitar-back-button">← Back to Roadmap</Link>
       
       <h1 className="guitar-lesson-title">{lesson.title}</h1>
       <p className="guitar-lesson-description">{lesson.description}</p>
       <div className="guitar-lesson-content" dangerouslySetInnerHTML={{ __html: lesson.content }}/>
       
-      <Link to="/guitar" className="back-button bottom-button">← Back to Roadmap</Link>
+      <button onClick={handleCompleteLesson} className="guitar-back-button bottom-button">
+        Finish Lesson & Return to Roadmap
+      </button>
     </div>
   );
 }

@@ -10,6 +10,36 @@ function Guitar() {
   const [completedLessons, setCompletedLessons] = useState([]);
   const [testScores, setTestScores] = useState({});
 
+  // 1. Force scroll to top immediately when entering the page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.body.style.backgroundColor = '#D09691';
+    return () => { document.body.style.backgroundColor = ''; };
+  }, []);
+
+  // 2. Updated Auto-scroll logic
+  useEffect(() => {
+    // Only attempt to scroll once data is loaded and there are completed lessons
+    if (isLoaded && completedLessons.length > 0) {
+      const numericLessons = completedLessons.filter(l => typeof l === 'number');
+      if (numericLessons.length > 0) {
+        const maxLesson = Math.max(...numericLessons);
+        const element = document.getElementById(`lesson-box-${maxLesson}`);
+        
+        if (element) {
+          // We use a slightly longer timeout (500ms) to ensure the 
+          // browser has finished the "scroll to top" from the previous hook
+          setTimeout(() => {
+            element.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'center' 
+            });
+          }, 500);
+        }
+      }
+    }
+  }, [completedLessons, isLoaded]);
+
   // FIX: Force a reload of user data when the component mounts
   useEffect(() => {
     const refreshUserData = async () => {
@@ -31,6 +61,22 @@ function Guitar() {
       setTestScores(user.unsafeMetadata?.guitarTestScores || {});
     }
   }, [isLoaded, isSignedIn, user]);
+
+  // Scroll to latest lesson
+  useEffect(() => {
+    if (isLoaded && completedLessons.length > 0) {
+      const numericLessons = completedLessons.filter(l => typeof l === 'number');
+      if (numericLessons.length > 0) {
+        const maxLesson = Math.max(...numericLessons);
+        const element = document.getElementById(`lesson-box-${maxLesson}`);
+        if (element) {
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 300);
+        }
+      }
+    }
+  }, [completedLessons, isLoaded]); // Removed 'location' to prevent jumpiness
 
   // 2. Section Locking Logic
   const section1Unlocked = testScores['section1test'] >= 80 || false;
@@ -71,12 +117,6 @@ function Guitar() {
       navigate(`/guitar-lesson/${lessonNumber}`);
     }
   };
-
-  useEffect(() => {
-    //background color
-    document.body.style.backgroundColor = '#D09691'; 
-    return () => { document.body.style.backgroundColor = ''; };
-  }, []);
   
   if (!isLoaded) return <div className="guitar-container">Loading Roadmap...</div>;
 

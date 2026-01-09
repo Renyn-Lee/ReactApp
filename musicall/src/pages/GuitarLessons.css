@@ -31,6 +31,35 @@
   font-size: 1.1rem;
 }
 
+.guitar-lesson-content h2 {
+  color: var(--maroon);
+  margin-top: 40px;
+  margin-bottom: 25px;
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.guitar-lesson-content h3 {
+  color: #333;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-weight: normal;
+  font-size: 1.5rem;
+}
+
+.guitar-lesson-content p {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.guitar-lesson-content hr {
+  border: none;
+  border-top: 2px solid var(--maroon);
+  margin: 40px 0;
+  opacity: 0.3;
+}
+
 /* Lesson boxes (buttons) */
 .guitar-lesson-box {
   background: white;
@@ -146,11 +175,183 @@
   margin-bottom: 30px;
   text-align: center;
 }
+
+/* ========== TEST/QUIZ STYLES ========== */
+
+/* Question container */
+.guitar-lesson-content .quiz-question {
+  margin-bottom: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.guitar-lesson-content .quiz-question h3 {
+  margin-bottom: 15px;
+  margin-top: 0;
+  text-align: left;
+}
+
+/* Answer options container */
+.guitar-lesson-content .quiz-options {
+  margin-left: 20px;
+}
+
+.guitar-lesson-content .quiz-option {
+  margin-bottom: 10px;
+}
+
+.guitar-lesson-content .quiz-option label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.guitar-lesson-content .quiz-option input[type="radio"] {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* Submit button container */
+.guitar-lesson-content .quiz-submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.guitar-lesson-content .quiz-submit-message {
+  color: #666;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Answer review */
+.guitar-lesson-content .quiz-answer {
+  margin-bottom: 25px;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.guitar-lesson-content .quiz-answer h3 {
+  text-align: left;
+  margin-top: 0;
+}
+
+.guitar-lesson-content .quiz-answer.correct {
+  background-color: #d4edda;
+}
+
+.guitar-lesson-content .quiz-answer.incorrect {
+  background-color: #f8d7da;
+}
+
+.guitar-lesson-content .quiz-answer-status {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.guitar-lesson-content .quiz-answer-status.correct {
+  color: #155724;
+}
+
+.guitar-lesson-content .quiz-answer-status.incorrect {
+  color: #721c24;
+}
+
+/* Result box */
+.guitar-lesson-content .quiz-result-box {
+  padding: 30px;
+  border-radius: 12px;
+  margin: 40px auto 30px auto;
+  text-align: center;
+  max-width: 600px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.guitar-lesson-content .quiz-result-box.passed {
+  background-color: #d4edda;
+}
+
+.guitar-lesson-content .quiz-result-box.failed {
+  background-color: #f8d7da;
+}
+
+.guitar-lesson-content .quiz-score {
+  font-size: 48px;
+  margin: 10px 0;
+}
+
+.guitar-lesson-content .quiz-score.passed {
+  color: #155724;
+}
+
+.guitar-lesson-content .quiz-score.failed {
+  color: #721c24;
+}
+
+.guitar-lesson-content .quiz-result-title {
+  margin: 10px 0;
+}
+
+.guitar-lesson-content .quiz-result-title.passed {
+  color: #155724;
+}
+
+.guitar-lesson-content .quiz-result-title.failed {
+  color: #721c24;
+}
+
+.guitar-lesson-content .quiz-result-message {
+  margin: 10px 0;
+}
+
+.guitar-lesson-content .quiz-result-message.passed {
+  color: #155724;
+}
+
+.guitar-lesson-content .quiz-result-message.failed {
+  color: #721c24;
+}
+
+/* Button group */
+.guitar-lesson-content .quiz-button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.guitar-lesson-content .quiz-button-group .guitar-back-button {
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  min-width: 200px;
+  margin: 0;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .guitar-lesson-box {
     width: 90%;
     max-width: 200px;
     margin: 10px auto;
+  }
+  
+  .guitar-lesson-content .quiz-question,
+  .guitar-lesson-content .quiz-answer,
+  .guitar-lesson-content .quiz-result-box {
+    padding: 15px;
+  }
+  
+  .guitar-lesson-content .quiz-button-group .guitar-back-button {
+    min-width: 150px;
+    padding: 10px 20px;
+    font-size: 1rem;
   }
 }

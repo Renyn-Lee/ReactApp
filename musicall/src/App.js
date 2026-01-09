@@ -13,6 +13,7 @@ import Metronome from './metronome';
 import GuitarLesson from "./pages/GuitarLesson"
 import Section1Test from "./pages/Section1test"
 import Section1GuitarTest from "./pages/Section1GuitarTest"
+import MusicTools from "./pages/MusicTools"
 
 function App(){
     const { isSignedIn } = useUser();
@@ -35,6 +36,7 @@ function App(){
                     <Route path="/home" element={<Home/>} />
                     <Route path="/section1test" element={<Section1Test />} />
                     <Route path="/guitar-section1test" element={<Section1GuitarTest />} />
+                    <Route path="/musictools" element={<MusicTools />} />
                 </Routes>
             </div>
             {isSignedIn && (

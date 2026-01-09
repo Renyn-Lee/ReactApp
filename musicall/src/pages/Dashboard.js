@@ -2,45 +2,47 @@ import React, { useState } from 'react';
 import '../Dashboard.css';
 
 const QOTD_DATA = [
-  // General Motivation, Action, and Starting
-  "The best way to get started is to quit talking and begin doing. – Walt Disney",
-  "You don’t have to be great to start, but you have to start to be great. – Zig Ziglar",
-  "The only way to do great work is to love what you do. – Steve Jobs",
-  "Believe you can and you’re halfway there. – Theodore Roosevelt",
-  "It does not matter how slowly you go as long as you do not stop. – Confucius",
-  "The future belongs to those who believe in the beauty of their dreams. – Eleanor Roosevelt",
+  // Focus on the Power of Small Steps
+  "Success is the sum of small efforts, repeated day in and day out. – Robert Collier",
+  "You are one practice session away from a better mood and a better sound. – Unknown",
+  "Little by little, one travels far. – J.R.R. Tolkien",
+  "Don't look at the whole mountain; just look at the next note. – Unknown",
+  "Consistency is more important than perfection. – Unknown",
 
-  // Music & Practice Focus
-  "Music is enough for a lifetime, but a lifetime is not enough for music. – Sergei Rachmaninoff",
-  "Don't practice until you get it right; practice until you can't get it wrong. – Unknown",
-  "The music is not in the notes, but in the silence between. – Claude Debussy",
-  "To play without passion is inexcusable! – Ludwig van Beethoven",
-  "The expert at anything was once a beginner. – Helen Hayes",
-  "If I don’t practice for a day, I know it. If I don’t practice for three days, the public knows it. – Jascha Heifetz",
-  
-  // Growth Mindset and Resilience
-  "A person who never made a mistake never tried anything new. – Albert Einstein",
-  "Success is not final, failure is not fatal: it is the courage to continue that counts. – Winston Churchill",
-  "Our greatest weakness lies in giving up. The most certain way to succeed is always to just try one more time. – Thomas A. Edison",
-  "The beautiful thing about learning is that nobody can take it away from you. – B.B. King",
-  "The mind is everything. What you think you become. – Buddha",
-  "Do not fear mistakes. There are none. – Miles Davis",
+  // Music-Specific Inspiration
+  "The piano keys are black and white, but they sound like a million colors in your mind. – Maria Cristina Mena",
+  "Music is the shorthand of emotion. – Leo Tolstoy",
+  "Life is like a piano. What you get out of it depends on how you play it. – Tom Lehrer",
+  "Every masterpiece was once a mess of wrong notes. – Unknown",
+  "The piano is a monster that screams when you touch its teeth. – Andres Segovia",
 
-  // Effort and Daily Discipline
-  "I find that the harder I work, the more luck I seem to have. – Thomas Jefferson",
-  "Strive for progress, not perfection. – Unknown",
-  "The journey of a thousand miles begins with a single step. – Lao Tzu",
-  "I cannot teach anybody anything, I can only make them think. – Socrates",
-  "The difference between ordinary and extraordinary is practice. – Vladimir Horowitz",
-  "Where focus goes, energy flows. – Tony Robbins",
+  // Discipline & The "Hard" Parts
+  "Amateurs practice until they get it right. Professionals practice until they can’t get it wrong. – Unknown",
+  "If you want to play like a pro, you have to practice like a beginner. – Unknown",
+  "The only person you should try to be better than is the person you were yesterday. – Matty Mullins",
+  "Hard work beats talent when talent doesn’t work hard. – Tim Notke",
+  "Practice is the bridge between where you are and where you want to be. – Unknown",
 
-  // Philosophical/Inspirational Music Quotes
-  "Music gives a soul to the universe, wings to the mind, flight to the imagination, and life to everything. – Plato",
-  "Where words fail, music speaks. – Hans Christian Andersen",
-  "It is never too late to be what you might have been. – George Eliot",
-  "Do not let what you cannot do interfere with what you can do. – John Wooden",
-  "In learning you will teach, and in teaching you will learn. – Phil Collins",
-  "The greatest glory in living lies not in never falling, but in rising every time we fall. – Nelson Mandela"
+  // Overcoming Frustration
+  "Don't stop when you're tired. Stop when you're done. – David Goggins",
+  "Mistakes are proof that you are trying. – Unknown",
+  "Every time you think you can't, you must. – Unknown",
+  "Frustration is the first sign that a breakthrough is coming. – Unknown",
+  "Your struggle is your strength. Keep playing. – Unknown",
+
+  // Long-Term Vision
+  "The best time to start practicing was 20 years ago. The second best time is now. – Chinese Proverb",
+  "It’s not about being the best. It’s about being better than you were yesterday. – Unknown",
+  "Knowledge is knowing how to play the notes; Wisdom is knowing when to let them breathe. – Unknown",
+  "Everything is hard before it is easy. – Goethe",
+  "Your future self will thank you for the practice you did today. – Unknown",
+
+  // The Joy of Learning
+  "Learning an instrument is like discovering a new room in your house that you never knew existed. – Unknown",
+  "Music can change the world because it can change people. – Bono",
+  "To learn an instrument is to give yourself a voice for life. – Unknown",
+  "Play with your heart or don't play at all. – Unknown",
+  "The joy of music is found in the journey, not just the destination. – Unknown"
 ];
 
 function getRandomQOTD(arr) {

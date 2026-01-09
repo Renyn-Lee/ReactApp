@@ -2,11 +2,13 @@
 
 .dashboard-wrapper {
     height: 35rem;
-    background-color: #f5f5f5;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(46, 147, 255, 0.5));
     font-family: "Inter", sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 2rem;
+    box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.4);
   }
   
   .dashboard-container {
@@ -49,6 +51,7 @@
   
   .piano-button {
     background:#785961;
+    background: linear-gradient(135deg, rgba(166, 135, 143, 1), rgba(120, 89, 97, 1));
   }
   
   .piano-button:hover {
@@ -57,8 +60,10 @@
   }
   
   .guitar-button {
-    background:#6F0614;
+    background: linear-gradient(135deg, rgba(249, 144, 158, 1), rgba(111, 6, 20, 1));
   }
+  /*background:#6F0614;
+  */
   
   .guitar-button:hover {
     transform: translateY(-5px) scale(1.05);
