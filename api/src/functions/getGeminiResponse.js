@@ -78,7 +78,7 @@ async function getGeminiResponse(request, context) {
         if (imageData) {
             // For images, gemini-pro doesn't support images, so we'll just process text
             // If you need image support, you'll need gemini-pro-vision
-            const contextPrompt = `You are Sato, a helpful music assistant. Help users with questions about learning piano, guitar, music theory, and practice tips.
+            const contextPrompt = `Your name is Sato, a helpful music assistant. Help users with questions about learning piano, guitar, music theory, and practice tips.
 
 User question: ${message}
 

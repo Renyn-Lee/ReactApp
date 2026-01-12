@@ -6,7 +6,7 @@ import Aboutus from "./pages/Aboutus"
 import Guitar from "./pages/Guitar"
 import Home from "./pages/Home"
 import Piano from "./pages/Piano"
-import Lesson from "./pages/Lessons"  // Fixed: changed from "./pages/Lessons" to "./pages/Lesson"
+import Lesson from "./pages/Lessons"
 import FloatingChatbot from "./FloatingChatbot"
 import Dashboard from "./pages/Dashboard"
 import Metronome from './metronome';
@@ -14,6 +14,7 @@ import GuitarLesson from "./pages/GuitarLesson"
 import Section1Test from "./pages/Section1test"
 import Section1GuitarTest from "./pages/Section1GuitarTest"
 import MusicTools from "./pages/MusicTools"
+import Flashcards from "./pages/Flashcards"
 
 function App(){
     const { isSignedIn } = useUser();
@@ -21,24 +22,30 @@ function App(){
     return (
         <Router>
             <Navbar/>
-            <div className="container">
-                <Routes>
-                    <Route 
-                        path="/" 
-                        element={isSignedIn ? <Dashboard /> : <Home/>} 
-                    />
-                    <Route path="/aboutus" element={<Aboutus/>} />
-                    <Route path="/guitar" element={<Guitar/>} />
-                    <Route path="/piano" element={<Piano/>} />
-                    <Route path="/lesson/:lessonId" element={<Lesson />} />
-                    <Route path="/guitar-lesson/:lessonId" element={<GuitarLesson />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/home" element={<Home/>} />
-                    <Route path="/section1test" element={<Section1Test />} />
-                    <Route path="/guitar-section1test" element={<Section1GuitarTest />} />
-                    <Route path="/musictools" element={<MusicTools />} />
-                </Routes>
-            </div>
+            <Routes>
+                <Route 
+                    path="/" 
+                    element={
+                        <div className="container">
+                            {isSignedIn ? <Dashboard /> : <Home/>}
+                        </div>
+                    } 
+                />
+                <Route path="/aboutus" element={<div className="container"><Aboutus/></div>} />
+                <Route path="/guitar" element={<div className="container"><Guitar/></div>} />
+                <Route path="/piano" element={<div className="container"><Piano/></div>} />
+                <Route path="/lesson/:lessonId" element={<div className="container"><Lesson /></div>} />
+                <Route path="/guitar-lesson/:lessonId" element={<div className="container"><GuitarLesson /></div>} />
+                <Route path="/dashboard" element={<div className="container"><Dashboard /></div>} />
+                <Route path="/home" element={<div className="container"><Home/></div>} />
+                <Route path="/section1test" element={<div className="container"><Section1Test /></div>} />
+                <Route path="/guitar-section1test" element={<div className="container"><Section1GuitarTest /></div>} />
+                
+                {/* Music Tools without container wrapper */}
+             <Route path="/musictools" element={<MusicTools />} />
+            <Route path="/musictools/flashcards" element={<Flashcards />} />
+            </Routes>
+            
             {isSignedIn && (
                 <>
                 <FloatingChatbot />
