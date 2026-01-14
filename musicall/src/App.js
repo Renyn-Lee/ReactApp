@@ -15,6 +15,11 @@ import Section1Test from "./pages/Section1test"
 import Section1GuitarTest from "./pages/Section1GuitarTest"
 import MusicTools from "./pages/MusicTools"
 import Flashcards from "./pages/Flashcards"
+import TrebleSightReading from './pages/trebleclefreading';
+import BassSightReading from './pages/baseclefreading';
+import EarTraining from './pages/eartraining';
+import VirtualPiano from './pages/VituralPiano';
+
 
 function App(){
     const { isSignedIn } = useUser();
@@ -41,9 +46,13 @@ function App(){
                 <Route path="/section1test" element={<div className="container"><Section1Test /></div>} />
                 <Route path="/guitar-section1test" element={<div className="container"><Section1GuitarTest /></div>} />
                 
-                {/* Music Tools without container wrapper */}
-             <Route path="/musictools" element={<MusicTools />} />
-            <Route path="/musictools/flashcards" element={<Flashcards />} />
+                {/* Music Tools */}
+                <Route path="/musictools" element={<MusicTools />} />
+                <Route path="/musictools/flashcards" element={<Flashcards />} />
+                <Route path="/musictools/treblesightreading" element={<TrebleSightReading />} />
+                <Route path="/musictools/basssightreading" element={<BassSightReading />} />
+                <Route path="/musictools/eartrainer" element={<EarTraining />} />
+                <Route path="/musictools/virtualpiano" element={<VirtualPiano />} />
             </Routes>
             
             {isSignedIn && (
