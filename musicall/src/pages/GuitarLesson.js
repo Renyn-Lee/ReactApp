@@ -12,11 +12,9 @@ const guitarLessonData = {
     content: `
       <h2>Welcome to the Guitar! Here are cool facts to start.</h2>
       <h3>Did you know?</h3>
-      <ul>
-        <li>The six strings exert over 150-200 lbs of pressure on the neck!</li>
-        <li>Before steel, strings were made from "catgut" (sheep intestines).</li>
-        <li>Leo Fender, creator of the Stratocaster, couldn't actually play guitar!</li>
-      </ul>
+        <h2>The six strings exert over 150-200 lbs of pressure on the neck!</h2>
+        <h2>Before steel, strings were made from "catgut" (sheep intestines).</h2>
+        <h2>Leo Fender, creator of the Stratocaster, couldn't actually play guitar!</h2>
       <hr/>
       <h2>The Setup of a Guitar</h2>
       <p>
@@ -44,10 +42,8 @@ const guitarLessonData = {
       <h3>Hold the pick between your thumb and the side of your index finger. Keep your wrist loose and try a few down-strokes on the thickest string (Low E).</h3>
       <hr/>
       <h2>Optional Homework:</h2>
-      <ul>
-        <li>Memorize the string names using the mnemonic.</li>
-        <li>Practice 5 minutes of steady down-strokes on the open strings.</li>
-      </ul>
+        <h2>Memorize the string names using the mnemonic.</h2>
+        <h2>Practice 5 minutes of steady down-strokes on the open strings.</h2>
     `,
     backgroundColor: "#D09691"
   },
@@ -77,10 +73,8 @@ const guitarLessonData = {
       
       <hr/>
       <h2>Optional Homework:</h2>
-      <ul>
-        <li>Practice the 1-2-3-4 exercise for 5 minutes a day.</li>
-        <li>Try to play a simple "0 - 2 - 4" pattern on the D string perfectly in time with a beat.</li>
-      </ul>
+        <h2>Practice the 1-2-3-4 exercise for 5 minutes a day.</h2>
+        <h2>Try to play a simple "0 - 2 - 4" pattern on the D string perfectly in time with a beat.</h2>
     `,
     backgroundColor: "#D09691"
   },
