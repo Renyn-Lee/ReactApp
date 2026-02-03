@@ -14,6 +14,7 @@
   color: white;
   margin: 0;
   width: auto;
+  border-radius: 15px 15px 0 0;
 }
 
 /* Toggle button inside the bar */
@@ -161,7 +162,6 @@
   background: rgba(255, 255, 255, 0.3);
   outline: none;
   cursor: pointer;
-  -webkit-appearance: none;
 }
 
 .bpm-slider::-webkit-slider-thumb {

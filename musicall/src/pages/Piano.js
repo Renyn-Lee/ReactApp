@@ -11,16 +11,45 @@ function Piano() {
   const [completedLessons, setCompletedLessons] = useState([]);
   const [testScores, setTestScores] = useState({});
 
- // 1. Force scroll to top immediately when entering the page
+  // 1. Force scroll to top and handle dynamic background colors
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.body.style.backgroundColor = '#E5D8CE';
-    return () => { document.body.style.backgroundColor = ''; };
-  }, []);
 
-  // 2. Updated Auto-scroll logic
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.3, // Change color when 30% of the header is visible
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target.id === 'section-1-header') {
+            document.body.style.backgroundColor = '#E5D8CE'; // Section 1: Tan
+          } else if (entry.target.id === 'section-2-header') {
+            document.body.style.backgroundColor = '#D7C2B2'; // Section 2: Soft Blue/Grey
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    // Elements to watch
+    const s1 = document.getElementById('section-1-header');
+    const s2 = document.getElementById('section-2-header');
+    
+    if (s1) observer.observe(s1);
+    if (s2) observer.observe(s2);
+
+    return () => {
+      observer.disconnect();
+      document.body.style.backgroundColor = ''; 
+    };
+  }, [isLoaded]);
+
+  // 2. Auto-scroll logic for completed lessons
   useEffect(() => {
-    // Only attempt to scroll once data is loaded and there are completed lessons
     if (isLoaded && completedLessons.length > 0) {
       const numericLessons = completedLessons.filter(l => typeof l === 'number');
       if (numericLessons.length > 0) {
@@ -28,8 +57,6 @@ function Piano() {
         const element = document.getElementById(`lesson-box-${maxLesson}`);
         
         if (element) {
-          // We use a slightly longer timeout (500ms) to ensure the 
-          // browser has finished the "scroll to top" from the previous hook
           setTimeout(() => {
             element.scrollIntoView({ 
               behavior: 'smooth', 
@@ -41,44 +68,27 @@ function Piano() {
     }
   }, [completedLessons, isLoaded]);
 
-  // FIX: Force a reload of user data when the component mounts
-  // This ensures we get the latest 'completedLessons' immediately after finishing a lesson
+  // 3. Force reload of user data for progress saving
   useEffect(() => {
     const refreshUserData = async () => {
       if (isLoaded && isSignedIn && user) {
         try {
-          await user.reload(); // <--- THIS LINE FIXES THE SAVING ISSUE
+          await user.reload();
         } catch (error) {
           console.error("Error reloading user data:", error);
         }
       }
     };
     refreshUserData();
-  }, [isLoaded, isSignedIn]); // Run once on load/signin
+  }, [isLoaded, isSignedIn]);
 
-  // Update local state whenever the user object changes (including after the reload above)
+  // 4. Update local state from Clerk metadata
   useEffect(() => {
     if (isLoaded && isSignedIn && user) {
       setCompletedLessons(user.unsafeMetadata?.completedPianoLessons || []);
       setTestScores(user.unsafeMetadata?.pianoTestScores || {});
     }
   }, [isLoaded, isSignedIn, user]);
-
-  // Scroll to latest lesson
-  useEffect(() => {
-    if (isLoaded && completedLessons.length > 0) {
-      const numericLessons = completedLessons.filter(l => typeof l === 'number');
-      if (numericLessons.length > 0) {
-        const maxLesson = Math.max(...numericLessons);
-        const element = document.getElementById(`lesson-box-${maxLesson}`);
-        if (element) {
-          setTimeout(() => {
-            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 300);
-        }
-      }
-    }
-  }, [completedLessons, isLoaded]); // Removed 'location' to prevent jumpiness
 
   const section1Unlocked = testScores['section1test'] >= 80 || false;
 
@@ -93,21 +103,15 @@ function Piano() {
 
   const handleLessonClick = async (lessonNumber) => {
     if (!isLoaded) return;
-    
-    // 1. Check Auth
     if (!isSignedIn && lessonNumber !== 1 && lessonNumber !== 2) {
       alert('Please sign in to access this lesson!');
       return;
     }
-
-    // 2. Check Section 2 Lock
     const isSection2 = (typeof lessonNumber === 'number' && lessonNumber >= 21) || lessonNumber === 'section2test';
     if (isSection2 && !section1Unlocked) {
       alert('You need to complete the Section 1 Test with a score of 80% or higher first!');
       return;
     }
-
-    // 3. Navigate - UPDATED: Special handling for section1test
     if (lessonNumber === 'section1test') {
       navigate('/section1test');
     } else {
@@ -119,7 +123,13 @@ function Piano() {
 
   return (
     <div className="piano-container">
-      {/* ... (The rest of your JSX remains exactly the same) ... */}
+      {/* Dynamic Background Transition Style */}
+      <style>{`
+        body {
+          transition: background-color 1.2s ease-in-out;
+        }
+      `}</style>
+
       <h1 className="piano-lesson-roadmap">Piano Lesson Roadmap</h1>
       
       <div className="auth-section">
@@ -135,7 +145,8 @@ function Piano() {
       </div>
 
       <div className="roadmap-container">
-        <div className="section-header-box">
+        {/* SECTION 1 HEADER */}
+        <div className="section-header-box" id="section-1-header">
           <h2 className="section-title">Section 1: The Foundation & Sight Reading</h2>
         </div>
 
@@ -297,7 +308,8 @@ function Piano() {
             <div className="divider-line"></div>
         </div>
 
-        <div className="section-header-box">
+        {/* SECTION 2 HEADER */}
+        <div className="section-header-box" id="section-2-header">
           <h2 className="section-title">Section 2: Musical Artistry & Theory</h2>
         </div>
 

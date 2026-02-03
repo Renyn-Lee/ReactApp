@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
-    "dotenv": "^17.2.2"
+    "dotenv": "^17.2.2",
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "@types/node": "^24.5.1"

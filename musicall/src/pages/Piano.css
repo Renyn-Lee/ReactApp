@@ -3,10 +3,19 @@
   max-width: 1500px;
   margin: 0 auto;
   padding: 40px 20px;
-  background-color: #E5D8CE; /* Soft light background from your JS */
+  /* CHANGE THIS: remove the hex code and use the variable */
+  background-color: transparent; 
+  /* Add this to make the color fade smooth */
+  transition: background-color 0.8s ease; 
   min-height: 100vh;
   text-align: center;
   font-family: 'Georgia', serif;
+}
+
+/* Add this to your CSS file as well */
+body {
+  transition: background-color 0.8s ease;
+  margin: 0;
 }
 
 /* Titles */
