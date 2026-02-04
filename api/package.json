@@ -1,20 +1,17 @@
 {
-  "name": "music-assistant-api",
+  "name": "musicall-chatbot-api",
   "version": "1.0.0",
-  "description": "Music assistant API using Gemini",
-  "main": "src/functions/*.js",
+  "description": "Sato - Gemini AI Music Assistant with YouTube Integration",
+  "main": "server.js",
   "scripts": {
-    "start": "func start",
-    "test": "echo \"No tests yet...\""
+    "start": "node server.js"
   },
   "dependencies": {
-    "@azure/functions": "^4.8.0",
-    "@clerk/clerk-react": "^5.47.0",
-    "@google/generative-ai": "^0.24.1",
-    "dotenv": "^17.2.3"
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "@google/generative-ai": "^0.1.3"
   },
-  "devDependencies": {
-    "@types/node": "^24.3.3",
-    "azure-functions-core-tools": "^4.x"
+  "engines": {
+    "node": "18.x"
   }
 }
