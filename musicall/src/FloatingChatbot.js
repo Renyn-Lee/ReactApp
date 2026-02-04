@@ -159,11 +159,11 @@ const FloatingChatbot = () => {
       }
 
       // DEBUG LOGS - Add these
-      console.log('🔵 Sending to URL:', 'http://localhost:7071/api/getGeminiResponse');
+      console.log('🔵 Sending to URL:', 'https://reactapp-h8um.onrender.com');
       console.log('🔵 Request body:', requestBody);
       console.log('🔵 History length:', geminiHistory.length);
 
-      const response = await fetch('http://localhost:7071/api/getGeminiResponse', {
+      const response = await fetch('https://reactapp-h8um.onrender.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
