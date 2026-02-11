@@ -163,7 +163,7 @@ const FloatingChatbot = () => {
       console.log('🔵 Request body:', requestBody);
       console.log('🔵 History length:', geminiHistory.length);
 
-      const response = await fetch('https://reactapp-h8um.onrender.com', {
+      const response = await fetch('https://reactapp-h8um.onrender.com/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

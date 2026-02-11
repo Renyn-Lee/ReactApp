@@ -149,7 +149,6 @@ function TrebleSightReading() {
       <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'center', gap: '15px' }}>
         <button onClick={() => setShowAnswer(!showAnswer)} style={btnStyle('#9C27B0')}>Show Answer</button>
         <button onClick={generateNewNote} style={btnStyle('#4CAF50')}>Skip</button>
-        <button onClick={() => {setScore(0); setTotalAttempts(0); generateNewNote();}} style={btnStyle('#f44336')}>Reset</button>
       </div>
 
       <div>

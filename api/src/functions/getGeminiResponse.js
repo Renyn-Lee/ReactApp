@@ -53,13 +53,12 @@ async function getGeminiResponse(request, context) {
     try {
         const body = await request.json();
         const message = body?.message || '';
-        const imageData = body?.image; // Base64 image data
-        const mimeType = body?.mimeType; // Image mime type
+        const imageData = body?.image; // Base64 image data (ensure this is just the base64 string, no prefix)
+        const mimeType = body?.mimeType || 'image/jpeg'; // Default to jpeg if not provided
         const conversationHistory = body?.history || []; // Get conversation history
 
         context.log('Received message:', message);
         context.log('Has image:', !!imageData);
-        context.log('History length:', conversationHistory.length);
 
         if (!message.trim() && !imageData) {
             return {
@@ -69,45 +68,40 @@ async function getGeminiResponse(request, context) {
             };
         }
 
-        // Use gemini-pro (stable model)
-     const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+        // Use gemini-1.5-flash for stable multimodal support
+        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
-        let result;
-        let reply;
+        // Prepare the content parts for Multimodal input
+        let promptParts = [];
 
-        if (imageData) {
-            // For images, gemini-pro doesn't support images, so we'll just process text
-            // If you need image support, you'll need gemini-pro-vision
-            const contextPrompt = `Your name is Sato, a helpful music assistant. Help users with questions about learning piano, guitar, music theory, and practice tips.
-
-User question: ${message}
-
-If they ask for video recommendations or tutorials, mention that you can provide YouTube video suggestions.`;
-
-            result = await model.generateContent(contextPrompt);
-            const response = await result.response;
-            reply = response.text();
-        } else {
-            // For text-only with conversation history
-            // Build the full context with history
-            let fullPrompt = `You are Sato, a helpful music assistant. Help users with questions about learning piano, guitar, music theory, and practice tips. Keep responses under 3 sentences unless providing step-by-step instructions.\n\n`;
-            
-            // Add conversation history
-            if (conversationHistory.length > 0) {
-                fullPrompt += "Previous conversation:\n";
-                conversationHistory.forEach(msg => {
-                    const role = msg.role === 'user' ? 'User' : 'Assistant';
-                    fullPrompt += `${role}: ${msg.parts[0].text}\n`;
-                });
-                fullPrompt += "\n";
-            }
-            
-            fullPrompt += `User: ${message}\nAssistant:`;
-
-            result = await model.generateContent(fullPrompt);
-            const response = await result.response;
-            reply = response.text();
+        // 1. Add System Instructions and History as text
+        let contextPrefix = `You are Sato, a helpful music assistant. Help users with piano, guitar, music theory, and practice tips. Keep responses under 3 sentences unless providing step-by-step instructions.\n\n`;
+        
+        if (conversationHistory.length > 0) {
+            contextPrefix += "Previous conversation:\n";
+            conversationHistory.forEach(msg => {
+                const role = msg.role === 'user' ? 'User' : 'Assistant';
+                contextPrefix += `${role}: ${msg.parts[0].text}\n`;
+            });
+            contextPrefix += "\n";
         }
+        
+        promptParts.push({ text: contextPrefix + `User: ${message}` });
+
+        // 2. Add the Image part if it exists
+        if (imageData) {
+            promptParts.push({
+                inlineData: {
+                    data: imageData,
+                    mimeType: mimeType
+                }
+            });
+        }
+
+        // Generate content using the parts array
+        const result = await model.generateContent(promptParts);
+        const response = await result.response;
+        let reply = response.text();
 
         // Check if user wants video recommendations
         const videoKeywords = ['video', 'youtube', 'tutorial', 'lesson', 'watch', 'show me', 'demonstrate', 'examples'];
@@ -117,10 +111,7 @@ If they ask for video recommendations or tutorials, mention that you can provide
 
         if (wantsVideo && process.env.YOUTUBE_API_KEY) {
             try {
-                // Create search query based on user message
                 let searchQuery = message;
-                
-                // Add music context if not already present
                 if (!message.toLowerCase().includes('music') && 
                     !message.toLowerCase().includes('piano') && 
                     !message.toLowerCase().includes('guitar')) {
@@ -140,18 +131,10 @@ If they ask for video recommendations or tutorials, mention that you can provide
                 }
             } catch (error) {
                 context.log('Error fetching YouTube videos:', error);
-                reply += "\n\nI'd love to suggest some YouTube videos, but I'm having trouble accessing them right now. Try searching for tutorials related to your question!";
+                reply += "\n\nI'd love to suggest some YouTube videos, but I'm having trouble accessing them right now.";
             }
         } else if (wantsVideo && !process.env.YOUTUBE_API_KEY) {
-            // Fallback when no YouTube API key
-            reply += "\n\nFor video tutorials, I recommend searching YouTube for:\n";
-            if (message.toLowerCase().includes('piano')) {
-                reply += "- PianoVideoLessons\n- HDpiano\n- Piano Video Lessons\n";
-            } else if (message.toLowerCase().includes('guitar')) {
-                reply += "- JustinGuitar\n- Marty Music\n- GuitarLessons365\n";
-            } else {
-                reply += "- Music theory tutorials\n- Beginner music lessons\n- Practice techniques\n";
-            }
+            reply += "\n\nFor video tutorials, I recommend searching YouTube for channels like JustinGuitar or HDpiano!";
         }
 
         return {
@@ -159,17 +142,16 @@ If they ask for video recommendations or tutorials, mention that you can provide
             headers: corsHeaders,
             jsonBody: {
                 reply: reply,
-                usage: { total_tokens: "N/A" }
+                usage: { total_tokens: response.usageMetadata?.totalTokenCount || "N/A" }
             }
         };
 
     } catch (error) {
-        context.log('Full error details:', error);
-        context.log('Error calling Gemini:', error.message);
+        context.log('Error details:', error);
         return {
             status: 500,
             headers: corsHeaders,
-            jsonBody: { error: "Sorry I'm a little busy right now please repeat what you said in a moment" }
+            jsonBody: { error: "Sato is having trouble processing that. Please try again!" }
         };
     }
 }

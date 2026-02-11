@@ -60,10 +60,6 @@ function EarTrainer() {
 
   return (
     <div style={{ maxWidth: '1000px', margin: '20px auto', padding: '20px' }}>
-      
-      <Link to="/musictools" className="back-tools-link">
-        ← Back to Tools
-      </Link>
 
       <div style={{ 
         textAlign: 'center', 
@@ -157,6 +153,9 @@ function EarTrainer() {
           </div>
         )}
       </div>
+            <Link to="/musictools" className="back-tools-link">
+        ← Back to Tools
+      </Link>
     </div>
   );
 }
