@@ -1,4 +1,5 @@
 import "../styles.css";
+import { useNavigate } from 'react-router-dom';
 import {
   SignInButton,
   SignUpButton,
@@ -8,6 +9,8 @@ import {
 } from "@clerk/clerk-react";
 
 export default function Home() {
+  const navigate = useNavigate(); // Hook must be inside the component
+
   return (
     <main>
       <div className="Homescreen-Box">
@@ -22,9 +25,10 @@ export default function Home() {
         </SignedOut>
 
         <SignedIn>
-          <a href="/dashboard">
-            <button className="HomeButton">Go to Dashboard</button>
-          </a>
+          {/* Use navigate() here too for a smoother SPA experience */}
+          <button className="HomeButton" onClick={() => navigate('/dashboard')}>
+            Go to Dashboard
+          </button>
         </SignedIn>
       </div>
 
@@ -56,6 +60,19 @@ export default function Home() {
           <h1 className='home-desc2-title'>Learn Piano</h1>
           <h3>Piano has never been this easy! Learn from experienced piano players today.</h3>
         </div>
+      </div>
+
+      <div className="sato-box">
+        <h1>Learn better with our free music chatbot Sato!</h1>
+        <h3>Ask Sato any music-related questions and get instant answers! </h3>
+      </div>
+
+      {/* Your clickable navigation text */}
+      <div style={{ display: 'flex', gap: '20px', cursor: 'pointer', padding: '20px', justifyContent: 'center' }}>
+        <span onClick={() => navigate('/piano')}>Piano</span>
+        <span onClick={() => navigate('/guitar')}>Guitar</span>
+        <span onClick={() => navigate('/aboutus')}>About Us and Contact</span>
+        <span onClick={() => navigate('/musictools')}>Music Tools</span>
       </div>
     </main>
   );

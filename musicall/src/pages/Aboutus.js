@@ -1,10 +1,19 @@
 import '../styles.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Aboutus(){
+  const navigate = useNavigate();
     return <main>
+    
     <div  className="About-us-box">
    <h1> About us</h1>
-   <h2 className="About-us-description"> Legatto is a free website created by high school students to help you reach your music goal. We incorporate lessons that will help you understand music concepts from our own experiences as a student, teacher, and band member. We don’t charge a subscription or fee and we don’t ask for a donation. Everything here is free! All we ask is for you to share this website with your friends and email us about bugs, issues or errors! Start learning today!</h2>
+   <h2 className="About-us-description"> 
+    Legatto is a free website created by high school students to help you reach your music goal. 
+    We incorporate lessons that will help you understand music concepts from our own experiences as a student, teacher, and band member. 
+    We don’t charge a subscription or fee and we don’t ask for a donation. Everything here is free! 
+    All we ask is for you to share this website with your friends and email us about bugs, issues or errors. 
+    Start learning today!
+    </h2>
   </div>
   <div className="Contact-info-box">
   <h1>Contact Info:</h1>
@@ -31,5 +40,11 @@ export default function Aboutus(){
     <h2 className='faq-info'>Q: What is the best way to stay motivated while learning an instrument?</h2>
     <h2 className='contact-info'>A: Set small, achievable goals, celebrate your progress, and find music that you love to play. Joining a community of fellow learners or finding a practice buddy can also provide encouragement and accountability.</h2>
    </div>
+        <div style={{ display: 'flex', gap: '20px', cursor: 'pointer', padding: '20px', justifyContent: 'center' }}>
+        <span onClick={() => navigate('/piano')}>Piano</span>
+        <span onClick={() => navigate('/guitar')}>Guitar</span>
+        <span onClick={() => navigate('/aboutus')}>About Us and Contact</span>
+        <span onClick={() => navigate('/musictools')}>Music Tools</span>
+      </div>
  </main> 
 }
