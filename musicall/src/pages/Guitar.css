@@ -5,10 +5,17 @@
   max-width: 1500px;
   margin: 0 auto;
   padding: 40px 20px;
-  background-color: #D09691; /* Your Guitar theme background */
+  background-color: transparent; /* Changed to transparent to show body background */
+  transition: background-color 0.8s ease; /* Smooth transition */
   min-height: 100vh;
   text-align: center;
   font-family: 'Georgia', serif;
+}
+
+/* Add smooth transition to body background */
+body {
+  transition: background-color 0.8s ease;
+  margin: 0;
 }
 
 /* Title & Description */
@@ -45,6 +52,27 @@
 
 .access-button:hover {
   background-color: #2B1B1B;
+}
+
+/* Section Headers (The big dark boxes for Section 1 & 2) */
+.section-header-box {
+  background-color: #3A2C2C;
+  color: white;
+  padding: 25px 30px;
+  border-radius: 12px;
+  margin: 40px auto 30px auto;
+  max-width: 700px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 /* Roadmap Layout */
@@ -200,17 +228,6 @@
 .divider-icon {
   font-size: 2rem;
   margin: 0 20px;
-}
-
-.section-header-box {
-  margin-bottom: 40px;
-}
-
-.section-title {
-  color: white;
-  font-size: 2rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
 }
 
 /* Responsive Design */

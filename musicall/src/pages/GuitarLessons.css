@@ -9,9 +9,10 @@
 
 /* ----- Roadmap page ----- */
 .guitar-container {
-  background-color: var(--roadmap-bg);
+  background-color: transparent !important; /* Transparent to show body background for fade effect */
   min-height: 100vh;
   padding: 40px 20px;
+  transition: background-color 0.8s ease; /* Smooth transition */
 }
 
 /* ----- Lesson page ----- */

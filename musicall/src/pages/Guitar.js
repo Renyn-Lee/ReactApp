@@ -10,16 +10,45 @@ function Guitar() {
   const [completedLessons, setCompletedLessons] = useState([]);
   const [testScores, setTestScores] = useState({});
 
-  // 1. Force scroll to top immediately when entering the page
+  // 1. Force scroll to top and handle dynamic background colors
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.body.style.backgroundColor = '#D09691';
-    return () => { document.body.style.backgroundColor = ''; };
-  }, []);
 
-  // 2. Updated Auto-scroll logic
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.3, // Change color when 30% of the header is visible
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target.id === 'section-1-header') {
+            document.body.style.backgroundColor = '#D09691'; // Section 1: Dusty Rose
+          } else if (entry.target.id === 'section-2-header') {
+            document.body.style.backgroundColor = '#C08080'; // Section 2: Deeper Rose/Mauve
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    // Elements to watch
+    const s1 = document.getElementById('section-1-header');
+    const s2 = document.getElementById('section-2-header');
+    
+    if (s1) observer.observe(s1);
+    if (s2) observer.observe(s2);
+
+    return () => {
+      observer.disconnect();
+      document.body.style.backgroundColor = ''; 
+    };
+  }, [isLoaded]);
+
+  // 2. Auto-scroll logic for completed lessons
   useEffect(() => {
-    // Only attempt to scroll once data is loaded and there are completed lessons
     if (isLoaded && completedLessons.length > 0) {
       const numericLessons = completedLessons.filter(l => typeof l === 'number');
       if (numericLessons.length > 0) {
@@ -27,8 +56,6 @@ function Guitar() {
         const element = document.getElementById(`lesson-box-${maxLesson}`);
         
         if (element) {
-          // We use a slightly longer timeout (500ms) to ensure the 
-          // browser has finished the "scroll to top" from the previous hook
           setTimeout(() => {
             element.scrollIntoView({ 
               behavior: 'smooth', 
@@ -40,7 +67,7 @@ function Guitar() {
     }
   }, [completedLessons, isLoaded]);
 
-  // FIX: Force a reload of user data when the component mounts
+  // 3. Force reload of user data for progress saving
   useEffect(() => {
     const refreshUserData = async () => {
       if (isLoaded && isSignedIn && user) {
@@ -54,7 +81,7 @@ function Guitar() {
     refreshUserData();
   }, [isLoaded, isSignedIn]);
 
-  // Update local state whenever the user object changes
+  // 4. Update local state from Clerk metadata
   useEffect(() => {
     if (isLoaded && isSignedIn && user) {
       setCompletedLessons(user.unsafeMetadata?.completedGuitarLessons || []);
@@ -62,23 +89,7 @@ function Guitar() {
     }
   }, [isLoaded, isSignedIn, user]);
 
-  // Scroll to latest lesson
-  useEffect(() => {
-    if (isLoaded && completedLessons.length > 0) {
-      const numericLessons = completedLessons.filter(l => typeof l === 'number');
-      if (numericLessons.length > 0) {
-        const maxLesson = Math.max(...numericLessons);
-        const element = document.getElementById(`lesson-box-${maxLesson}`);
-        if (element) {
-          setTimeout(() => {
-            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 300);
-        }
-      }
-    }
-  }, [completedLessons, isLoaded]); // Removed 'location' to prevent jumpiness
-
-  // 2. Section Locking Logic
+  // Section Locking Logic
   const section1Unlocked = testScores['section1test'] >= 80 || false;
 
   const isLocked = (num) => {
@@ -93,7 +104,7 @@ function Guitar() {
     return false;
   };
 
-  // 3. UPDATED: Handle lesson clicks with special routing for section1test
+  // Handle lesson clicks with special routing for section1test
   const handleLessonClick = async (lessonNumber) => {
     if (!isLoaded) return;
     
@@ -122,6 +133,13 @@ function Guitar() {
 
   return (
     <div className="guitar-container">
+      {/* Dynamic Background Transition Style */}
+      <style>{`
+        body {
+          transition: background-color 1.2s ease-in-out;
+        }
+      `}</style>
+
       <h1 className="guitar-lesson-roadmap">Guitar Lesson Roadmap</h1>
       <h2 className='guitar-description'>Self-paced lessons with interactive practice tools and an AI tutor</h2>
       
@@ -139,6 +157,11 @@ function Guitar() {
 
       <div className="roadmap-container">
         
+        {/* SECTION 1 HEADER */}
+        <div className="section-header-box" id="section-1-header">
+          <h2 className="section-title">Section 1: Fundamentals</h2>
+        </div>
+
         {/* ROW 1: 1 -> 2 -> 3 */}
         <div className="lesson-row-top">
           {[1, 2, 3].map((num, i) => (
@@ -266,7 +289,11 @@ function Guitar() {
             <div className="divider-icon">🎸</div>
             <div className="divider-line"></div>
         </div>
-        <div className="section-header-box"><h2 className="section-title">Section 2: Intermediate</h2></div>
+
+        {/* SECTION 2 HEADER */}
+        <div className="section-header-box" id="section-2-header">
+          <h2 className="section-title">Section 2: Intermediate</h2>
+        </div>
 
         {/* ROW 8: 21 -> 22 -> 23 */}
         <div className="lesson-row-top">

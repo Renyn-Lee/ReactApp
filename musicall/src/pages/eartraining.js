@@ -153,7 +153,9 @@ function EarTrainer() {
           </div>
         )}
       </div>
-            <Link to="/musictools" className="back-tools-link">
+            <Link to="/musictools" className="back-tools-link"style={{ 
+          marginLeft: '25rem',
+        }}>
         ← Back to Tools
       </Link>
     </div>

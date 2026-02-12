@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './clefreading.css';
 
 function BassSightReading() {
   // We'll use these notes for the game
@@ -44,21 +45,18 @@ function BassSightReading() {
 
   const getStaffPosition = (note) => {
     /**
-     * CORRECT BASS CLEF MAPPING:
-     * Line 5 (Top): 100
-     * Line 4: 110
-     * Line 3: 120
-     * Line 2: 130
-     * Line 1 (Bottom): 140
+     * UPDATED BASS CLEF MAPPING (with larger spacing):
+     * Lines are now at: 50, 75, 100, 125, 150
+     * Spacing between lines: 25 pixels (was 15)
      */
     const positions = {
-      'C': 125,  // Space 2 (Correct)
-      'D': 120,  // Line 3 (Correct)
-      'E': 115,  // Space 3 (Correct)
-      'F': 110,  // Line 4 - The F Line (Correct)
-      'G': 105,  // Space 4 (Correct)
-      'A': 100,  // Line 5 - Top Line (Correct)
-      'B': 95,   // Sits right on top of the staff
+      'C': 112.5,  // Space 2 (between line 2 and 3)
+      'D': 100,    // Line 3 (middle line)
+      'E': 87.5,   // Space 3 (between line 3 and 4)
+      'F': 75,     // Line 4 - The F Line
+      'G': 62.5,   // Space 4 (between line 4 and 5)
+      'A': 50,     // Line 5 - Top Line
+      'B': 37.5,   // Above staff
     };
     return positions[note];
   };
@@ -80,13 +78,13 @@ function BassSightReading() {
         marginBottom: '20px'
       }}>
         <svg width="100%" height="200" viewBox="0 0 400 200">
-          {/* Draw the 5 Staff Lines */}
+          {/* Draw the 5 Staff Lines - Now with larger spacing */}
           {[0, 1, 2, 3, 4].map(i => (
-            <line key={i} x1="50" y1={100 + i * 10} x2="350" y2={100 + i * 10} stroke="black" strokeWidth="2" />
+            <line key={i} x1="50" y1={50 + i * 25} x2="350" y2={50 + i * 25} stroke="black" strokeWidth="2" />
           ))}
 
-          {/* Bass Clef Symbol - Positioned so dots surround Line 4 (110) */}
-          <text x="60" y="142" fontSize="75" fill="#0065D1" style={{ userSelect: 'none' }}>𝄢</text>
+          {/* Bass Clef Symbol - Adjusted for new line positions */}
+          <text x="60" y="135" fontSize="90" fill="#0065D1" style={{ userSelect: 'none' }}>𝄢</text>
 
           {/* The Note */}
           {currentNote && (
