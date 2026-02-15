@@ -32,8 +32,34 @@ const FloatingChatbot = () => {
     return (match && match[2].length === 11) ? match[2] : null;
   };
 
-  // Parse YouTube videos from AI response
+  // UPDATED: Parse YouTube videos from AI response with refusal detection
   const parseYouTubeVideos = (text) => {
+    // Check if the AI is refusing to help or saying it can't assist
+    const refusalPhrases = [
+      "i can't",
+      "i cannot",
+      "i'm not able",
+      "i am not able",
+      "unable to",
+      "don't have",
+      "not appropriate",
+      "not related to music",
+      "outside my scope",
+      "i can only help with music",
+      "i'm sorry, but i can't",
+      "i apologize, but",
+      "that's not something i can",
+      "not within my expertise"
+    ];
+    
+    const lowerText = text.toLowerCase();
+    const isRefusing = refusalPhrases.some(phrase => lowerText.includes(phrase));
+    
+    // If AI is refusing to help, don't parse any videos
+    if (isRefusing) {
+      return [];
+    }
+    
     const videoRegex = /Watch: (https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]+)/g;
     const videos = [];
     let match;

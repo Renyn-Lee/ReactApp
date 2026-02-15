@@ -19,6 +19,7 @@ import TrebleSightReading from './pages/trebleclefreading';
 import BassSightReading from './pages/baseclefreading';
 import EarTraining from './pages/eartraining';
 import VirtualPiano from './pages/VituralPiano';
+//import { Analytics } from "@vercel/analytics/react"
 
 
 function App(){
