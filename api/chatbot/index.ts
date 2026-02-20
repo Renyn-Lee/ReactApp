@@ -2,13 +2,12 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 
 // Initialize Gemini client
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-// Use gemini-1.5-flash instead - it has better free tier support
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 const httpTrigger = async (context: any, req: any): Promise<void> => {
   context.log('HTTP trigger function processed a request.');
 
-  // Enable CORS for your React app
+  // Enable CORS
   context.res = {
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -17,7 +16,6 @@ const httpTrigger = async (context: any, req: any): Promise<void> => {
     }
   };
 
-  // Handle preflight OPTIONS request
   if (req.method === "OPTIONS") {
     context.res.status = 200;
     return;
@@ -45,151 +43,92 @@ const httpTrigger = async (context: any, req: any): Promise<void> => {
       return;
     }
 
-    // UPDATED: Enhanced system prompt with strict rules about YouTube links
-    let conversationContext = `You are Sato, a helpful music assistant specializing in piano, guitar, music theory, and practice tips.
+    // EXPANDED BLOCKLIST
+    const blockedKeywords = [
+      'game', 'gaming', 'video game', 'videogame', 'gameplay',
+      'minecraft', 'fortnite', 'roblox', 'league of legends', 'lol', 'valorant',
+      'undertale', 'zelda', 'pokemon', 'mario', 'sonic', 'call of duty', 'cod',
+      'gta', 'grand theft auto', 'fifa', 'madden', 'apex', 'overwatch',
+      'counter strike', 'csgo', 'dota', 'pubg', 'warzone', 'halo',
+      'destiny', 'diablo', 'skyrim', 'fallout', 'witcher', 'cyberpunk',
+      'among us', 'fall guys', 'rocket league', 'hearthstone', 'osu',
+      'movie', 'film', 'tv show', 'series', 'anime', 'cartoon', 'netflix',
+      'meme', 'tiktok', 'viral', 'trending',
+      'cooking', 'recipe', 'sport', 'football', 'basketball', 'soccer'
+    ];
 
-⚠️ ABSOLUTE RULES - NO EXCEPTIONS:
+    const lowerMessage = message.toLowerCase();
+    const isBlockedTopic = blockedKeywords.some(keyword => lowerMessage.includes(keyword));
 
-MUSIC EDUCATION TOPICS (YouTube links OK):
-✅ Learning to play instruments (piano, guitar, drums, violin, etc.)
-✅ Music theory (scales, chords, rhythm, notation)
-✅ Practice techniques and tips
-✅ Vocal training and singing techniques
-✅ Reading sheet music
+    let reply: string;
+    let isBlocked = false;
 
-NON-MUSIC TOPICS (NO YOUTUBE LINKS EVER):
-❌ Video games (Minecraft, Fortnite, Undertale, Zelda, etc.) - even if they have music in them
-❌ Movies and TV shows - even soundtracks
-❌ Cooking, sports, science, history, etc.
-❌ Game soundtracks or game-related music (this is entertainment, not education)
-❌ Memes or viral videos
+    if (isBlockedTopic) {
+      context.log('🚫 BLOCKED:', message);
+      reply = "I'm Sato, your music education assistant! I specialize in teaching piano, guitar, and music theory - not entertainment content like games, movies, or sports. Would you like to learn about playing an instrument or understanding music theory instead?";
+      isBlocked = true;
+    } else {
+      context.log('✅ ALLOWED');
+      
+      let conversationContext = `You are Sato, a helpful music assistant specializing in piano, guitar, music theory, and practice tips.
 
-🚨 CRITICAL INSTRUCTION FOR NON-MUSIC TOPICS:
-When someone asks about games, movies, or other non-music topics:
-1. Say you can't help with that topic
-2. Offer to help with music education instead
-3. STOP THERE - DO NOT add "Here are some videos"
-4. DO NOT create numbered lists
-5. DO NOT include any YouTube links whatsoever
-6. DO NOT try to connect their request to music
+You help users learn instruments and understand music. When suggesting resources, you can include YouTube video links in this format: "Watch: [full YouTube URL]"
 
-EXAMPLES:
+Only provide YouTube links for music education topics like:
+- How to play instruments (piano, guitar, drums, etc.)
+- Music theory lessons
+- Practice techniques
+- Vocal training
 
-User: "Show me Minecraft videos"
-❌ WRONG: "I can't help with Minecraft. Here are some YouTube videos: 1. ..."
-✅ CORRECT: "I focus on music education rather than game content. Would you like to learn piano, guitar, or music theory instead?"
-
-User: "Minecraft note blocks"
-❌ WRONG: "While I can't help with Minecraft, here are some videos..."
-✅ CORRECT: "I specialize in teaching real instruments and music theory, not game-related content. Can I help you learn to play an actual instrument?"
-
-User: "Teach me C major scale on piano"
-✅ CORRECT: "Here's a great tutorial: Watch: https://www.youtube.com/watch?v=..."
-
-REMEMBER: 
-- If it's about games/movies → Decline and stop (NO videos, NO lists)
-- If it's about learning instruments → Provide helpful videos
-- Never ever provide game/movie videos, even as alternatives
+Be friendly and encouraging!
 
 Conversation history:\n\n`;
-    
-    // Add conversation history
-    conversationHistory.forEach((msg: any) => {
-      if (msg.role === 'user') {
-        conversationContext += `User: ${msg.parts?.[0]?.text || msg.content}\n`;
-      } else if (msg.role === 'model' || msg.role === 'assistant') {
-        conversationContext += `Assistant: ${msg.parts?.[0]?.text || msg.content}\n`;
-      }
-    });
-    
-    // Add current message
-    conversationContext += `User: ${message}\nAssistant:`;
 
-    // Call Gemini API
-    const result = await model.generateContent(conversationContext);
-    const response = await result.response;
-    let reply = response.text();
-
-    // NUCLEAR OPTION: Check for blocked topics and replace ENTIRE response
-    const blockedTopics = [
-      'minecraft', 'fortnite', 'roblox', 'undertale', 'zelda',
-      'game', 'gaming', 'video game', 'videogame',
-      'movie', 'film', 'tv show', 'series', 'anime', 'cartoon',
-      'meme', 'tiktok', 'viral', 'trending',
-      'cooking', 'recipe', 'sport', 'football', 'basketball',
-      'science', 'math', 'history', 'geography'
-    ];
-    
-    const lowerMessage = message.toLowerCase();
-    const lowerReply = reply.toLowerCase();
-    
-    // Check if user question contains blocked topics
-    const userAskedBlockedTopic = blockedTopics.some(topic => lowerMessage.includes(topic));
-    
-    // Check if AI response mentions blocked topics
-    const aiMentionsBlockedTopic = blockedTopics.some(topic => lowerReply.includes(topic));
-    
-    // Check if response contains YouTube links (shouldn't be there for blocked topics)
-    const hasYouTubeLinks = /youtube\.com|youtu\.be|Watch:/i.test(reply);
-    
-    // If blocked topic detected OR (refusing + has links), replace ENTIRE response
-    if (userAskedBlockedTopic || (aiMentionsBlockedTopic && hasYouTubeLinks)) {
-      context.log('🚫 BLOCKED TOPIC - Replacing entire response');
-      context.log('User asked blocked:', userAskedBlockedTopic);
-      context.log('AI mentioned blocked + has links:', aiMentionsBlockedTopic && hasYouTubeLinks);
+      conversationHistory.forEach((msg: any) => {
+        if (msg.role === 'user') {
+          conversationContext += `User: ${msg.parts?.[0]?.text || msg.content}\n`;
+        } else if (msg.role === 'model' || msg.role === 'assistant') {
+          conversationContext += `Assistant: ${msg.parts?.[0]?.text || msg.content}\n`;
+        }
+      });
       
-      // Just use a clean, hardcoded response - don't try to parse the AI's response
-      reply = "I'm Sato, your music education assistant! I specialize in helping with piano, guitar, and music theory - not entertainment content like games or movies. Would you like help learning to play an instrument or understanding music theory?";
+      conversationContext += `User: ${message}\nAssistant:`;
+
+      const result = await model.generateContent(conversationContext);
+      const response = await result.response;
+      reply = response.text();
     }
 
     context.res = {
       status: 200,
       body: {
         reply: reply,
-        usage: {
-          total_tokens: "N/A"
-        }
+        isBlocked: isBlocked
       }
     };
 
   } catch (error: any) {
-    context.log.error('Full error details:', error);
+    context.log.error('Error:', error);
     
-    // Check if it's a rate limit error (429)
     if (error.status === 429) {
-      const retryDelay = error.errorDetails?.find((detail: any) => 
-        detail['@type'] === 'type.googleapis.com/google.rpc.RetryInfo'
-      )?.retryDelay || '60s';
-      
-      context.log.error('Rate limit exceeded. Retry after:', retryDelay);
-      
       context.res = {
         status: 429,
-        body: { 
-          error: "Too many requests. The AI service is temporarily unavailable. Please try again in a minute.",
-          retryAfter: parseInt(retryDelay) || 60
-        }
+        body: { error: "Too many requests. Please try again in a minute." }
       };
       return;
     }
 
-    // Check if it's an API key error
     if (error.status === 401 || error.status === 403) {
-      context.log.error('API authentication error');
       context.res = {
         status: 503,
-        body: { error: "AI service is temporarily unavailable. Please try again later." }
+        body: { error: "AI service temporarily unavailable." }
       };
       return;
     }
 
-    // Generic error
-    context.log.error('Error calling Gemini:', error.message || error);
     context.res = {
       status: 500,
-      body: { 
-        error: "Unable to connect to AI service. Please try again later."
-      }
+      body: { error: "Unable to connect to AI service." }
     };
   }
 };

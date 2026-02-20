@@ -32,34 +32,8 @@ const FloatingChatbot = () => {
     return (match && match[2].length === 11) ? match[2] : null;
   };
 
-  // UPDATED: Parse YouTube videos from AI response with refusal detection
+  // UPDATED: Parse YouTube videos - no refusal detection, backend handles blocking
   const parseYouTubeVideos = (text) => {
-    // Check if the AI is refusing to help or saying it can't assist
-    const refusalPhrases = [
-      "i can't",
-      "i cannot",
-      "i'm not able",
-      "i am not able",
-      "unable to",
-      "don't have",
-      "not appropriate",
-      "not related to music",
-      "outside my scope",
-      "i can only help with music",
-      "i'm sorry, but i can't",
-      "i apologize, but",
-      "that's not something i can",
-      "not within my expertise"
-    ];
-    
-    const lowerText = text.toLowerCase();
-    const isRefusing = refusalPhrases.some(phrase => lowerText.includes(phrase));
-    
-    // If AI is refusing to help, don't parse any videos
-    if (isRefusing) {
-      return [];
-    }
-    
     const videoRegex = /Watch: (https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]+)/g;
     const videos = [];
     let match;
@@ -87,7 +61,7 @@ const FloatingChatbot = () => {
   };
 
   // Typewriter effect function
-  const typewriterEffect = (text, messageIndex) => {
+  const typewriterEffect = (text, messageIndex, skipVideos = false) => {
     return new Promise((resolve) => {
       let currentText = '';
       let charIndex = 0;
@@ -112,8 +86,8 @@ const FloatingChatbot = () => {
           
           scrollToBottom();
         } else {
-          // Finished typing - parse for videos
-          const videos = parseYouTubeVideos(currentText);
+          // Finished typing - parse for videos only if not blocked
+          const videos = skipVideos ? [] : parseYouTubeVideos(currentText);
           setMessages(prevMessages => {
             const newMessages = [...prevMessages];
             newMessages[messageIndex] = {
@@ -210,7 +184,14 @@ const FloatingChatbot = () => {
         setMessages(messagesWithAI);
         
         setIsTyping(true);
-        await typewriterEffect(data.reply, messagesWithAI.length - 1);
+        // Check if backend flagged this as blocked - don't parse videos if so
+        if (data.isBlocked) {
+          // Blocked topic - show response but no videos
+          await typewriterEffect(data.reply, messagesWithAI.length - 1, true); // true = skip video parsing
+        } else {
+          // Allowed topic - parse videos normally
+          await typewriterEffect(data.reply, messagesWithAI.length - 1, false);
+        }
         
       } else {
         const errorMessage = { 
