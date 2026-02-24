@@ -133,15 +133,15 @@ function Piano() {
       <h1 className="piano-lesson-roadmap">Piano Lesson Roadmap</h1>
       
       <div className="auth-section">
-        {!isSignedIn ? (
-          <SignInButton mode="modal">
-            <button className="access-button">Log in for full access</button>
-          </SignInButton>
-        ) : (
-          <div className="logged-in-container">
-            <UserButton afterSignOutUrl="/piano"/>
-          </div>
-        )}
+  {!isSignedIn ? (
+    <SignInButton mode="modal">
+      <button className="access-button">Sign in for full lessons & AI chatbot features</button>
+    </SignInButton>
+  ) : (
+    <div className="logged-in-container">
+      <UserButton afterSignOutUrl="/piano"/>
+    </div>
+  )}
       </div>
 
       <div className="roadmap-container">

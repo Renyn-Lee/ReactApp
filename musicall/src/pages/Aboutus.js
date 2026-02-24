@@ -19,8 +19,6 @@ export default function Aboutus(){
   <h1>Contact Info:</h1>
     <ul className="contact-info">
       <li className='contactbox'> Email:</li>
-      <li className='contactbox'> Facebook:</li>
-      <li className='contactbox'> Instagram:</li>
     </ul>
   </div>
   {/* faq-box is for bold, contact-info is not bold*/}
