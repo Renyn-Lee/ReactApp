@@ -14,7 +14,6 @@ const FloatingChatbot = () => {
   const fileInputRef = useRef(null);
   const typingTimeoutRef = useRef(null);
 
-  // Keep a ref to isTyping so we can cancel safely in clearConversation
   const isTypingRef = useRef(false);
   useEffect(() => { isTypingRef.current = isTyping; }, [isTyping]);
 
@@ -47,6 +46,23 @@ const FloatingChatbot = () => {
     return videos;
   };
 
+  // NEW: Format text by removing asterisks and converting to proper formatting
+  const formatText = (text) => {
+    // Remove all asterisks
+    let formatted = text.replace(/\*/g, '');
+    
+    // Convert numbered lists to proper format
+    formatted = formatted.replace(/(\d+)\.\s/g, '\n$1. ');
+    
+    // Add line breaks before section headers (lines that end with a colon)
+    formatted = formatted.replace(/([.!?])\s*([A-Z][^.!?]*:)/g, '$1\n\n$2');
+    
+    // Clean up multiple newlines
+    formatted = formatted.replace(/\n{3,}/g, '\n\n');
+    
+    return formatted.trim();
+  };
+
   const convertToGeminiHistory = (msgs) => {
     return msgs
       .filter((msg) => msg && !msg.imageUrl)
@@ -56,28 +72,26 @@ const FloatingChatbot = () => {
       }));
   };
 
-  // FIX 1: typewriterEffect accepts a stable messageId instead of an index.
-  // We look up the message by id, so stale-closure index mismatches can't crash.
   const typewriterEffect = useCallback((text, messageId, skipVideos = false) => {
     return new Promise((resolve) => {
+      // Format the text before typing
+      const formattedText = formatText(text);
       let currentText = '';
       let charIndex = 0;
 
       const typeNextChar = () => {
-        // If the timeout was cleared (e.g. conversation was cleared), stop silently
         if (!typingTimeoutRef.current && charIndex > 0) {
           resolve();
           return;
         }
 
-        if (charIndex < text.length) {
-          currentText += text[charIndex];
+        if (charIndex < formattedText.length) {
+          currentText += formattedText[charIndex];
           charIndex++;
 
           setMessages((prev) => {
-            // Guard: if messages were cleared, prev may not contain our message
             const idx = prev.findIndex((m) => m.id === messageId);
-            if (idx === -1) return prev; // message was cleared — don't touch state
+            if (idx === -1) return prev;
             const updated = [...prev];
             updated[idx] = { ...updated[idx], content: currentText, isTyping: true };
             return updated;
@@ -176,7 +190,6 @@ const FloatingChatbot = () => {
       setLoading(false);
 
       if (response.ok && data.reply) {
-        // Give the AI message a stable id so typewriter can find it even after re-renders
         const aiId = `ai-${Date.now()}`;
         const aiMessage = { id: aiId, role: 'assistant', content: '', isTyping: true, videos: [] };
         setMessages([...newMessages, aiMessage]);
@@ -206,7 +219,6 @@ const FloatingChatbot = () => {
     if (e.key === 'Enter' && !isTyping && !loading) askAI();
   };
 
-  // FIX 1 (continued): cancel any in-flight typewriter before wiping messages
   const clearConversation = () => {
     if (typingTimeoutRef.current) {
       clearTimeout(typingTimeoutRef.current);
@@ -268,7 +280,6 @@ const FloatingChatbot = () => {
               </div>
             ) : (
               messages.map((msg) => {
-                // Safety guard — skip any undefined entries
                 if (!msg) return null;
                 return (
                   <div
@@ -282,10 +293,10 @@ const FloatingChatbot = () => {
                         style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '8px', marginBottom: '6px', display: 'block' }}
                       />
                     )}
-                    <span>
+                    <div style={{ whiteSpace: 'pre-line' }}>
                       {msg.content}
                       {msg.isTyping && <span className="typing-cursor">|</span>}
-                    </span>
+                    </div>
                     {msg.videos && msg.videos.length > 0 && (
                       <div style={{ marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                         {msg.videos.map((video, i) => (

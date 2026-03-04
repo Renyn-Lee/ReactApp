@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './clefreading.css';
 
 function BassSightReading() {
-  // We'll use these notes for the game
   const notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
   
   const allNotes = notes.map(note => ({ 
@@ -44,11 +43,6 @@ function BassSightReading() {
   };
 
   const getStaffPosition = (note) => {
-    /**
-     * UPDATED BASS CLEF MAPPING (with larger spacing):
-     * Lines are now at: 50, 75, 100, 125, 150
-     * Spacing between lines: 25 pixels (was 15)
-     */
     const positions = {
       'C': 112.5,  // Space 2 (between line 2 and 3)
       'D': 100,    // Line 3 (middle line)
@@ -78,13 +72,22 @@ function BassSightReading() {
         marginBottom: '20px'
       }}>
         <svg width="100%" height="200" viewBox="0 0 400 200">
-          {/* Draw the 5 Staff Lines - Now with larger spacing */}
+          {/* Draw the 5 Staff Lines */}
           {[0, 1, 2, 3, 4].map(i => (
             <line key={i} x1="50" y1={50 + i * 25} x2="350" y2={50 + i * 25} stroke="black" strokeWidth="2" />
           ))}
 
-          {/* Bass Clef Symbol - Adjusted for new line positions */}
-          <text x="60" y="135" fontSize="90" fill="#0065D1" style={{ userSelect: 'none' }}>𝄢</text>
+          {/* Bass Clef - Using web font fallback */}
+          <text 
+            x="60" 
+            y="120" 
+            fontSize="70" 
+            fill="#0065D1"
+            fontFamily="'Bravura', 'Gonville', 'Arial Unicode MS', serif"
+            style={{ userSelect: 'none' }}
+          >
+            &#119074;
+          </text>
 
           {/* The Note */}
           {currentNote && (

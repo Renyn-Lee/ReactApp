@@ -28,7 +28,7 @@ function TrebleSightReading() {
   };
 
   const checkAnswer = (selectedNote) => {
-    if (feedback !== '') return; // Prevent spamming buttons
+    if (feedback !== '') return;
 
     setTotalAttempts(prev => prev + 1);
     
@@ -43,14 +43,6 @@ function TrebleSightReading() {
   };
 
   const getStaffPosition = (note) => {
-    /**
-     * TREBLE CLEF MAPPING (Lines 20px apart):
-     * Line 5 (Top - F): 60
-     * Line 4 (D): 80
-     * Line 3 (B): 100
-     * Line 2 (G): 120  <-- Clef swirls here
-     * Line 1 (Bottom - E): 140
-     */
     const positions = {
       'C': 90,   // Space 3 (C5)
       'D': 80,   // Line 4 (D5)
@@ -85,8 +77,17 @@ function TrebleSightReading() {
             <line key={i} x1="50" y1={60 + i * 20} x2="350" y2={60 + i * 20} stroke="black" strokeWidth="2" />
           ))}
 
-          {/* Treble Clef Symbol */}
-          <text x="55" y="155" fontSize="110" fill="#0065D1" style={{ userSelect: 'none' }}>𝄞</text>
+          {/* Treble Clef - Using web font fallback */}
+          <text 
+            x="60" 
+            y="135" 
+            fontSize="90" 
+            fill="#0065D1" 
+            fontFamily="'Bravura', 'Gonville', 'Arial Unicode MS', serif"
+            style={{ userSelect: 'none' }}
+          >
+            &#119070;
+          </text>
 
           {/* The Note Head */}
           {currentNote && (
