@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import './Piano.css'; 
 import { SignInButton, UserButton, useUser } from "@clerk/clerk-react";
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -11,6 +11,17 @@ function Piano() {
   const [completedLessons, setCompletedLessons] = useState([]);
   const [testScores, setTestScores] = useState({});
 
+  // Generate emojis ONCE and never change them
+  const backgroundEmojis = useMemo(() => {
+    return [...Array(20)].map((_, i) => ({
+      id: i,
+      emoji: ['🎹', '🎵', '🎶', '🎼'][i % 4],
+      left: `${(i * 5) % 100}%`,
+      animationDelay: `${-i * 2}s`,
+      animationDuration: `${20 + (i % 5) * 2}s`
+    }));
+  }, []);
+
   // 1. Force scroll to top and handle dynamic background colors
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -18,16 +29,16 @@ function Piano() {
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.3, // Change color when 30% of the header is visible
+      threshold: 0.3,
     };
 
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           if (entry.target.id === 'section-1-header') {
-            document.body.style.backgroundColor = '#E5D8CE'; // Section 1: Tan
+            document.body.style.backgroundColor = '#E5D8CE';
           } else if (entry.target.id === 'section-2-header') {
-            document.body.style.backgroundColor = '#D7C2B2'; // Section 2: Soft Blue/Grey
+            document.body.style.backgroundColor = '#D7C2B2';
           }
         }
       });
@@ -35,7 +46,6 @@ function Piano() {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     
-    // Elements to watch
     const s1 = document.getElementById('section-1-header');
     const s2 = document.getElementById('section-2-header');
     
@@ -80,7 +90,7 @@ function Piano() {
       }
     };
     refreshUserData();
-  }, [isLoaded, isSignedIn]);
+  }, [isLoaded, isSignedIn, user]);
 
   // 4. Update local state from Clerk metadata
   useEffect(() => {
@@ -123,6 +133,23 @@ function Piano() {
 
   return (
     <div className="piano-container">
+      {/* Background emoji pattern */}
+      <div className="piano-background">
+        {backgroundEmojis.map((item) => (
+          <div
+            key={item.id}
+            className="piano-emoji"
+            style={{
+              left: item.left,
+              animationDelay: item.animationDelay,
+              animationDuration: item.animationDuration
+            }}
+          >
+            {item.emoji}
+          </div>
+        ))}
+      </div>
+
       {/* Dynamic Background Transition Style */}
       <style>{`
         body {
@@ -133,15 +160,15 @@ function Piano() {
       <h1 className="piano-lesson-roadmap">Piano Lesson Roadmap</h1>
       
       <div className="auth-section">
-  {!isSignedIn ? (
-    <SignInButton mode="modal">
-      <button className="access-button">Sign in for full lessons & AI chatbot features</button>
-    </SignInButton>
-  ) : (
-    <div className="logged-in-container">
-      <UserButton afterSignOutUrl="/piano"/>
-    </div>
-  )}
+        {!isSignedIn ? (
+          <SignInButton mode="modal">
+            <button className="access-button">Sign in for full lessons & AI chatbot features</button>
+          </SignInButton>
+        ) : (
+          <div className="logged-in-container">
+            <UserButton afterSignOutUrl="/piano"/>
+          </div>
+        )}
       </div>
 
       <div className="roadmap-container">
@@ -173,13 +200,13 @@ function Piano() {
         {/* ROW 2: 6, 5, 4 */}
         <div className="lesson-row-bottom">
           <div id="lesson-box-6" className={`lesson-box ${isLocked(6) ? 'locked' : ''} ${completedLessons.includes(6) ? 'completed' : ''}`} onClick={() => handleLessonClick(6)}>
-            <h3>Lesson 6</h3><p>The Grand Staff</p>
+            <h3>Lesson 6</h3><p>Treble Clef Notes</p>
             {isLocked(6) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(6) && <span className="checkmark">✔️</span>}
           </div>
           <div className="arrow-left"></div>
           <div id="lesson-box-5" className={`lesson-box ${isLocked(5) ? 'locked' : ''} ${completedLessons.includes(5) ? 'completed' : ''}`} onClick={() => handleLessonClick(5)}>
-            <h3>Lesson 5</h3><p>Basic Rhythm</p>
+            <h3>Lesson 5</h3><p>Treble and Bass Clef</p>
             {isLocked(5) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(5) && <span className="checkmark">✔️</span>}
           </div>
@@ -195,7 +222,7 @@ function Piano() {
         {/* ROW 3: 7, 8, 9 */}
         <div className="lesson-row-top">
           <div id="lesson-box-7" className={`lesson-box ${isLocked(7) ? 'locked' : ''} ${completedLessons.includes(7) ? 'completed' : ''}`} onClick={() => handleLessonClick(7)}>
-            <h3>Lesson 7</h3><p>Treble Clef Notes</p>
+            <h3>Lesson 7</h3><p>Treble Clef Performance</p>
             {isLocked(7) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(7) && <span className="checkmark">✔️</span>}
           </div>
@@ -207,7 +234,7 @@ function Piano() {
           </div>
           <div className="arrow-right"></div>
           <div id="lesson-box-9" className={`lesson-box ${isLocked(9) ? 'locked' : ''} ${completedLessons.includes(9) ? 'completed' : ''}`} onClick={() => handleLessonClick(9)}>
-            <h3>Lesson 9</h3><p>Intervals (2nds/3rds)</p>
+            <h3>Lesson 9</h3><p>Bass Clef Performance</p>
             {isLocked(9) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(9) && <span className="checkmark">✔️</span>}
           </div>
@@ -217,19 +244,19 @@ function Piano() {
         {/* ROW 4: 12, 11, 10 */}
         <div className="lesson-row-bottom">
           <div id="lesson-box-12" className={`lesson-box ${isLocked(12) ? 'locked' : ''} ${completedLessons.includes(12) ? 'completed' : ''}`} onClick={() => handleLessonClick(12)}>
-            <h3>Lesson 12</h3><p>Dynamic: Forte</p>
+            <h3>Lesson 12</h3><p>Hands Together</p>
             {isLocked(12) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(12) && <span className="checkmark">✔️</span>}
           </div>
           <div className="arrow-left"></div>
           <div id="lesson-box-11" className={`lesson-box ${isLocked(11) ? 'locked' : ''} ${completedLessons.includes(11) ? 'completed' : ''}`} onClick={() => handleLessonClick(11)}>
-            <h3>Lesson 11</h3><p>Dynamic: Piano</p>
+            <h3>Lesson 11</h3><p>Dynamics 1</p>
             {isLocked(11) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(11) && <span className="checkmark">✔️</span>}
           </div>
           <div className="arrow-left"></div>
           <div id="lesson-box-10" className={`lesson-box ${isLocked(10) ? 'locked' : ''} ${completedLessons.includes(10) ? 'completed' : ''}`} onClick={() => handleLessonClick(10)}>
-            <h3>Lesson 10</h3><p>Hands Together</p>
+            <h3>Lesson 10</h3><p>Staff Specialist</p>
             {isLocked(10) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(10) && <span className="checkmark">✔️</span>}
           </div>
@@ -239,19 +266,19 @@ function Piano() {
         {/* ROW 5: 13, 14, 15 */}
         <div className="lesson-row-top">
           <div id="lesson-box-13" className={`lesson-box ${isLocked(13) ? 'locked' : ''} ${completedLessons.includes(13) ? 'completed' : ''}`} onClick={() => handleLessonClick(13)}>
-            <h3>Lesson 13</h3><p>Mezzo markings</p>
+            <h3>Lesson 13</h3><p>Practice</p>
             {isLocked(13) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(13) && <span className="checkmark">✔️</span>}
           </div>
           <div className="arrow-right"></div>
           <div id="lesson-box-14" className={`lesson-box ${isLocked(14) ? 'locked' : ''} ${completedLessons.includes(14) ? 'completed' : ''}`} onClick={() => handleLessonClick(14)}>
-            <h3>Lesson 14</h3><p>Sustain Pedal</p>
+            <h3>Lesson 14</h3><p>Intervals (2nd/3rd)</p>
             {isLocked(14) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(14) && <span className="checkmark">✔️</span>}
           </div>
           <div className="arrow-right"></div>
           <div id="lesson-box-15" className={`lesson-box ${isLocked(15) ? 'locked' : ''} ${completedLessons.includes(15) ? 'completed' : ''}`} onClick={() => handleLessonClick(15)}>
-            <h3>Lesson 15</h3><p>Pedal Timing</p>
+            <h3>Lesson 15</h3><p>Practice</p>
             {isLocked(15) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(15) && <span className="checkmark">✔️</span>}
           </div>
@@ -261,19 +288,19 @@ function Piano() {
         {/* ROW 6: 18, 17, 16 */}
         <div className="lesson-row-bottom">
           <div id="lesson-box-18" className={`lesson-box ${isLocked(18) ? 'locked' : ''} ${completedLessons.includes(18) ? 'completed' : ''}`} onClick={() => handleLessonClick(18)}>
-            <h3>Lesson 18</h3><p>Sight-Reading Tips</p>
+            <h3>Lesson 18</h3><p>Practice</p>
             {isLocked(18) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(18) && <span className="checkmark">✔️</span>}
           </div>
           <div className="arrow-left"></div>
           <div id="lesson-box-17" className={`lesson-box ${isLocked(17) ? 'locked' : ''} ${completedLessons.includes(17) ? 'completed' : ''}`} onClick={() => handleLessonClick(17)}>
-            <h3>Lesson 17</h3><p>Mixed Dynamics</p>
+            <h3>Lesson 17</h3><p>Practice</p>
             {isLocked(17) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(17) && <span className="checkmark">✔️</span>}
           </div>
           <div className="arrow-left"></div>
           <div id="lesson-box-16" className={`lesson-box ${isLocked(16) ? 'locked' : ''} ${completedLessons.includes(16) ? 'completed' : ''}`} onClick={() => handleLessonClick(16)}>
-            <h3>Lesson 16</h3><p>Legato & Staccato</p>
+            <h3>Lesson 16</h3><p>Intro to Chords</p>
             {isLocked(16) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(16) && <span className="checkmark">✔️</span>}
           </div>
@@ -283,19 +310,19 @@ function Piano() {
         {/* ROW 7: 19, 20, Test 1 */}
         <div className="lesson-row-top">
           <div id="lesson-box-19" className={`lesson-box ${isLocked(19) ? 'locked' : ''} ${completedLessons.includes(19) ? 'completed' : ''}`} onClick={() => handleLessonClick(19)}>
-            <h3>Lesson 19</h3><p>Ledger Lines</p>
+            <h3>Lesson 19</h3><p>Intro to Accidentals</p>
             {isLocked(19) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(19) && <span className="checkmark">✔️</span>}
           </div>
           <div className="arrow-right"></div>
           <div id="lesson-box-20" className={`lesson-box ${isLocked(20) ? 'locked' : ''} ${completedLessons.includes(20) ? 'completed' : ''}`} onClick={() => handleLessonClick(20)}>
-            <h3>Lesson 20</h3><p>Sheet Music Recap</p>
+            <h3>Lesson 20</h3><p>Recap for Quiz</p>
             {isLocked(20) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(20) && <span className="checkmark">✔️</span>}
           </div>
           <div className="arrow-right"></div>
           <div id="lesson-box-section1test" className={`lesson-box final-test ${isLocked('section1test') ? 'locked' : ''} ${completedLessons.includes('section1test') ? 'completed' : ''}`} onClick={() => handleLessonClick('section1test')}>
-            <h3>S1 Test</h3>
+            <h3>S1 Quiz</h3>
             {isLocked('section1test') && <span className="lock-icon">🔒</span>}
             {completedLessons.includes('section1test') && <span className="checkmark">✔️</span>}
           </div>

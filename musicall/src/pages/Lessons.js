@@ -167,12 +167,41 @@ const lessonData = {
     <h3>The piano keyboard consists of both white and black keys.</h3>
     <h3>The white keys represent the natural notes (A, B, C, D, E, F, G).</h3>
     <hr></hr>
-    <h2> First Practice Exercise: Playing Around Middle C</h2>
+    <h2> Exercise: Playing Around Middle C</h2>
+    <img src='/imgs/middleCAssignment.png'/>
+    <h3> Play the notes in underneath the red bar with your right hand ONLY and say the note names out loud. </h3>
+    <img src='/imgs/notes.png'/>
+    <h3> This will help you memorize the note names and get comfortable with the keyboard. </h3>
+    <hr></hr>
+    <h3> Once you feel comfortable using your right hand, try ONLY using your left hand </h3>
+    <h2> Optional Homework: </h2>
+    <h3> Practice finding Middle C and playing the notes around it using both hands. </h3>
+    <h3> Focus on maintaining proper hand position and posture while playing. </h3>
+    <h3> Try to memorize the names of the notes as you play them. </h3>
+    <hr></hr>
+    <h2> Keep up the great work on your musical journey! </h2>
     `,
     backgroundColor: "#E5D8CE"
   },
   // Placeholders for lessons 5-40...
-  5: { title: "Lesson 5:", description: "", customClass: "lesson-five", content: ``, backgroundColor: "#E5D8CE" },
+  5: { title: "Lesson 5:", description: "Reading Sheet Music", customClass: "lesson-five", 
+    content: `
+    <h2>Congratulations on making it to Lesson 5!</h2>
+    <h3> In this lesson, you will learn how to read sheet music and play your first song on the piano! </h3>
+    <hr></hr>
+    <h2>Sheet Music Basics</h2>
+    <h3>Sheet music is a written representation of music that uses symbols to indicate pitch, rhythm, and other musical elements.</h3>
+    <h3>Learning to read sheet music is essential for playing a wide variety of songs and understanding musical structure.</h3>
+    <hr></hr>
+    <h2>Musical Staff, Clefs, and Notes </h2>
+    <h3>Sheet music is written on a musical staff, which consists of five lines and four spaces. Each line and space represents a different musical pitch.</h3>
+    <img src='/imgs/grand_staff.png'/>
+    <h3>There are two main clefs used in piano music: the treble clef (for higher notes) and the bass clef (for lower notes).</h3>
+    <img src='/imgs/trebleclef.png'/>
+    <pre>Treble clef(left side)     Bass clef (right side)</pre>
+    <h3> In most pieces, the right hand typically plays the notes in the treble clef, while the left hand plays notes in the bass clef. </h3>
+    `, 
+    backgroundColor: "#E5D8CE" },
   6: { title: "Lesson 6:", description: "", customClass: "lesson-six", content: ``, backgroundColor: "#E5D8CE" },
   7: { title: "Lesson 7:", description: "", customClass: "lesson-seven", content: ``, backgroundColor: "#E5D8CE" },
   8: { title: "Lesson 8:", description: "", customClass: "lesson-eight", content: ``, backgroundColor: "#E5D8CE" },

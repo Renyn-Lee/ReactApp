@@ -74,24 +74,47 @@ const questions = [
   },
   {
     id: 9,
-    question: "What is the purpose of the sustain pedal?",
-    options: [
-      "Make notes louder",
-      "Change the pitch",
-      "Sustain notes longer",
-      "Stop all sound"
-    ],
-    correct: 2
+    question: "What is an 'interval' in music?",
+    options: ["The speed of the song", "The distance between two notes", "A type of piano pedal", "The end of a song"],
+    correct: 1
   },
   {
     id: 10,
-    question: "What are ledger lines used for?",
-    options: [
-      "To separate measures",
-      "To show dynamics",
-      "To write notes above or below the staff",
-      "To show tempo"
-    ],
+    question: "If you 'skip' a note on the staff (moving from a line to the next line), what interval is that?",
+    options: ["A Second", "A Fourth", "A Third", "A Fifth"],
+    correct: 2 // A Third is a skip
+  },
+
+  // --- IMAGE-BASED NOTE RECOGNITION (11-15) ---
+  // Ensure your UI renders the corresponding image for each ID
+  {
+    id: 11,
+    question: "", // Image: Treble Clef Middle C
+    options: ["Middle C", "D", "E", "B"],
+    correct: 0
+  },
+  {
+    id: 12,
+    question: "", // Image: Treble Clef G (2nd line)
+    options: ["F", "G", "A", "E"],
+    correct: 1
+  },
+  {
+    id: 13,
+    question: "", // Image: Bass Clef F (4th line)
+    options: ["G", "D", "F", "C"],
+    correct: 2
+  },
+  {
+    id: 14,
+    question: "", // Image: Treble Clef E (1st line)
+    options: ["E", "F", "G", "D"],
+    correct: 0
+  },
+  {
+    id: 15,
+    question: "", // Image: Bass Clef C (2nd space)
+    options: ["A", "B", "C", "D"],
     correct: 2
   }
 ];
