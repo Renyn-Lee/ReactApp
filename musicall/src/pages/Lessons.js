@@ -187,22 +187,41 @@ const lessonData = {
   5: { title: "Lesson 5:", description: "Reading Sheet Music", customClass: "lesson-five", 
     content: `
     <h2>Congratulations on making it to Lesson 5!</h2>
-    <h3> In this lesson, you will learn how to read sheet music and play your first song on the piano! </h3>
+    <h3> In this lesson, you will learn about the treble and bass clefs </h3>
     <hr></hr>
-    <h2>Sheet Music Basics</h2>
-    <h3>Sheet music is a written representation of music that uses symbols to indicate pitch, rhythm, and other musical elements.</h3>
-    <h3>Learning to read sheet music is essential for playing a wide variety of songs and understanding musical structure.</h3>
+    <h2>Sheet Clef Basics</h2>
+    <h3>Clefs are symbols used in musical notation to tell musicians which notes are represented by the lines and spaces on the music staff.</h3>
+    <h3>The music staff always contains five lines and four spaces, each representing a different note in the musical alphabet.</h3>
+    <h3>Clefs are placed at the beginning of the staff to indicate the pitch range of the notes. The two most common clefs are the treble clef and the bass clef which you will be learning about.</h3>
     <hr></hr>
-    <h2>Musical Staff, Clefs, and Notes </h2>
+    <h2>Musical Staff</h2>
     <h3>Sheet music is written on a musical staff, which consists of five lines and four spaces. Each line and space represents a different musical pitch.</h3>
     <img src='/imgs/grand_staff.png'/>
     <h3>There are two main clefs used in piano music: the treble clef (for higher notes) and the bass clef (for lower notes).</h3>
     <img src='/imgs/trebleclef.png'/>
     <pre>Treble clef(left side)     Bass clef (right side)</pre>
     <h3> In most pieces, the right hand typically plays the notes in the treble clef, while the left hand plays notes in the bass clef. </h3>
+    <h3> In these next few lessons you will be learning how to read notes in both clefs, starting with the treble clef. </h3>
+    <hr></hr>
+
     `, 
     backgroundColor: "#E5D8CE" },
-  6: { title: "Lesson 6:", description: "", customClass: "lesson-six", content: ``, backgroundColor: "#E5D8CE" },
+  6: { title: "Lesson 6:", description: "Treble Clef Notes", customClass: "lesson-six", content:`
+    <h2>Welcome to Lesson 6!</h2>
+    <h3> In this lesson, you will learn how to read notes in the treble clef. </h3>
+    <hr></hr>
+    <h2>Treble Clef Notes</h2>
+    <h3>The treble clef, also known as the G clef, is used to notate higher-pitched notes typically played with the right hand on the piano.</h3>
+    <h3>In the treble clef, the lines from bottom to top represent the notes E, G, B, D, and F.</h3>
+    <h3>The spaces between the lines represent the notes F, A, C, and E.</h3>
+    <h3> From top to bottom, it goes C, D , E , F , G , A , B , C , D , E , F , G , A , B , C  and so on. </h3>
+    <img src='/imgs/treble-clef-notes.svg'/>
+    <h3> After G the pattern repeats, so the next note after G is A, then B, then C, and so on. </h3>
+    <h3> Together these lines and spaces allow you to read a wide range of notes in the treble clef. </h3>
+    <hr></hr>
+    <h2>Try It Now: Reading Treble Clef Notes</h2>
+    <h3>Look at the treble clef staff below and identify the notes on the lines and spaces.</h3>
+    `, backgroundColor: "#E5D8CE" },
   7: { title: "Lesson 7:", description: "", customClass: "lesson-seven", content: ``, backgroundColor: "#E5D8CE" },
   8: { title: "Lesson 8:", description: "", customClass: "lesson-eight", content: ``, backgroundColor: "#E5D8CE" },
   9: { title: "Lesson 9:", description: "", customClass: "lesson-nine", content: ``, backgroundColor: "#E5D8CE" },
