@@ -163,7 +163,7 @@ function Guitar() {
         </div>
 
         {/* ROW 1: 1 -> 2 -> 3 */}
-        <div className="lesson-row-top">
+      <div className="lesson-row-top">
           {[1, 2, 3].map((num, i) => (
             <div key={num} style={{display: 'flex', alignItems: 'center'}}>
               <div id={`lesson-box-${num}`} 
@@ -188,7 +188,7 @@ function Guitar() {
                 className={`lesson-box ${isLocked(num) ? 'locked' : ''} ${completedLessons.includes(num) ? 'completed' : ''}`} 
                 onClick={() => handleLessonClick(num)}>
                 <h3>Lesson {num}</h3>
-                <p>{num === 4 ? "Your First Chord" : num === 5 ? "Reading Diagrams" : "More Basic Chords"}</p>
+                <p>{num === 4 ? "Major Scale & Theory" : num === 5 ? "Power Chords" : "Barre Chords"}</p>
                 {isLocked(num) && <span className="lock-icon">🔒</span>}
                 {completedLessons.includes(num) && <span className="checkmark">✔️</span>}
               </div>
@@ -204,7 +204,7 @@ function Guitar() {
             <div key={num} style={{display: 'flex', alignItems: 'center'}}>
               <div id={`lesson-box-${num}`} className={`lesson-box ${isLocked(num) ? 'locked' : ''} ${completedLessons.includes(num) ? 'completed' : ''}`} onClick={() => handleLessonClick(num)}>
                 <h3>Lesson {num}</h3>
-                <p>{num === 7 ? "Strumming Patterns" : num === 8 ? "Alternate Strumming" : "Intro to Tabs"}</p>
+                <p>{num === 7 ? "Fingerpicking" : num === 8 ? "Minor Pentatonic" : "Your First Full Song"}</p>
                 {isLocked(num) && <span className="lock-icon">🔒</span>}
                 {completedLessons.includes(num) && <span className="checkmark">✔️</span>}
               </div>
@@ -220,7 +220,7 @@ function Guitar() {
             <div key={num} style={{display: 'flex', alignItems: 'center'}}>
               <div id={`lesson-box-${num}`} className={`lesson-box ${isLocked(num) ? 'locked' : ''} ${completedLessons.includes(num) ? 'completed' : ''}`} onClick={() => handleLessonClick(num)}>
                 <h3>Lesson {num}</h3>
-                <p>{num === 10 ? "Simple Melodies" : num === 11 ? "Barre Chord Basics" : "F Major Chord"}</p>
+                <p>{num === 10 ? "Dynamics & Tone" : num === 11 ? "Minor Keys & Scale" : "The CAGED System"}</p>
                 {isLocked(num) && <span className="lock-icon">🔒</span>}
                 {completedLessons.includes(num) && <span className="checkmark">✔️</span>}
               </div>
@@ -236,7 +236,7 @@ function Guitar() {
             <div key={num} style={{display: 'flex', alignItems: 'center'}}>
               <div id={`lesson-box-${num}`} className={`lesson-box ${isLocked(num) ? 'locked' : ''} ${completedLessons.includes(num) ? 'completed' : ''}`} onClick={() => handleLessonClick(num)}>
                 <h3>Lesson {num}</h3>
-                <p>{num === 13 ? "Power Chords" : num === 14 ? "Fingerpicking" : "Tuning"}</p>
+                <p>{num === 13 ? "Syncopation" : num === 14 ? "Minor Barre Chords" : "Hammer-ons & Slides"}</p>
                 {isLocked(num) && <span className="lock-icon">🔒</span>}
                 {completedLessons.includes(num) && <span className="checkmark">✔️</span>}
               </div>
@@ -252,7 +252,7 @@ function Guitar() {
             <div key={num} style={{display: 'flex', alignItems: 'center'}}>
               <div id={`lesson-box-${num}`} className={`lesson-box ${isLocked(num) ? 'locked' : ''} ${completedLessons.includes(num) ? 'completed' : ''}`} onClick={() => handleLessonClick(num)}>
                 <h3>Lesson {num}</h3>
-                <p>{num === 16 ? "Play Along" : num === 17 ? "Minor Scales" : "Chord Progressions"}</p>
+                <p>{num === 16 ? "12-Bar Blues" : num === 17 ? "Advanced Fingerpicking" : "Song Structure"}</p>
                 {isLocked(num) && <span className="lock-icon">🔒</span>}
                 {completedLessons.includes(num) && <span className="checkmark">✔️</span>}
               </div>
@@ -265,13 +265,13 @@ function Guitar() {
         {/* ROW 7: 19 -> 20 -> S1 TEST */}
         <div className="lesson-row-top">
           <div id="lesson-box-19" className={`lesson-box ${isLocked(19) ? 'locked' : ''} ${completedLessons.includes(19) ? 'completed' : ''}`} onClick={() => handleLessonClick(19)}>
-            <h3>Lesson 19</h3><p>Lead Guitar</p>
+            <h3>Lesson 19</h3><p>Vibrato & Bends</p>
             {isLocked(19) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(19) && <span className="checkmark">✔️</span>}
           </div>
           <div className="guitar-arrow-right"></div>
           <div id="lesson-box-20" className={`lesson-box ${isLocked(20) ? 'locked' : ''} ${completedLessons.includes(20) ? 'completed' : ''}`} onClick={() => handleLessonClick(20)}>
-            <h3>Lesson 20</h3><p>Practice Tips</p>
+            <h3>Lesson 20</h3><p>Your Next Steps</p>
             {isLocked(20) && <span className="lock-icon">🔒</span>}
             {completedLessons.includes(20) && <span className="checkmark">✔️</span>}
           </div>

@@ -4,111 +4,171 @@ import { useUser } from '@clerk/clerk-react';
 import './GuitarLessons.css';
 
 const questions = [
-  {
+ {
     id: 1,
-    question: "What are the six strings of a guitar in standard tuning (from lowest to highest)?",
+    question: "What mnemonic helps you remember the six guitar strings from thickest to thinnest?",
     options: [
-      "A, B, C, D, E, F",
-      "E, A, D, G, B, E",
-      "G, C, D, A, E, B",
-      "D, G, C, F, A, D"
+      "Every Ant Does Great Big Exercises",
+      "Eddy Ate Dynamite, Goodbye Eddy",
+      "Every American Dog Gets Bones Eventually",
+      "Eat All Day, Get Big Eventually"
     ],
     correct: 1
   },
   {
     id: 2,
-    question: "What does TAB stand for in guitar tablature?",
-    options: ["Table", "Tablature", "Tabular", "Tablet"],
-    correct: 1
-  },
-  {
-    id: 3,
-    question: "In a chord diagram, what do the numbers represent?",
+    question: "In guitar TAB, what does a number written on one of the six lines represent?",
     options: [
-      "String numbers",
-      "Finger numbers",
-      "Fret numbers",
-      "Beat numbers"
-    ],
-    correct: 1
-  },
-  {
-    id: 4,
-    question: "What is a power chord?",
-    options: [
-      "A chord with 6 notes",
-      "A chord with only the root and fifth",
-      "A chord played loudly",
-      "A chord with all strings"
-    ],
-    correct: 1
-  },
-  {
-    id: 5,
-    question: "What does an 'X' above a string in a chord diagram mean?",
-    options: [
-      "Play that string",
-      "Mute that string",
-      "Don't play that string",
-      "Play it twice"
+      "Which finger to use",
+      "How many times to strum",
+      "Which fret to press on that string",
+      "The beat count"
     ],
     correct: 2
   },
   {
-    id: 6,
-    question: "What is the proper posture for holding an acoustic guitar?",
+    id: 3,
+    question: "When learning the 1-2-3-4 exercise, what is its primary purpose?",
     options: [
-      "Rest it on your lap with the waist against your body",
-      "Hold it horizontally",
-      "Stand with it behind your back",
-      "Lay it flat on a table"
+      "To memorize string names",
+      "To practice reading TAB",
+      "To build finger strength and independence",
+      "To learn the major scale"
     ],
-    correct: 0
+    correct: 2
   },
   {
-    id: 7,
-    question: "What is a barre chord?",
+    id: 4,
+    question: "What interval pattern defines a major scale? (W = Whole step, H = Half step)",
     options: [
-      "A chord played on one string",
-      "A chord where one finger presses multiple strings",
-      "A chord with no open strings",
-      "A chord played with a pick"
+      "W H W W H W W",
+      "W W W H W W H",
+      "W W H W W W H",
+      "H W W W H W W"
+    ],
+    correct: 2
+  },
+  {
+    id: 5,
+    question: "What makes power chords especially useful on electric guitar with distortion?",
+    options: [
+      "They use all six strings for a full sound",
+      "They only use the root and 5th, sounding powerful and moveable up the neck",
+      "They require no fretting hand pressure",
+      "They are always played open"
     ],
     correct: 1
   },
   {
-    id: 8,
-    question: "What is the purpose of alternate strumming?",
+    id: 6,
+    question: "When switching from Em to Cmaj7, which concept helps make the transition smoother?",
     options: [
-      "To play louder",
-      "To create rhythm efficiency by alternating up and down strokes",
-      "To tune the guitar",
-      "To change chords faster"
+      "Lifting all fingers at once and replacing them",
+      "Using anchor fingers — keeping fingers that move minimally close to their position",
+      "Strumming faster through the change",
+      "Muting all strings during the switch"
+    ],
+    correct: 1
+  },
+  {
+    id: 7,
+    question: "In fingerpicking, which finger is assigned to the bass strings (low E, A, and D)?",
+    options: [
+      "Index finger (i)",
+      "Middle finger (m)",
+      "Ring finger (a)",
+      "Thumb (p)"
+    ],
+    correct: 3
+  },
+  {
+    id: 8,
+    question: "The minor pentatonic scale is called 'pentatonic' because it contains how many notes?",
+    options: [
+      "4",
+      "5",
+      "6",
+      "7"
     ],
     correct: 1
   },
   {
     id: 9,
-    question: "What is fingerpicking?",
+    question: "What does the CAGED system describe?",
     options: [
-      "Picking strings with your fingers instead of a pick",
-      "Choosing which fingers to use",
-      "Pressing the frets",
-      "Cleaning your guitar"
+      "Five strumming patterns for beginners",
+      "The five open chord shapes that link together to cover the entire fretboard",
+      "A method for tuning a guitar by ear",
+      "The five finger positions used in classical guitar"
     ],
-    correct: 0
+    correct: 1
   },
   {
     id: 10,
-    question: "What are the three most common beginner open chords?",
+    question: "In the 12-bar blues in A, which three chords are used throughout the progression?",
     options: [
-      "A, B, C",
-      "C, G, D",
-      "E, F, G",
-      "D, E, F"
+      "Am, Dm, Em",
+      "G7, C7, D7",
+      "A7, D7, E7",
+      "A, D, E"
+    ],
+    correct: 2
+  },
+  {
+    id: 11,
+    question: "What is the correct technique for a string bend?",
+    options: [
+      "Pull the string toward the floor with one finger only",
+      "Push the string upward while supporting the bending finger with the fingers behind it",
+      "Slide quickly to a higher fret",
+      "Press harder on the same fret to raise the pitch"
     ],
     correct: 1
-  }
+  },
+  {
+    id: 12,
+    question: "What is syncopation in strumming?",
+    options: [
+      "Strumming only on the downbeats",
+      "Skipping a strum entirely",
+      "Accenting the off-beats or 'ands' between the main counts to create groove",
+      "Strumming as fast as possible"
+    ],
+    correct: 2
+  },
+  {
+    id: 13,
+    question: "A minor and C major are called 'relative keys' because they share what?",
+    options: [
+      "The same root note",
+      "The same chord shapes",
+      "All the same notes",
+      "The same tempo"
+    ],
+    correct: 2
+  },
+  {
+    id: 14,
+    question: "In legato technique, what is the difference between a hammer-on and a pull-off?",
+    options: [
+      "A hammer-on goes to a lower note; a pull-off goes to a higher note",
+      "A hammer-on goes to a higher note; a pull-off goes to a lower note",
+      "They are the same technique with different names",
+      "A hammer-on uses a pick; a pull-off uses your fingers"
+    ],
+    correct: 1
+  },
+  {
+    id: 15,
+    question: "Where you pick on the guitar (near the neck vs. near the bridge) affects what?",
+    options: [
+      "The tempo of your playing",
+      "Which chord sounds",
+      "The tone — neck produces warmth, bridge produces brightness",
+      "The tuning of the strings"
+    ],
+    correct: 2
+  },
 ];
 
 function Section1GuitarTest() {
@@ -191,7 +251,7 @@ function Section1GuitarTest() {
       <div className="guitar-lesson-content">
         {!submitted ? (
           <>
-            <h2>Answer all 10 questions to complete the test</h2>
+            <h2>Answer all 15 questions to submit the test</h2>
             <p>Select the best answer for each question.</p>
             <hr />
             
