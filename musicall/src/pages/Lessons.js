@@ -221,6 +221,16 @@ const lessonData = {
     <hr></hr>
     <h2>Try It Now: Reading Treble Clef Notes</h2>
     <h3>Look at the treble clef staff below and identify the notes on the lines and spaces.</h3>
+    <h3>Use the diagram from earlier to help you if needed.</h3>
+    <img src='/imgs/treble-clef-notes.svg'/>
+    <h3>Practice saying the note names out loud as you identify them to reinforce your learning.</h3>
+    <h3> Learning this will be crucial for reading sheet music and playing songs in the future! </h3>
+    <hr></hr>
+    <h2>Optional Homework:</h2>
+    <h3>Practice identifying notes in the treble clef using sheet music or online resources.</h3>
+    <h3>Focus on memorizing the note names and their positions on the staff.</h3>
+    <h3>Try to read simple melodies written in the treble clef to apply your knowledge.</h3>
+    <hr></hr>
     `, backgroundColor: "#E5D8CE" },
   7: { title: "Lesson 7:", description: "", customClass: "lesson-seven", content: ``, backgroundColor: "#E5D8CE" },
   8: { title: "Lesson 8:", description: "", customClass: "lesson-eight", content: ``, backgroundColor: "#E5D8CE" },
