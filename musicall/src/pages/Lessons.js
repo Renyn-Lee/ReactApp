@@ -3,6 +3,15 @@ import { useEffect } from 'react';
 import './Lessons.css';
 import { useUser } from '@clerk/clerk-react';
 
+const toggleFullscreen = (e) => {
+  if (!document.fullscreenElement) {
+    e.target.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+};
+
+
 const lessonData = {
   1: {
     title: "Lesson 1:",
@@ -232,7 +241,19 @@ const lessonData = {
     <h3>Try to read simple melodies written in the treble clef to apply your knowledge.</h3>
     <hr></hr>
     `, backgroundColor: "#E5D8CE" },
-  7: { title: "Lesson 7:", description: "", customClass: "lesson-seven", content: ``, backgroundColor: "#E5D8CE" },
+  7: { title: "Lesson 7:", description: "Treble Clef Sheet Music", customClass: "lesson-seven", content: 
+    `
+    <h2>Welcome to Lesson 7!</h2>
+    <h3> In this lesson, you will practice reading sheet music in the treble clef. </h3>
+    <hr></hr>
+    <h2>Reading Sheet Music in the Treble Clef</h2>
+    <h3>Now that you know how to identify notes in the treble clef, it's time to practice reading them in the context of sheet music.</h3>
+    <h3>Start with simple melodies that use only a few notes and gradually work your way up to more complex pieces.</h3>
+   <img src='/imgs/Faceit-1.png' width="300" id="fullscreen-img" style="cursor:pointer" onclick="document.getElementById('fullscreen-img').requestFullscreen()" title="Click to fullscreen"/>
+   <h3> Click on the image to view it in fullscreen mode for easier reading. </h3>
+   <hr></hr>
+   <h2> Try out this song aswell! </h2>
+    `, backgroundColor: "#E5D8CE" },
   8: { title: "Lesson 8:", description: "", customClass: "lesson-eight", content: ``, backgroundColor: "#E5D8CE" },
   9: { title: "Lesson 9:", description: "", customClass: "lesson-nine", content: ``, backgroundColor: "#E5D8CE" },
   10: { title: "Lesson 10:", description: "", customClass: "lesson-ten", content: ``, backgroundColor: "#E5D8CE" },
