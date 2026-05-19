@@ -19,7 +19,6 @@ const guitarLessonData = {
       <h2>The Setup of a Guitar</h2>
       <p>
 
-[Image of guitar parts: Headstock, Frets, Body, Bridge]
 </p>
       
       <h3>Tuning Pegs</h3>
