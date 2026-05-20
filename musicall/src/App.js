@@ -19,49 +19,47 @@ import TrebleSightReading from './pages/trebleclefreading';
 import BassSightReading from './pages/baseclefreading';
 import EarTraining from './pages/eartraining';
 import VirtualPiano from './pages/VituralPiano';
-//import { Analytics } from "@vercel/analytics/react"
-
 
 function App(){
     const { isSignedIn } = useUser();
     
     return (
         <Router>
-            <Navbar/>
-            <Routes>
-                <Route 
-                    path="/" 
-                    element={
-                        <div className="container">
-                            {isSignedIn ? <Dashboard /> : <Home/>}
-                        </div>
-                    } 
-                />
-                <Route path="/aboutus" element={<div className="container"><Aboutus/></div>} />
-                <Route path="/guitar" element={<div className="container"><Guitar/></div>} />
-                <Route path="/piano" element={<div className="container"><Piano/></div>} />
-                <Route path="/lesson/:lessonId" element={<div className="container"><Lesson /></div>} />
-                <Route path="/guitar-lesson/:lessonId" element={<div className="container"><GuitarLesson /></div>} />
-                <Route path="/dashboard" element={<div className="container"><Dashboard /></div>} />
-                <Route path="/home" element={<div className="container"><Home/></div>} />
-                <Route path="/section1test" element={<div className="container"><Section1Test /></div>} />
-                <Route path="/guitar-section1test" element={<div className="container"><Section1GuitarTest /></div>} />
+            {/* Mobile Block Message */}
+            <div className="mobile-block">
+                <h2>🖥️ Desktop or Ipad Only</h2>
+                <p> MusiCall is designed for larger screens. Please visit us on a computer or Ipad!</p>
+            </div>
+
+            {/* Main App Content */}
+            <div className="app-content">
+                <Navbar/>
+                <Routes>
+                    <Route path="/" element={<div className="container">{isSignedIn ? <Dashboard /> : <Home/>}</div>} />
+                    <Route path="/aboutus" element={<div className="container"><Aboutus/></div>} />
+                    <Route path="/guitar" element={<div className="container"><Guitar/></div>} />
+                    <Route path="/piano" element={<div className="container"><Piano/></div>} />
+                    <Route path="/lesson/:lessonId" element={<div className="container"><Lesson /></div>} />
+                    <Route path="/guitar-lesson/:lessonId" element={<div className="container"><GuitarLesson /></div>} />
+                    <Route path="/dashboard" element={<div className="container"><Dashboard /></div>} />
+                    <Route path="/home" element={<div className="container"><Home/></div>} />
+                    <Route path="/section1test" element={<div className="container"><Section1Test /></div>} />
+                    <Route path="/guitar-section1test" element={<div className="container"><Section1GuitarTest /></div>} />
+                    <Route path="/musictools" element={<MusicTools />} />
+                    <Route path="/musictools/flashcards" element={<Flashcards />} />
+                    <Route path="/musictools/treblesightreading" element={<TrebleSightReading />} />
+                    <Route path="/musictools/basssightreading" element={<BassSightReading />} />
+                    <Route path="/musictools/eartrainer" element={<EarTraining />} />
+                    <Route path="/musictools/virtualpiano" element={<VirtualPiano />} />
+                </Routes>
                 
-                {/* Music Tools */}
-                <Route path="/musictools" element={<MusicTools />} />
-                <Route path="/musictools/flashcards" element={<Flashcards />} />
-                <Route path="/musictools/treblesightreading" element={<TrebleSightReading />} />
-                <Route path="/musictools/basssightreading" element={<BassSightReading />} />
-                <Route path="/musictools/eartrainer" element={<EarTraining />} />
-                <Route path="/musictools/virtualpiano" element={<VirtualPiano />} />
-            </Routes>
-            
-            {isSignedIn && (
-                <>
-                <FloatingChatbot />
-                <Metronome/>
-                </>
-            )}
+                {isSignedIn && (
+                    <>
+                    <FloatingChatbot />
+                    <Metronome/>
+                    </>
+                )}
+            </div>
         </Router>
     )
 }
