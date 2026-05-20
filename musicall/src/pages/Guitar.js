@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import './Guitar.css'; 
 import { SignInButton, UserButton, useUser } from "@clerk/clerk-react";
 import { useNavigate } from 'react-router-dom';
@@ -88,6 +88,16 @@ function Guitar() {
       setTestScores(user.unsafeMetadata?.guitarTestScores || {});
     }
   }, [isLoaded, isSignedIn, user]);
+  // Generate emojis ONCE and never change them
+const backgroundEmojis = useMemo(() => {
+  return [...Array(20)].map((_, i) => ({
+    id: i,
+    emoji: ['🎸', '🎵', '🎶', '🎼'][i % 4],
+    left: `${(i * 5) % 100}%`,
+    animationDelay: `${-i * 2}s`,
+    animationDuration: `${20 + (i % 5) * 2}s`
+  }));
+}, []);
 
   // Section Locking Logic
   const section1Unlocked = testScores['section1test'] >= 80 || false;
@@ -133,6 +143,22 @@ function Guitar() {
 
   return (
     <div className="guitar-container">
+      {/* Background emoji pattern */}
+<div className="piano-background">
+  {backgroundEmojis.map((item) => (
+    <div
+      key={item.id}
+      className="piano-emoji"
+      style={{
+        left: item.left,
+        animationDelay: item.animationDelay,
+        animationDuration: item.animationDuration
+      }}
+    >
+      {item.emoji}
+    </div>
+  ))}
+</div>
       {/* Dynamic Background Transition Style */}
       <style>{`
         body {
